@@ -1,6 +1,6 @@
 # APADRINHE UM SORRISO
 
-WEBSITE desenvolvido para conclusõ do curso Desenvolvimento de Sistemas na ETEC 
+WEBSITE desenvolvido para conclusão do curso Desenvolvimento de Sistemas na ETEC 
 
 O APADRINHE UMA SORRISO é uma iniciativa sem fins lucrativos , que conecta pessoas, empresas , ações e organizações.
 
