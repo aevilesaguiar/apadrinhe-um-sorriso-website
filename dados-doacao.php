@@ -234,7 +234,7 @@ $(".toggle").on("click", function() {
 </table>
 
 <div style="text-align: right;"> 
- <a href="apadrinhamento-concluido.php"> <button class="button-menu-form" type="submit">AVANÇAR</button> </a>
+ <a href="confirmacao-dados-doacao.php"> <button class="button-menu-form" type="submit">AVANÇAR</button> </a>
 
  </div>
  <div class="dist-bot-button"></div>
