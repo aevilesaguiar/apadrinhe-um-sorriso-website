@@ -184,11 +184,11 @@ $(".toggle").on("click", function() {
 <div class="container">
   <div class="row">
     <div class="col direc-button">
-    <a href="dados-doacao.php"> <button class="button-menu-form" type="submit">APROVADO</button> </a>
+    <a href="impressao-dados-doacao.php"> <button class="button-menu-form" type="submit">APROVADO</button> </a>
     </div>
     <div class="col">
 
-    <a href="apadrinhamento-concluido.php"> <button class="button-menu-form" type="submit">REPROVADO</button> </a>
+    <a href="dados-doacao-reprovado.php"> <button class="button-menu-form" type="submit">REPROVADO</button> </a>
     </div>
  <div class="dist-bot-button"></div>
 
