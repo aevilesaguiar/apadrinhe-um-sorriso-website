@@ -96,9 +96,9 @@ $(".toggle").on("click", function() {
             
                   <img class="img-direc-login " src="image/logo-contato.svg" alt="" style="margin: 0 auto; margin-top: 50px;"  >
                   <div class="dist-menu-botao"></div>
-                    <form action="">
+                    <form action="dados-doacao.php" method="POST">
                         <div class="mb-3 row">
-                            <input type="text" class="form-control" id="inputAddress" placeholder="Usuario">
+                            <input type="text" name= "usuario" class="form-control" id="inputAddress" placeholder="Usuario">
                           </div>
             
                           <div class="mb-3 row">

@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+$_SESSION['usuario'] = $_POST['usuario'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -66,7 +74,7 @@ $(".toggle").on("click", function() {
                  </div> 
 
               
-             <nav class="menu-nav"><!--flexitem é o nav-->
+             <nav class="menu-nav"><!--flexitem é o na-->
                 <ul>
                     <li class="item"><a href="index.php">INÍCIO</a></li>
                     <li class="item menu-sep"><a href="index.php">SOBRE NÓS</a></li>
@@ -113,7 +121,7 @@ $(".toggle").on("click", function() {
   </thead>
   <tbody>
     <tr>
-    <th scope="row">Marco da Silva</th>
+    <th scope="row"><?php echo $_SESSION['usuario']; ?></th>
       <td>marco@hotmail.com</td>
       <td>(11)9 89898-4556</td>
  
