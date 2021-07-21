@@ -34,6 +34,7 @@
 src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
 crossorigin="anonymous"></script>
+<script src="js/mask.js"></script>
 
 
 <script>
@@ -63,7 +64,6 @@ $(".toggle").on("click", function() {
                  <a href="#"> <img src="image/logotipo-1.svg" alt="logo-menu">
                  </a>
                  </div> 
-
                  <nav class="menu-nav"><!--flexitem é o nav-->
                 <ul>
                     <li class="item"><a href="index.php">INÍCIO</a></li>
@@ -72,7 +72,6 @@ $(".toggle").on("click", function() {
                     <li class="item menu-sep"><a href="#doar">COMO DOAR?</a></li>
                     <li class="item menu-sep"><a href="#taxas">SERVIÇO</a></li>              
                     <li class="item menu-sep"><a href="#contato">CONTATO</a></li>
-
                     <div><a class="button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>APADRINHAR</a>
                     </div>
                     <div><a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>LOGAR</a>
@@ -80,12 +79,10 @@ $(".toggle").on("click", function() {
                      <li class="toggle"><span class="bars"></span></li>
                 </ul>
 
-
             </nav>
            
         </div>
 </header>
-
 
 <main class="main-board">
     <div class="hero-image" id="inicio">
@@ -121,18 +118,13 @@ $(".toggle").on("click", function() {
             </div>
 
         <div class="sobre-dado">
-
-
-            <div class="sobre-item">
-          
+            <div class="sobre-item">  
                 <img class="group-icon" src="image/icon/praticidade.svg" alt="">
                 <h3 class="t-icon">Praticidade<br/></h3>
                 <p>Ferramenta fácil para começar e contribuir.<br/>Te auxiliamos com a pesquisa basta clicar</p>
             </div>
-
             <div class="sobre-item">
-                <img class="group-icon" src="image/icon/confianca.svg" alt="">
-                
+                <img class="group-icon" src="image/icon/confianca.svg" alt="">           
                 <h3 class="t-icon">Confiança</h3>
                 <p >As organizações recomendadas são analisadas rigorosamente</p>
             </div>
@@ -152,7 +144,6 @@ $(".toggle").on("click", function() {
         </div>
 
 </section>
-
 
 <section class="porque-doar" id="pdoar">
 <div class="p-doar">
