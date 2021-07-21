@@ -119,7 +119,10 @@ $(".toggle").on("click", function() {
       <td>Amelia dos Santos</td>
       <td>Lais Maria da Silva</td>
       <td>Pendente</td>
-      <td> <button class="button-menu-form" type="submit">VISUALIZAR</button> </td>
+   
+     <td> <a href="confirmacao-organizacao-doacao.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a></td>
+    
+    </td>
     </tr>
   </tbody>
   <tbody>
@@ -129,7 +132,7 @@ $(".toggle").on("click", function() {
       <td>João dosSantos</td>
       <td>Leandro de Melo</td>
       <td>Pendente</td>
-      <td> <button class="button-menu-form" type="submit">VISUALIZAR</button> </td>
+     <td> <a href="confirmacao-organizacao-doacao.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a></td>
     </tr>
     </tr>
   </tbody>
@@ -140,7 +143,7 @@ $(".toggle").on("click", function() {
       <td>Amelia dos Santos</td>
       <td>Fernando Souza Santos</td>
       <td>Recebido</td>
-      <td> <button class="button-menu-form" type="submit">VISUALIZAR</button> </td>
+      <td> <a href="confirmacao-organizacao-doacao.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a></td>
     </tr>
     </tr>
   </tbody>
