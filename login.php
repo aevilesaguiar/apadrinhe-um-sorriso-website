@@ -1,3 +1,4 @@
+<?php include "php/sessao.php"?>;
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -96,13 +97,12 @@ $(".toggle").on("click", function() {
             
                   <img class="img-direc-login " src="image/logo-contato.svg" alt="" style="margin: 0 auto; margin-top: 50px;"  >
                   <div class="dist-menu-botao"></div>
-                    <form action="dados-doacao.php" method="POST">
+                    <form action="PHP/valida-entrada-usuario.php" method="POST">
                         <div class="mb-3 row">
                             <input type="text" name= "usuario" class="form-control" id="inputAddress" placeholder="Usuario">
                           </div>
-            
                           <div class="mb-3 row">
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Digite uma senha">
+                            <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Digite uma senha">
                           </div>
 
                             <input class="button-menu-form" type="submit" value="ENTRAR">
@@ -114,6 +114,9 @@ $(".toggle").on("click", function() {
                     
                 <div class="dist-menu-botao"></div>
                     <li class="margin-bottom-8 margin-top-8">
+                        <span class="text1">
+                             <b><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?><br/></b><!--Aeviles, por favor verificar-->
+                        </span>
                         <span class="text1">
                             Esqueceu sua
                         </span>
