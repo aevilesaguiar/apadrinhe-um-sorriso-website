@@ -590,14 +590,6 @@ text-align: right;
 
 }
 
-/*altura botão php*/
-
-.alt-php{
-
-  margin-top: 50px;
-}
-
-
 /*FOOTER*/
 .sobre-dado-footer{
     max-width: 1440px;
@@ -952,6 +944,9 @@ h2{
 
 
 }
+
+
+
 
 /*pagina login - sumir imagem*/
 @media screen and (max-width:1457px){

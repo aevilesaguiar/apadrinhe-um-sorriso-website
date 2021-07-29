@@ -123,20 +123,20 @@ $(".toggle").on("click", function() {
       </div>
       <div class="col-md-6">
 
-        <input type="text" class="form-control" id="inputAddress" placeholder="Endereço" required>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Endereço">
       </div>
       <div class="col-md-1">
 
-        <input type="text" class="form-control" id="inputNum" placeholder="Numero" required>
+        <input type="text" class="form-control" id="inputNum" placeholder="Numero">
       </div>
 
       <div class="col-md-3">
 
-        <input type="text" class="form-control" id="inputNum" placeholder="Cidade" required>
+        <input type="text" class="form-control" id="inputNum" placeholder="Cidade">
       </div>
       <div class="col-md-2">
   
-        <select id="inputState" class="form-select form-control" type="select" required>
+        <select id="inputState" class="form-select form-control" type="select">
           <option value="">Estado</option>
           <option value="AC">AC</option>
           <option value="AL">AL</option>
@@ -170,38 +170,38 @@ $(".toggle").on("click", function() {
 
       <div class="col-md-4">
 
-        <input type="text" class="form-control" id="inputAddress" placeholder="Bairro" required>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Bairro">
       </div>
       <div class="col-md-8">
 
-        <input type="text" class="form-control" id="inputCity" placeholder="Complemento" required>
+        <input type="text" class="form-control" id="inputCity" placeholder="Complemento">
       </div>
 
       <div class="col-md-6">
 
-        <input type="text" class="form-control" id="inputAddress" placeholder="Site" >
+        <input type="text" class="form-control" id="inputAddress" placeholder="Site">
       </div>
 
       <div class="col-md-6">
 
-        <input type="text" class="form-control" id="inputAddress" placeholder="Rede Social" >
+        <input type="text" class="form-control" id="inputAddress" placeholder="Rede Social">
       </div>
       <div class="col-md-12">
 
-        <input type="text" class="form-control" id="inputAddress" placeholder="Tipo de Organização" required>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Tipo de Organização">
       </div>
     
       <div class="col-md-4">
 
-        <input type="text" class="form-control" id="inputAddress" placeholder="Usuario" required>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Usuario">
       </div>
       <div class="col-md-4">
 
-        <input type="password" class="form-control" id="inputPassword4" placeholder="Digite uma senha" required>
+        <input type="password" class="form-control" id="inputPassword4" placeholder="Digite uma senha">
       </div>
       <div class="col-md-4">
- 
-        <input type="password" class="form-control" id="inputPassword4" placeholder="Confirme a  senha" required>
+
+        <input type="password" class="form-control" id="inputPassword4" placeholder="Confirme a  senha">
       </div>
 
       <div class="col-md-12">

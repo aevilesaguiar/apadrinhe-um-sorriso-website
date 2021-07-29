@@ -111,7 +111,7 @@ $(".toggle").on("click", function() {
       </div>
       <div class="col-md-6">
 
-        <input type="email" class="form-control" id="inputEmail4" placeholder="E-mail" required>
+        <input type="email" class="form-control" id="inputEmail4" placeholder="E-mail">
       </div>
       <div class="col-md-4">
 
@@ -124,20 +124,20 @@ $(".toggle").on("click", function() {
       </div>
       <div class="col-md-6">
 
-        <input type="text" class="form-control" id="inputAddress" placeholder="Bairro" required>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Bairro">
       </div>
       <div class="col-md-1">
 
-        <input type="text" class="form-control" id="inputNum" placeholder="Numero" required>
+        <input type="text" class="form-control" id="inputNum" placeholder="Numero">
       </div>
 
       <div class="col-md-3">
 
-        <input type="text" class="form-control" id="inputNum" placeholder="Cidade" required>
+        <input type="text" class="form-control" id="inputNum" placeholder="Cidade">
       </div>
       <div class="col-md-2">
   
-        <select id="inputState" class="form-select form-control" type="select" required>
+        <select id="inputState" class="form-select form-control" type="select">
           <option value="">Estado</option>
           <option value="AC">AC</option>
           <option value="AL">AL</option>
@@ -171,25 +171,25 @@ $(".toggle").on("click", function() {
 
       <div class="col-md-4">
 
-        <input type="text" class="form-control" id="inputAddress" placeholder="Bairro" required>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Bairro">
       </div>
       <div class="col-md-8">
 
-        <input type="text" class="form-control" id="inputCity" placeholder="Complemento" required>
+        <input type="text" class="form-control" id="inputCity" placeholder="Complemento">
       </div>
 
       <div class="col-md-6">
 
-        <input type="text" class="form-control" id="inputAddress" placeholder="Site" required>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Site">
       </div>
 
       <div class="col-md-6">
 
-        <input type="text" class="form-control" id="inputAddress" placeholder="Rede Social" required>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Rede Social">
       </div>
       <div class="col-md-6">
     
-        <select id="inputState" class="form-select form-control" type="select" required>
+        <select id="inputState" class="form-select form-control" type="select">
           <option value="">Selecione a Ong Mais Próxima</option>
           <option > Orfanato pequeno Leão </option>
           <option > Organização de Crianças de Sertania </option>
@@ -198,7 +198,7 @@ $(".toggle").on("click", function() {
       </div>
       <div class="col-md-6">
      
-        <select id="inputState" class="form-select form-control" type="select" required>
+        <select id="inputState" class="form-select form-control" type="select">
           <option value="">Selecione o Nome da Criança</option>
           <option > José da Silva </option>
           <option > Maria da Silva </option>
@@ -206,15 +206,15 @@ $(".toggle").on("click", function() {
       </div>
       <div class="col-md-4">
 
-        <input type="text" class="form-control" id="inputAddress" placeholder="Usuario" required>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Usuario">
       </div>
       <div class="col-md-4">
 
-        <input type="password" class="form-control" id="inputPassword4" placeholder="Digite uma senha" required>
+        <input type="password" class="form-control" id="inputPassword4" placeholder="Digite uma senha">
       </div>
       <div class="col-md-4">
 
-        <input type="password" class="form-control" id="inputPassword4" placeholder="Confirme a  senha" required>
+        <input type="password" class="form-control" id="inputPassword4" placeholder="Confirme a  senha">
       </div>
         <div class="dist-menu-botao"></div>
 <div class="sobre-dado-fale dist-menu-botao">
