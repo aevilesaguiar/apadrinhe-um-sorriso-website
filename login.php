@@ -107,12 +107,13 @@ $(".toggle").on("click", function() {
 
                             <input class="button-menu-form" type="submit" value="ENTRAR">
 
+                            <div class="alt-php"></div>
 
                     </form>
-                      
+                
                 <ul class="login-utils">
                     
-                <div class="dist-menu-botao"></div>
+                <div class="dist-menu-botao" style="margin-bottom: 60px;"></div>
                     <li class="margin-bottom-8 margin-top-8">
                        <span class="text1">
                              <b><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?><br/></b><!--Aeviles, por favor verificar-->
