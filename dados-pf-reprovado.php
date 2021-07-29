@@ -54,7 +54,7 @@ $(".toggle").on("click", function() {
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
- <title> Lista Cadastro Doador Pessoa Jurídica- APADRINHE UM SORRISO </title>
+ <title>Dados PF Reprovado - APADRINHE UM SORRISO </title>
 </head>
 <body>
  <header class="menu-bg">
@@ -65,8 +65,7 @@ $(".toggle").on("click", function() {
                  </a>
                  </div> 
 
-              
-             <nav class="menu-nav"><!--flexitem é o nav-->
+                 <nav class="menu-nav"><!--flexitem é o nav-->
                 <ul>
                     <li class="item"><a href="index.php">INÍCIO</a></li>
                     <li class="item menu-sep"><a href="index.php">SOBRE NÓS</a></li>
@@ -84,66 +83,29 @@ $(".toggle").on("click", function() {
 
 
             </nav>
-         
-           
         </div>
 </header>
-
-
 <main class="main-board dist-mob-form">
     <div class="dist-menu"></div>
-<div class="p-doar">
-
-<div class="altura-doar ">
-
-            <h2>LISTA CADASTRO DOADOR PESSOA JURÍDICA</h2>
+    <div class="p-doar">
+    <div class="altura-doar ">
+            <h2>DADOS PF- REPROVADO</h2>
         </div>
-            <div class="sep-item "></div>
-            <div class="dist-menu"></div>
-            
-   <div class="textos-item">   
-
-<table class="table">
-  <thead>
-  <tr>
-      <th scope="col">CNPJ</th>
-      <th scope="col">Razão Social</th>
-      <th scope="col">Telefone</th>
-      <th scope="col">E-mail</th>
-      <th scope="col">Visualizar Dados</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">23.256.569/0001/05</th>
-      <td>America do sul Ltda</td>
-      <td>(11)5656-8956</td>
-      <td>americadosul@americadosul.com.br</td>
-      <td>  <a href="aprovar-cadastro-pj.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-     
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <th scope="row">23.256.569/0001/05</th>
-      <td>America do sul Ltda</td>
-      <td>(11)5656-8956</td>
-      <td>americadosul@americadosul.com.br</td>
-      <td>  <a href="aprovar-cadastro-pj.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <th scope="row">23.256.569/0001/05</th>
-      <td>America do sul Ltda</td>
-      <td>(11)5656-8956</td>
-      <td>americadosul@americadosul.com.br</td>
-      <td>  <a href="aprovar-cadastro-pj.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-  </tbody>
-</table>
-   </div>
-   <div class="dist-bot-button"></div>
+          <div class="sep-item "></div>
+          <div class="dist-menu"></div>
+          <div class="textos-item">     
+     <form class="row g-3  dist-mob-form">
+          
+            <div class="col-md-12">
+              <textarea type="mensagem" class="form-control" aria-label="With textarea"  placeholder="Observação" style="height: 120px;"></textarea>
+            </div>
+            <div class="dist-menu-botao"></div>
+            <div class="sobre-dado-fale dist-menu-botao">
+              <input class="button-menu-form" type="submit" value="ENVIAR">
+      </div>
+ </form>
+    <div class="dist-menu"></div>
+</div>
 </main>
 
 <footer >

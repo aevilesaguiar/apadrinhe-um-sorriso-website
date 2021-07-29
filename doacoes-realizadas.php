@@ -110,7 +110,7 @@ $(".toggle").on("click", function() {
 
             <tr>
                 <th scope="col">Codigo</th>
-                <th scope="col">Organização/th>
+                <th scope="col">Organização</th>
                 <th scope="col">Nome da Criança</th>
                 <th scope="col">Sexo</th>
                 <th scope="col">STATUS</th>

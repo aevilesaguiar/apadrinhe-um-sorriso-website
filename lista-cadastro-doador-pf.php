@@ -119,7 +119,7 @@ $(".toggle").on("click", function() {
       <td>Amelia dos Santos</td>
       <td>(11)5656-8956</td>
       <td>amelia@hotmail.com</td>
-      <td> <button class="button-menu-form" type="submit">VISUALIZAR</button> </td>
+      <td>  <a href="aprovar-cadastro-pf.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
     </tr>
   </tbody>
   <tbody>
@@ -128,7 +128,7 @@ $(".toggle").on("click", function() {
       <td>Amelia dos Santos</td>
       <td>(11)5656-8956</td>
       <td>amelia@hotmail.com</td>
-      <td> <button class="button-menu-form" type="submit">VISUALIZAR</button> </td>
+      <td>  <a href="aprovar-cadastro-pf.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
     </tr>
   </tbody>
   <tbody>
@@ -137,7 +137,7 @@ $(".toggle").on("click", function() {
       <td>Amelia dos Santos</td>
       <td>(11)5656-8956</td>
       <td>amelia@hotmail.com</td>
-      <td> <button class="button-menu-form" type="submit">VISUALIZAR</button> </td>
+      <td>  <a href="aprovar-cadastro-pf.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
     </tr>
   </tbody>
 </table>

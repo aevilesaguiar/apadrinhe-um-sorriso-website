@@ -30,11 +30,13 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="js/mask.js"></script>
+
 <script
 src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
 crossorigin="anonymous"></script>
-<script src="js/mask.js"></script>
+
 
 <script>
 $(function() {
@@ -54,7 +56,7 @@ $(".toggle").on("click", function() {
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
- <title> Lista Cadastro Doador Pessoa Jurídica- APADRINHE UM SORRISO </title>
+ <title>Aprovar Cadastro-PJ- APADRINHE UM SORRISO </title>
 </head>
 <body>
  <header class="menu-bg">
@@ -96,54 +98,93 @@ $(".toggle").on("click", function() {
 
 <div class="altura-doar ">
 
-            <h2>LISTA CADASTRO DOADOR PESSOA JURÍDICA</h2>
+            <h2 class="tit">APROVAR CADASTRO PJ</h2>
         </div>
             <div class="sep-item "></div>
-            <div class="dist-menu"></div>
-            
-   <div class="textos-item">   
 
-<table class="table">
-  <thead>
-  <tr>
-      <th scope="col">CNPJ</th>
-      <th scope="col">Razão Social</th>
-      <th scope="col">Telefone</th>
-      <th scope="col">E-mail</th>
-      <th scope="col">Visualizar Dados</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">23.256.569/0001/05</th>
-      <td>America do sul Ltda</td>
-      <td>(11)5656-8956</td>
-      <td>americadosul@americadosul.com.br</td>
-      <td>  <a href="aprovar-cadastro-pj.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-     
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <th scope="row">23.256.569/0001/05</th>
-      <td>America do sul Ltda</td>
-      <td>(11)5656-8956</td>
-      <td>americadosul@americadosul.com.br</td>
-      <td>  <a href="aprovar-cadastro-pj.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <th scope="row">23.256.569/0001/05</th>
-      <td>America do sul Ltda</td>
-      <td>(11)5656-8956</td>
-      <td>americadosul@americadosul.com.br</td>
-      <td>  <a href="aprovar-cadastro-pj.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-  </tbody>
-</table>
-   </div>
-   <div class="dist-bot-button"></div>
+            
+   <div class="textos-item" >   
+   <div class="container">
+  <div class="row">
+    <div class="col" style="text-align: right;">CNPJ</div>
+    <div class="col">00.000.000/0000-00</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Razão Social</div>
+    <div class="col">Amadeu Lima ME</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">E-mail</div>
+    <div class="col">amadeu@amadeu.com.br</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Telefone </div>
+    <div class="col">(11)5656-8989</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Endereço</div>
+    <div class="col">Rua maria da silva</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Num</div>
+    <div class="col">33</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Bairro</div>
+    <div class="col">Sampaio</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Complemento</div>
+    <div class="col">casa</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">CEP</div>
+    <div class="col">00.000-000</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Cidade</div>
+    <div class="col">Abreu e Lima</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Estado</div>
+    <div class="col">PE</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Rede Social</div>
+    <div class="col">facebook.com.br/amadeu</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Site</div>
+    <div class="col">www.amadeu.com.br</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Usuário</div>
+    <div class="col">Amadeu</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Senha</div>
+    <div class="col">1234</div>
+  </div>
+</div>
+            <div class="dist-bot-button"></div>
+           
+<div class="dist-bot-button"></div>
+<div class="container">
+  <div class="row">
+    <div class="col direc-button">
+    <a href="liberacao-doador-pj.php"> <button class="button-menu-form" type="submit">APROVADO</button> </a>
+    </div>
+    <div class="col">
+
+    <a href="dados-pj-reprovado.php"> <button class="button-menu-form" type="submit">REPROVADO</button> </a>
+    </div>
+ <div class="dist-bot-button"></div>
+
+        </div>
+
+  <div class="dist-bot-button"></div>
+   </div>               
+</div>
 </main>
 
 <footer >
