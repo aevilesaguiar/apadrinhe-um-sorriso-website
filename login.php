@@ -104,21 +104,21 @@ $(".toggle").on("click", function() {
                           <div class="mb-3 row">
                             <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Digite uma senha">
                           </div>
-
-                            <input class="button-menu-form" type="submit" value="ENTRAR">
-
-                            <div class="alt-php"></div>
+                          <span class="text1">
+                             <p style="color: red; font-weight: 700;"><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p><!--Aeviles, por favor verificar-->
+                       
+                            </span>
+                            <input class="button-menu-form" type="submit" value="ENTRAR" style="margin-top:20px">
 
                     </form>
                 
                 <ul class="login-utils">
                     
-                <div class="dist-menu-botao" style="margin-bottom: 60px;"></div>
+                <div class="dist-menu-botao" style="margin-bottom: 30px;"></div>
                     <li class="margin-bottom-8 margin-top-8">
-                       <span class="text1">
-                             <b><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?><br/></b><!--Aeviles, por favor verificar-->
-                        </span>
-                        <span class="text1">
+                    <div class="dist-menu-botao" style="margin-top: 30px;"></div>
+                     
+                        <span class="text1" style="margin-top: 20px;">
                             Esqueceu sua
                         </span>
 
