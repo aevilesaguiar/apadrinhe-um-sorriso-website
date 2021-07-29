@@ -1,3 +1,7 @@
+<?php     
+  include "php/sessao.php"; //Inicia sessao e encerra sessões
+  include "php/redirecionamento-pagina.php";//Registro de todas as paginas para redirecionamento
+  include "php/seguranca.php";//Expulsa usuário desta pagina caso não esteja logado?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -79,7 +83,16 @@ $(".toggle").on("click", function() {
 
                     <div><a class="button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>APADRINHAR</a>
                     </div>
-                    <div><a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>LOGAR</a>
+                    <div>
+                    <?php if($_SESSION['logado']!==TRUE){?>
+                    <a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                    LOGAR
+                    </a>
+                    <?php }else{ ?>
+                    <a class=" button-menu" href="php/seguranca.php?sair=true" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                    SAIR
+                    </a>
+                    <?php }?>
                     </div>
                      <li class="toggle"><span class="bars"></span></li>
                 </ul>
