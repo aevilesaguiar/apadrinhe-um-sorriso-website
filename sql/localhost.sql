@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 28-Jul-2021 às 16:52
+-- Generation Time: 30-Jul-2021 às 17:12
 -- Versão do servidor: 5.6.34
 -- PHP Version: 7.1.11
 
@@ -123,10 +123,10 @@ CREATE TABLE `cadastro_pj` (
   `estado_pj` int(2) DEFAULT NULL,
   `bairro_pj` varchar(15) DEFAULT NULL,
   `complemento_pj` varchar(10) DEFAULT NULL,
-  `redesocial_pj` varchar(40) DEFAULT NULL,
   `site_pj` varchar(40) DEFAULT NULL,
-  `selecionar_crianca_pj` int(11) DEFAULT NULL,
+  `redesocial_pj` varchar(40) DEFAULT NULL,
   `selecione_ong_pj` int(11) DEFAULT NULL,
+  `selecionar_crianca_pj` int(11) DEFAULT NULL,
   `usuario_pj` varchar(30) DEFAULT NULL,
   `senha_pj` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -141,7 +141,8 @@ CREATE TABLE `confirmacao_da_entrega` (
   `id_confirmacao` int(11) NOT NULL,
   `nome_doador_entrega` int(11) NOT NULL,
   `dados_familia_entrega` int(11) DEFAULT NULL,
-  `status_entrega` char(1) DEFAULT NULL
+  `status_entrega` char(1) DEFAULT NULL,
+  `data_hora` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -154,7 +155,8 @@ CREATE TABLE `dados_doacao` (
   `id_doacao` int(11) NOT NULL,
   `organizacao_doacao` int(11) DEFAULT NULL,
   `nome_doacao` int(11) DEFAULT NULL,
-  `tipo_kit_doacao` int(11) DEFAULT NULL
+  `tipo_kit_doacao` int(11) DEFAULT NULL,
+  `aprovacao_doacao` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -164,7 +166,7 @@ CREATE TABLE `dados_doacao` (
 --
 
 CREATE TABLE `esqueceu_senha` (
-  `id_email` int(11) DEFAULT NULL,
+  `id_email` int(11) NOT NULL,
   `email_usuario` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -283,14 +285,14 @@ ALTER TABLE `cadastro_familia`
 -- Indexes for table `cadastro_org`
 --
 ALTER TABLE `cadastro_org`
-  ADD PRIMARY KEY (`id_org`,`cnpj_org`,`razao_social_org`),
+  ADD PRIMARY KEY (`id_org`),
   ADD KEY `estado_org` (`estado_org`);
 
 --
 -- Indexes for table `cadastro_pf`
 --
 ALTER TABLE `cadastro_pf`
-  ADD PRIMARY KEY (`id_pf`,`cpf_pf`),
+  ADD PRIMARY KEY (`id_pf`),
   ADD KEY `estado_pf` (`estado_pf`),
   ADD KEY `selecione_ong_pf` (`selecione_ong_pf`),
   ADD KEY `selecionar_crianca_pf` (`selecionar_crianca_pf`);
@@ -299,7 +301,7 @@ ALTER TABLE `cadastro_pf`
 -- Indexes for table `cadastro_pj`
 --
 ALTER TABLE `cadastro_pj`
-  ADD PRIMARY KEY (`id_pj`,`cnpj_pj`),
+  ADD PRIMARY KEY (`id_pj`),
   ADD KEY `estado_pj` (`estado_pj`),
   ADD KEY `selecione_ong_pj` (`selecione_ong_pj`),
   ADD KEY `selecionar_crianca_pj` (`selecionar_crianca_pj`);
@@ -322,10 +324,16 @@ ALTER TABLE `dados_doacao`
   ADD KEY `nome_doacao` (`nome_doacao`);
 
 --
+-- Indexes for table `esqueceu_senha`
+--
+ALTER TABLE `esqueceu_senha`
+  ADD PRIMARY KEY (`id_email`);
+
+--
 -- Indexes for table `estados`
 --
 ALTER TABLE `estados`
-  ADD PRIMARY KEY (`id_estado`,`estado`);
+  ADD PRIMARY KEY (`id_estado`);
 
 --
 -- Indexes for table `fale_conosco`
@@ -364,13 +372,13 @@ ALTER TABLE `tamanho_camiseta`
 -- Indexes for table `tipo_de_kit`
 --
 ALTER TABLE `tipo_de_kit`
-  ADD PRIMARY KEY (`id_kit`,`tipo`);
+  ADD PRIMARY KEY (`id_kit`);
 
 --
 -- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_usuario`,`usuario`,`senha`);
+  ADD PRIMARY KEY (`id_usuario`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -480,6 +488,81 @@ ALTER TABLE `lista_de_recebimento_doações`
   ADD CONSTRAINT `doador` FOREIGN KEY (`doador`) REFERENCES `usuarios` (`id_usuario`),
   ADD CONSTRAINT `nome_crianca` FOREIGN KEY (`nome_crianca`) REFERENCES `cadastro_familia` (`id_familia`),
   ADD CONSTRAINT `status_de_recebimento` FOREIGN KEY (`status_de_recebimento`) REFERENCES `confirmacao_da_entrega` (`id_confirmacao`);
+--
+-- Database: `pwii`
+--
+CREATE DATABASE IF NOT EXISTS `pwii` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `pwii`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `amigo`
+--
+
+CREATE TABLE `amigo` (
+  `idamigo` int(11) NOT NULL,
+  `nome` varchar(45) NOT NULL,
+  `apelido` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `amigo`
+--
+
+INSERT INTO `amigo` (`idamigo`, `nome`, `apelido`, `email`) VALUES
+(1, 'gabi', 'gabizinha', 'gabizinha@etec.com.br');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `idusuario` int(11) NOT NULL DEFAULT '0',
+  `nome` varchar(45) DEFAULT NULL,
+  `senha` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`idusuario`, `nome`, `senha`) VALUES
+(0, 'gabi', 'gabi123');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `amigo`
+--
+ALTER TABLE `amigo`
+  ADD PRIMARY KEY (`idamigo`);
+
+--
+-- Indexes for table `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`idusuario`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `amigo`
+--
+ALTER TABLE `amigo`
+  MODIFY `idamigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- Database: `test`
+--
+CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `test`;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
