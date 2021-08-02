@@ -126,7 +126,7 @@ $(".toggle").on("click", function() {
       </div>
       <div class="col-md-6">
 
-        <input type="text" class="form-control" id="inputAddress" placeholder="Bairro">
+        <input type="text" class="form-control" id="inputAddress" placeholder="Endereço">
       </div>
       <div class="col-md-1">
 
@@ -205,7 +205,7 @@ $(".toggle").on("click", function() {
         <input type="password" class="form-control" id="inputPassword4" placeholder="Confirme a  senha">
       </div>
       <div class="col-md-12">
-        <textarea type="mensagem" class="form-control" aria-label="With textarea"  placeholder="Descriço de Cargo" style="height: 120px;"></textarea>
+        <textarea type="mensagem" class="form-control" aria-label="With textarea"  placeholder="Descrição de Cargo" style="height: 120px;"></textarea>
       </div>
 
         <div class="dist-menu-botao"></div>
