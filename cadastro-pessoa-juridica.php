@@ -124,7 +124,7 @@ $(".toggle").on("click", function() {
       </div>
       <div class="col-md-6">
 
-        <input type="text" class="form-control" id="inputAddress" placeholder="Bairro" required>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Endereço" required>
       </div>
       <div class="col-md-1">
 

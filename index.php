@@ -107,11 +107,11 @@ $(".toggle").on("click", function() {
 
             <div class="sep-item"></div>
             <div class="textos-item">
-            <p> O APADRINHE UMA SORRISO é uma iniciativa sem fins lucrativos , que conecta pessoas, empresas , ações e organizações.</p>
+            <p> O APADRINHE UM SORRISO é uma iniciativa sem fins lucrativos , que conecta pessoas, empresas , ações e organizações.</p>
            <p>Percebemos a necessidade de uma ferramenta que pudesse auxiliar as pessoas e empresas a realizarem doações de uma forma rápida e segura, e o Apadrinhe um Sorriso 
             tem essa  proposta de ser um local onde todos podem ter a oportunidade de ajudar a comunidade e  auxiliar no desenvolvimento da população menos favorecida.</p>
             <p>Ao apadrinhar uma criança você não ajuda apenas ela, mas toda a sua família.</p>
-            <p>ão muitos vulneráveis a pobreza, e nós fazemos o elo entre as organizações e as
+            <p>São muitos vulneráveis a pobreza, e nós fazemos o elo entre as organizações e as
              famílas promovendo as doações de forma justa  e colaborativa permitindo que pessoas físicas e Júridicas possam contribuir para uma Sociedade melhor.</p>
             </span>
             </div>
