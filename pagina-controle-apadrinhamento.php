@@ -1,7 +1,7 @@
 <?php     
-  include "php/sessao.php"; //Inicia sessao e encerra sessões
-  include "php/redirecionamento-pagina.php";//Registro de todas as paginas para redirecionamento
-  include "php/seguranca.php";//Expulsa usuário desta pagina caso não esteja logado?>
+  include "php/controle-site/sessao.php"; //Inicia sessao e encerra sessões
+  include "php/controle-site/redirecionamento-pagina.php";//Registro de todas as paginas para redirecionamento
+  include "php/controle-site/seguranca.php";//Expulsa usuário desta pagina caso não esteja logado?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -89,7 +89,7 @@ $(".toggle").on("click", function() {
                     LOGAR
                     </a>
                     <?php }else{ ?>
-                    <a class=" button-menu" href="php/seguranca.php?sair=true" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                    <a class=" button-menu" href="php/controle-site/seguranca.php?sair=true" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
                     SAIR
                     </a>
                     <?php }?>

@@ -1,4 +1,4 @@
-<?php include "php/sessao.php"?>;
+<?php include "php/controle-site/sessao.php"?>;
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -97,7 +97,7 @@ $(".toggle").on("click", function() {
             
                   <img class="img-direc-login " src="image/logo-contato.svg" alt="" style="margin: 0 auto; margin-top: 50px;"  >
                   <div class="dist-menu-botao"></div>
-                    <form action="PHP/valida-entrada-usuario.php" method="POST">
+                    <form action="PHP/controle-site/valida-entrada-usuario.php" method="POST">
                         <div class="mb-3 row">
                             <input type="text" name= "usuario" class="form-control" id="inputAddress" placeholder="Usuario">
                           </div>
