@@ -80,7 +80,7 @@ $(".toggle").on("click", function() {
                     <div><a class="button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>APADRINHAR</a>
                     </div>
                     <div>
-                    <?php if($_SESSION['logado']!==TRUE){?>
+                    <?php if(isset($_SESSION['logado'])!==TRUE){?>
                     <a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
                     SAIR
                     </a>
