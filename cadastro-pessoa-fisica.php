@@ -100,41 +100,41 @@ $(".toggle").on("click", function() {
             <div class="sep-item "></div>
             <div class="dist-menu"></div>
    <div class="sobre-dado-fale">      
-         <form class="row g-3  dist-mob-form">
+         <form class="row g-3  dist-mob-form" method="post" action="php/controle-site/cadastro.php">
               <div class="col-md-6">
-                <input type="text" class="form-control"  id="inputCpf" onKeyPress="MascaraGenerica(this, 'CPF');" placeholder="CPF" required /> 
+                <input type="text" class="form-control"  id="inputCpf" name="cpf" onKeyPress="MascaraGenerica(this, 'CPF');" placeholder="CPF" required /> 
               </div>
 
               <div class="col-md-6">
-                <input type="text" class="form-control"  id="inputNome" placeholder="Nome" required /> 
+                <input type="text" class="form-control"  id="inputNome" name="nome" placeholder="Nome" required /> 
               </div>
 
               <div class="col-md-6">
-                <input type="email" class="form-control" id="inputEmail4" placeholder="E-mail">
+                <input type="email" class="form-control" id="inputEmail4" name="email" placeholder="E-mail">
               </div>
 
               <div class="col-md-4">
-                <input type="text" class="form-control"  id="inputEmail" onKeyPress="MascaraGenerica(this, 'TELEFONE');" placeholder="Telefone" required /> 
+                <input type="text" class="form-control"  id="inputEmail" name="telefone" onKeyPress="MascaraGenerica(this, 'TELEFONE');" placeholder="Telefone" required /> 
               </div>
 
               <div class="col-md-2">
-                <input type="text" class="form-control" id="inputZip" onKeyPress="MascaraGenerica(this, 'CEP');" placeholder="CEP" required /> 
+                <input type="text" class="form-control" id="inputZip" name="cep" onKeyPress="MascaraGenerica(this, 'CEP');" placeholder="CEP" required /> 
               </div>
 
               <div class="col-md-6">
-                <input type="text" class="form-control" id="inputAddress" placeholder="Endereço" required>
+                <input type="text" class="form-control" id="inputAddress" name="endereco" placeholder="Endereço" required>
               </div>
 
               <div class="col-md-1">
-                <input type="text" class="form-control" id="inputNum" placeholder="Numero" required>
+                <input type="text" class="form-control" id="inputNum" name="numero" placeholder="Numero" required>
               </div>
 
               <div class="col-md-3">
-                <input type="text" class="form-control" id="inputNum" placeholder="Cidade" required>
+                <input type="text" class="form-control" id="inputNum" name="cidade" placeholder="Cidade" required>
               </div>
 
               <div class="col-md-2">
-                <select id="inputState" class="form-select form-control" type="select" required>
+                <select id="inputState" class="form-select form-control" name="estado" type="select" required>
                   <option value="">Estado</option>
                   <option value="AC">AC</option>
                   <option value="AL">AL</option>
@@ -167,15 +167,15 @@ $(".toggle").on("click", function() {
               </div>
 
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputAddress" placeholder="Bairro" required>
+                <input type="text" class="form-control" id="inputAddress" name="bairro" placeholder="Bairro" required>
               </div>
 
               <div class="col-md-8">
-                <input type="text" class="form-control" id="inputCity" placeholder="Complemento" > 
+                <input type="text" class="form-control" id="inputCity" name="complemento" placeholder="Complemento" > 
               </div>
 
               <div class="col-md-6">
-                <select id="inputState" class="form-select form-control" type="select" required>
+                <select id="inputState" name="organizacao" class="form-select form-control" type="select" required>
                   <option value="">Selecione a Ong Mais Próxima</option>
                   <option > Orfanato pequeno Leão </option>
                   <option > Organização de Crianças de Sertania </option>
@@ -196,15 +196,15 @@ $(".toggle").on("click", function() {
               </div>
 
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputAddress" placeholder="Usuario" required>
+                <input type="text" class="form-control" id="inputAddress" name="usuario" placeholder="Usuario" required>
               </div>
 
               <div class="col-md-4">
-                <input type="password" class="form-control" id="inputPassword4" placeholder="Digite uma senha" required>
+                <input type="password" class="form-control" id="inputPassword4" name="senha" placeholder="Digite uma senha" required>
               </div>
 
               <div class="col-md-4">
-                <input type="password" class="form-control" id="inputPassword4" placeholder="Confirme a  senha" required>
+                <input type="password" class="form-control" id="inputPassword4" name ="confirm_senha" placeholder="Confirme a  senha" required>
               </div>
 
                 <div class="dist-menu-botao"></div>

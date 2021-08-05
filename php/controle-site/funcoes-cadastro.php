@@ -14,9 +14,9 @@ $complemento,$site,$redesocial,$tipo_org,$obs,$id_usuario){
 
     return $cadastro;
     
-}
+}//Cadastra organização
 
 function cadastra_usuario($usuario,$senha){
     $cadastro = 'INSERT INTO usuarios(usuario,senha) VALUES("'.$usuario.'","'.$senha.'")';
     return $cadastro;
-}
+}//Cadastra Usuário e Senha.

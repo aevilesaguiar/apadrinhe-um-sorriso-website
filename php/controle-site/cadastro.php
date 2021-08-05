@@ -4,8 +4,20 @@ include '../geral/conexao-banco.php';
 include 'funcoes-cadastro.php';
 include "redirecionamento-pagina.php"; //Registro de todas as paginas para redirecionamento
 
+//Dados cadastro-organização diferenciado
 $cnpj = $_POST["cnpj"];
 $razao_social =$_POST['razao_social'];
+$site=$_POST['site'];
+$redesocial=$_POST['rede_social'];
+$tipo_org=$_POST['tipo_organizacao'];
+$obs=$_POST['observacao'];
+
+//Dados cadastro-pessoa-fisica diferenciado
+$cpf = $_POST['cpf'];
+$nome = $_POST['nome'];
+
+
+//Dados comum cadastro-organização/cadastro-pessoa-fisica
 $email = $_POST['email'];
 $telefone=$_POST['telefone'];
 $cep=$_POST['cep'];
@@ -15,13 +27,15 @@ $cidade=$_POST['cidade'];
 $estado=$_POST['estado'];
 $bairro=$_POST['bairro'];
 $complemento=$_POST['complemento'];
-$site=$_POST['site'];
-$redesocial=$_POST['rede_social'];
-$tipo_org=$_POST['tipo_organizacao'];
+$complemento=$_POST['organizacao'];
 $usuario=$_POST['usuario'];
 $senha=$_POST['senha'];
 $confirm_senha=$_POST['confirm_senha'];
-$obs=$_POST['observacao'];
+
+/*
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";*/
 
 
 $cadastra_usuario = $conecta->query(cadastra_usuario($usuario,$senha));//cadastra usuário
