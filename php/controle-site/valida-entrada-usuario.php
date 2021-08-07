@@ -18,32 +18,39 @@ if($conecta->connect_error){//Se houver erro na conexao com o banco de dados
     $conta=0;
     $resultado=$conecta->query(consulta_acesso($_POST['usuario'],$_POST['password']));
     
-    if($_POST['usuario']=='admin' && $_POST['password']=='admin'){
-        sessao_login($_POST['usuario']);
-        redireciona(0);
-    
-    }else if($conta=$resultado->num_rows==1){// Se for encontrado usuario e senha, autoriza a entrada do usuário.
+    if($conta=$resultado->num_rows==1){// Se for encontrado usuario e senha, autoriza a entrada do usuário.
         
         foreach($resultado as $dados){
 
         }
            
-            $resultado_org=$conecta->query(consulta_tipo_usuario('ORGANIZACAO',$dados['id_usuario']));// consulta usuario na tabela cadastro organização com o id do usuário encontrado
-            $resultado_pj=$conecta->query(consulta_tipo_usuario('PESSOA_JURIDICA',$dados['id_usuario']));// consulta usuario na tabela cadastro pj com o id do usuário encontrado
-            $resultado_pf=$conecta->query(consulta_tipo_usuario('PESSOA_FISICA',$dados['id_usuario']));// consulta usuario na tabela cadastro pf com o id do usuário encontrado
+            $resultado_perfil=$conecta->query(consulta_perfil($dados['idusuario']));// consulta usuario na tabela cadastro organização com o id do usuário encontrado
+        
+        foreach($resultado_perfil as $perfil){
 
-            if($conta=$resultado_org->num_rows==1)//Se a quantidade de usuário for  no máximo igual a 1 para um usuario da organização autoriza a entrada
+        }
+
+            if($conta=$resultado_perfil->num_rows==1)//Se a quantidade de usuário for  no máximo igual a 1 para um usuario da organização autoriza a entrada
             {
-                redireciona(1);//Pagina controle ONG
-            }else if($conta=$resultado_pj->num_rows==1)//Se a quantidade de usuário for  no máximo igual a 1 para um usuario de pessoa juridica autoriza a entrada
-            {
-                redireciona(0);//Redireciona Pagina controle apadrinho
-            }else if($conta=$resultado_pf->num_rows==1)//Se a quantidade de usuário for  no máximo igual a 1 para um usuario de pessoa fisica autoriza a entrada
-            {
-                redireciona(0);//Redireciona Pagina controle apadrinho
+                
+
+                $resultado_dados_gerais=$conecta->query(consulta_dados_gerais($perfil['dados_gerais_id']));
+
+                foreach($resultado_dados_gerais as $dados){
+
+                }
+                sessao_login($dados['nome'],$dados['email'],$dados['telefone']);
+
+                if($perfil['tipo_cadastro']=="organizacao"){
+                    redireciona(1);
+                }else if($perfil['tipo_cadastro']=="doador_pj" ||$perfil['tipo_cadastro']=="doador_pf"){
+                   redireciona(0);
+                    
+                }
             }
 
-        sessao_login($_POST['usuario']);
+            
+            
         
     }else{
 
