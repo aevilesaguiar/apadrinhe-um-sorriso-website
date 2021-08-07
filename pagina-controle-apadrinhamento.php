@@ -1,3 +1,6 @@
+<?php
+    include "php/controle-site/sessao.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -121,13 +124,13 @@ $(".toggle").on("click", function() {
         <thead>
             <tr>
                 <th scope="col"> Nome</th>
-                <th scope="col">João da Silva</th>
+                <th scope="col"><?php echo $_SESSION['nome'];?></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                 <th scope="row">E-mail</th>
-                <td>joao@outlook.com </td>
+                <td><?php echo $_SESSION['email'];?></td>
             </tr>
         </tbody>
         </table>
