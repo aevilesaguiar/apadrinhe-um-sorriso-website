@@ -99,7 +99,7 @@ $(".toggle").on("click", function() {
             <div class="sep-item "></div>
             <div class="dist-menu"></div>
    <div class="sobre-dado-fale">      
-    <form class="row g-3  dist-mob-form" method="POST" action="php/cadastro.php" >
+    <form class="row g-3  dist-mob-form" method="POST" action="php/controle-site/cadastro.php" >
       <div class="col-md-6">
 
         <input type="text" class="form-control"  id="inputCnpj" name="cnpj" onKeyPress="MascaraGenerica(this, 'CNPJ');" placeholder="CNPJ" required /> 
@@ -205,15 +205,16 @@ $(".toggle").on("click", function() {
       </div>
 
       <div class="col-md-12">
-        <textarea type="mensagem" class="form-control" aria-label="With textarea" name="observacao"placeholder="Observação" style="height: 120px;"></textarea>
+        <textarea type="mensagem" class="form-control" aria-label="With textarea" name="informacoes" placeholder="Informacoes de Recebimento" style="height: 120px;"></textarea>
       </div>
-
+      <input name="tipo_usuario" type="hidden" value="organizacao"/>
         <div class="dist-menu-botao"></div>
 <div class="sobre-dado-fale dist-menu-botao">
   <input class="button-menu-form" type="submit" value="CADASTRAR">
     </div>
       </div>
             <div class="dist-menu"></div>
+            
 </form>
   
 </div>
