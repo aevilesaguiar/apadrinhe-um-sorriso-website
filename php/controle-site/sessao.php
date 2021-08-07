@@ -1,13 +1,14 @@
 <?php
 session_start();
 
-function sessao_login($usuario){ //Inicia sessão de login
+function sessao_login($nome,$email,$telefone){ //Inicia sessão de login
 
     unset($_SESSION['mensagem']);
 
-    $_SESSION['usuario'] = $usuario;
-    $_SESSION['email'] = "marco@hotmail.com";
-    $_SESSION['telefone'] = "(11)9 89898-4556";
+    $_SESSION['usuario'] = $nome;
+    $_SESSION['nome'] = $nome;
+    $_SESSION['email'] = $email;
+    $_SESSION['telefone'] = $telefone;
     $_SESSION['logado'] = true;
 
 }
