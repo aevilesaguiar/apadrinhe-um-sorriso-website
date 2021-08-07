@@ -87,7 +87,7 @@ $(".toggle").on("click", function() {
                     LOGAR
                     </a>
                     <?php }else{ ?>
-                    <a class=" button-menu" href="php/seguranca.php?sair=true" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                    <a class=" button-menu" href="php/controle-site/seguranca.php?sair=true" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
                     SAIR
                     </a>
                     <?php }?>
