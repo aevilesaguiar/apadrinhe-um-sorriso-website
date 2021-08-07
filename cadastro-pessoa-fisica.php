@@ -192,7 +192,7 @@ $(".toggle").on("click", function() {
               </div>
 
               <div class="col-md-12">
-                <input type="text" class="form-control" id="inputAddress" placeholder="Rede Social">
+                <input type="text" class="form-control" id="inputAddress" name= "rede_social" placeholder="Rede Social">
               </div>
 
               <div class="col-md-4">
@@ -212,6 +212,7 @@ $(".toggle").on("click", function() {
           <input class="button-menu-form" type="submit" value="CADASTRAR">
 
         </div>
+        <input name="tipo_usuario" type="hidden" value="doador_pf"/>
    </form>
   <div class="dist-menu"></div>
 </div>
