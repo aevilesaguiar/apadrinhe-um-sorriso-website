@@ -1,14 +1,19 @@
 <?php
 
 //Cadastra dados gerais
-function cadastra_dados_gerais($nome,$email,$telefone,$cep,$endereco,$numero,
-$cidade,$bairro,$estado,$complemento,$redesocial){
-    $cadastro = 'INSERT INTO dados_gerais(
-        nome,email,telefone,cep,endereco,numero,cidade,estado,
-    bairro,complemento,redesocial) 
-    VALUES("'.$nome.'","'.$email.'","'.$telefone.'","'.$cep.'","'.$endereco.'",
-    "'.$numero.'","'.$cidade.'","'.$bairro.'","'.$estado.'","'.$complemento.'",
-    "'.$redesocial.'")';
+function cadastra_dados_gerais($tipo_cadastro,$nome,$telefone,$rede_social,
+$email,$numendereco,$logradouro,$cidade,$estado,$cep,$bairro,
+$complemento,$fk_user){
+
+    $nivel_acesso=0;
+    $id_cadastro = 1;
+    $cadastro = 'INSERT INTO perfil(id_cadastro,
+        tipo_cadastro,nivel_acesso,status_cadastro,nome,telefone,
+        rede_social,e_mail,numendereco,logradouro,cidade,estado,cep,
+        bairro,complemento,fk_user) 
+    VALUES("'.$id_cadastro.'","'.$tipo_cadastro.'","'.$nivel_acesso.'","EA","'.$nome.'","'.$telefone.'",
+    "'.$rede_social.'","'.$email.'","'.$numendereco.'","'.$logradouro.'","'.$cidade.'",
+    "'.$estado.'","'.$cep.'","'.$bairro.'","'.$complemento.'","'.$fk_user.'")';
 
     return $cadastro;
     
@@ -28,8 +33,8 @@ function cadastra_pj($cnpj,$dados_gerais_id,$razao_social,$site,$tipo_org,$infor
 
 //Cadastra pf
 function cadastra_pf($cpf,$dados_gerais_id){
-    $cadastro = 'INSERT INTO dados_pf(cpf,dados_gerais_id) 
-    VALUES("'.$cpf.'","'.$dados_gerais_id.'")';
+    $cadastro = 'INSERT INTO dados_pf(cpf,rg,fk_id_cadastro) 
+    VALUES("'.$cpf.'","0000000000","'.$dados_gerais_id.'")';
 
     return $cadastro;
     
@@ -37,14 +42,8 @@ function cadastra_pf($cpf,$dados_gerais_id){
 
 //Cadastra Usuário e Senha.
 function cadastra_usuario($usuario,$senha){
-    $cadastro = 'INSERT INTO usuario(usuario,senha) VALUES("'.$usuario.'","'.$senha.'")';
+    $cadastro = 'INSERT INTO usuario(user,senha) VALUES("'.$usuario.'","'.$senha.'")';
     return $cadastro;
 }
 
-//Cadastra perfil
-function cadastra_perfil($id_usuario,$dados_gerais_id,$tipo_cadastro,$nivel_acesso){
-    $cadastro = 'INSERT INTO perfil(usuario_idusuario,dados_gerais_id,tipo_cadastro,nivel_acesso) VALUES("'.$id_usuario.'",
-    "'.$dados_gerais_id.'","'.$tipo_cadastro.'","'.$nivel_acesso.'")';
-    return $cadastro;
-}
 

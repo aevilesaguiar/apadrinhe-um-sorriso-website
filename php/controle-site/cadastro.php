@@ -11,7 +11,8 @@ if($_POST['tipo_usuario']=="doador_pf"){
     $cpf = $_POST['cpf'];
     $nome = $_POST['nome'];
 }
-//Dados comum cadastro-organização/cadastro-pessoa-fisica
+//Dados comum cadastro-organização/cadastro-pessoa-fisica/juridica
+$tipo_cadastro=$_POST['tipo_usuario'];
 $email = $_POST['email'];
 $telefone=$_POST['telefone'];
 $cep=$_POST['cep'];
@@ -43,45 +44,40 @@ $informacoes="";
 }
 }
 
-$cadastra=$conecta->query(cadastra_dados_gerais($nome,$email,
-$telefone,$cep,$endereco,$numero,$cidade,$estado,$bairro,$complemento,
-$redesocial));//cadastra pj
-
-$dados_gerais_id = mysqli_insert_id($conecta);//retorna id dados gerais
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
 
 
-// Cadastra organização ou doador pj
-if($_POST['tipo_usuario']=="organizacao" || $_POST['tipo_usuario']=="doador_pj"){
+$cadastra_usuario = $conecta->query(cadastra_usuario($usuario,$senha));//cadastra usuário
+
+$cadastra=$conecta->query(cadastra_dados_gerais($tipo_cadastro,$nome,
+$telefone,$redesocial,$email,$numero,$endereco,$cidade,$estado,$cep,$bairro,
+$complemento,$usuario));
+
+$id_cadastro = mysqli_insert_id($conecta);//retorna id cadastro
+
+
+if($_POST['tipo_usuario']=="doador_pf")// Cadastra doador pf
+{
+    $cadastra_pf=$conecta->query(cadastra_pf($cpf,1));
+
+}else if($_POST['tipo_usuario']=="organizacao" || $_POST['tipo_usuario']=="doador_pj"){
 
 $cadastra_pj=$conecta->query(cadastra_pj($cnpj,$dados_gerais_id,$razao_social,$site,$tipo_org,$informacoes));//cadastra organização
 
 
 
-}else if($_POST['tipo_usuario']=="doador_pf")// Cadastra doador pf
-{
-    $cadastra_pf=$conecta->query(cadastra_pf($cpf,$dados_gerais_id));
-
 }
 
 $documento=mysqli_insert_id($conecta);// retorna documento cadastrado
 
-$cadastra_usuario = $conecta->query(cadastra_usuario($usuario,$senha));//cadastra usuário
-
-$id_usuario=mysqli_insert_id($conecta);// retorna o id_usuario do usuário cadastrado
-
-
-$tipo_cadastro=$_POST['tipo_usuario'];// Tipo de usuário organizacao, doador_pf e doador_pj
-
-$cadastra_perfil = $conecta->query(cadastra_perfil($id_usuario,$dados_gerais_id,$tipo_cadastro,1));
-
-$id_perfil = mysqli_insert_id($conecta); //retorna id perfil
-
-if(isset($dados_gerais_id) && isset($documento) && isset($documento) && isset($id_perfil)){
+if(isset($id_cadastro) && isset($fk_user) && isset($documento)){
 
     sessao_mensagem(mensagem(9));
-    redireciona(3);
+   // redireciona(3);
 
 
 }else{
-    redireciona(5);
+   // redireciona(5);
 }
