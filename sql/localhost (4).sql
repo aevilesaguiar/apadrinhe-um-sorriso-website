@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 17-Ago-2021 às 10:28
+-- Generation Time: 18-Ago-2021 às 15:06
 -- Versão do servidor: 5.6.34
 -- PHP Version: 7.1.11
 
@@ -31,7 +31,7 @@ USE `doe_um_sorriso`;
 --
 
 CREATE TABLE `admin` (
-  `email_admin` varchar(45) DEFAULT NULL,
+  `email_admin` varchar(45) NOT NULL,
   `fk_user` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -210,7 +210,7 @@ CREATE TABLE `perfil` (
   `cep` varchar(9) DEFAULT NULL,
   `bairro` varchar(30) DEFAULT NULL,
   `complemento` varchar(15) DEFAULT NULL,
-  `fk_user` varchar(40) DEFAULT NULL
+  `fk_user` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -220,8 +220,8 @@ CREATE TABLE `perfil` (
 --
 
 CREATE TABLE `perfil_exibe` (
-  `fk_id_cadastro` int(11) DEFAULT NULL,
-  `fk_id_mensagem` int(11) DEFAULT NULL
+  `fk_id_mensagem` int(11) DEFAULT NULL,
+  `fk_id_cadastro` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -277,21 +277,22 @@ CREATE TABLE `usuario` (
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
+  ADD PRIMARY KEY (`email_admin`),
   ADD KEY `fk_user` (`fk_user`);
 
 --
 -- Indexes for table `cadastra`
 --
 ALTER TABLE `cadastra`
-  ADD KEY `fk_id_cadastro` (`fk_id_cadastro`),
-  ADD KEY `fk_rg_crianca` (`fk_rg_crianca`);
+  ADD KEY `fk_rg_crianca` (`fk_rg_crianca`),
+  ADD KEY `fk_id_cadastro` (`fk_id_cadastro`);
 
 --
 -- Indexes for table `colaborador`
 --
 ALTER TABLE `colaborador`
   ADD PRIMARY KEY (`id_colaborador`),
-  ADD KEY `colaborador_ibfk_1` (`fk_id_cadastro`);
+  ADD KEY `fk_id_cadastro` (`fk_id_cadastro`);
 
 --
 -- Indexes for table `dados_crianca`
@@ -311,7 +312,7 @@ ALTER TABLE `dados_pf`
 --
 ALTER TABLE `dados_pj`
   ADD PRIMARY KEY (`cnpj`),
-  ADD KEY `dados_pj_ibfk_1` (`fk_id_cadastro`);
+  ADD KEY `fk_id_cadastro` (`fk_id_cadastro`);
 
 --
 -- Indexes for table `dados_responsavel`
@@ -345,8 +346,8 @@ ALTER TABLE `fale_conosco`
 -- Indexes for table `gerencia`
 --
 ALTER TABLE `gerencia`
-  ADD KEY `fk_id_cadastro` (`fk_id_cadastro`),
-  ADD KEY `fk_id_doacao` (`fk_id_doacao`);
+  ADD KEY `fk_id_doacao` (`fk_id_doacao`),
+  ADD KEY `fk_id_cadastro` (`fk_id_cadastro`);
 
 --
 -- Indexes for table `mensagem_sistema`
@@ -403,6 +404,40 @@ ALTER TABLE `usuario`
   ADD PRIMARY KEY (`user`);
 
 --
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `colaborador`
+--
+ALTER TABLE `colaborador`
+  MODIFY `id_colaborador` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `dados_responsavel`
+--
+ALTER TABLE `dados_responsavel`
+  MODIFY `id_familia` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `doacao`
+--
+ALTER TABLE `doacao`
+  MODIFY `id_doacao` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `mensagem_sistema`
+--
+ALTER TABLE `mensagem_sistema`
+  MODIFY `id_mensagem` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `perfil`
+--
+ALTER TABLE `perfil`
+  MODIFY `id_cadastro` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -416,8 +451,8 @@ ALTER TABLE `admin`
 -- Limitadores para a tabela `cadastra`
 --
 ALTER TABLE `cadastra`
-  ADD CONSTRAINT `cadastra_ibfk_1` FOREIGN KEY (`fk_id_cadastro`) REFERENCES `perfil` (`id_cadastro`),
-  ADD CONSTRAINT `cadastra_ibfk_2` FOREIGN KEY (`fk_rg_crianca`) REFERENCES `dados_crianca` (`rg_crianca`);
+  ADD CONSTRAINT `cadastra_ibfk_1` FOREIGN KEY (`fk_rg_crianca`) REFERENCES `dados_crianca` (`rg_crianca`),
+  ADD CONSTRAINT `cadastra_ibfk_2` FOREIGN KEY (`fk_id_cadastro`) REFERENCES `perfil` (`id_cadastro`);
 
 --
 -- Limitadores para a tabela `colaborador`
@@ -461,8 +496,8 @@ ALTER TABLE `doa_exibe`
 -- Limitadores para a tabela `gerencia`
 --
 ALTER TABLE `gerencia`
-  ADD CONSTRAINT `gerencia_ibfk_1` FOREIGN KEY (`fk_id_cadastro`) REFERENCES `perfil` (`id_cadastro`),
-  ADD CONSTRAINT `gerencia_ibfk_2` FOREIGN KEY (`fk_id_doacao`) REFERENCES `doacao` (`id_doacao`);
+  ADD CONSTRAINT `gerencia_ibfk_1` FOREIGN KEY (`fk_id_doacao`) REFERENCES `doacao` (`id_doacao`),
+  ADD CONSTRAINT `gerencia_ibfk_2` FOREIGN KEY (`fk_id_cadastro`) REFERENCES `perfil` (`id_cadastro`);
 
 --
 -- Limitadores para a tabela `perfil`
