@@ -1,3 +1,4 @@
+<?php include "php/controle-site/sessao.php"?>;
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -103,6 +104,7 @@ $(".toggle").on("click", function() {
          <form class="row g-3  dist-mob-form" method="post" action="php/controle-site/cadastro.php">
               <div class="col-md-6">
                 <input type="text" class="form-control"  id="inputCpf" name="cpf" onKeyPress="MascaraGenerica(this, 'CPF');" placeholder="CPF" required /> 
+                <?php echo isset($_SESSION['mensagens_form']['cpf'])?$_SESSION['mensagens_form']['cpf']:""; ?>
               </div>
 
               <div class="col-md-6">
@@ -127,6 +129,7 @@ $(".toggle").on("click", function() {
 
               <div class="col-md-1">
                 <input type="text" class="form-control" id="inputNum" name="numero" placeholder="Numero" required>
+                <?php echo isset($_SESSION['mensagens_form']['numero'])?$_SESSION['mensagens_form']['numero']:""; ?>
               </div>
 
               <div class="col-md-3">
