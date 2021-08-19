@@ -24,7 +24,7 @@ if($conecta->connect_error){//Se houver erro na conexao com o banco de dados
 
         }
            
-            $resultado_perfil=$conecta->query(consulta_perfil($dados['idusuario']));// consulta usuario na tabela cadastro organização com o id do usuário encontrado
+            $resultado_perfil=$conecta->query(consulta_perfil($dados['user']));// consulta usuario na tabela cadastro organização com o id do usuário encontrado
         
         foreach($resultado_perfil as $perfil){
 
@@ -33,13 +33,7 @@ if($conecta->connect_error){//Se houver erro na conexao com o banco de dados
             if($conta=$resultado_perfil->num_rows==1)//Se a quantidade de usuário for  no máximo igual a 1 para um usuario da organização autoriza a entrada
             {
                 
-
-                $resultado_dados_gerais=$conecta->query(consulta_dados_gerais($perfil['dados_gerais_id']));
-
-                foreach($resultado_dados_gerais as $dados){
-
-                }
-                sessao_login($dados['nome'],$dados['email'],$dados['telefone']);
+                sessao_login($perfil['nome'],$perfil['e_mail'],$perfil['telefone']);
 
                 if($perfil['tipo_cadastro']=="organizacao"){
                     redireciona(1);

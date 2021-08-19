@@ -10,9 +10,15 @@ include "sessao.php"; //Inicia sessao e encerra sessões
 if($_POST['tipo_usuario']=="doador_pf"){
     $cpf = $_POST['cpf'];
     $nome = $_POST['nome'];
+
+    //Validação cpf
+    strlen($_POST['cpf'])!==14?mensagens_form(mensagem(10),'cpf'):limpa_mensagens_form('cpf');
+    
 }
+
+
 //Dados comum cadastro-organização/cadastro-pessoa-fisica/juridica
-$tipo_cadastro=$_POST['tipo_usuario'];
+$tipo_cadastro=$_POST['tipo_usuario'];//Tipos de usuário : doador_pj/doador_pf/organizacao
 $email = $_POST['email'];
 $telefone=$_POST['telefone'];
 $cep=$_POST['cep'];
@@ -29,13 +35,15 @@ $usuario=$_POST['email'];
 $senha=$_POST['senha'];
 $confirm_senha=$_POST['confirm_senha'];
 
+!is_numeric($numero)?mensagens_form(mensagem(11),'numero'):limpa_mensagens_form('numero');
+
 //Dados cadastro-organização/pj diferenciado
 if($_POST['tipo_usuario']=="organizacao" || $_POST['tipo_usuario']=="doador_pj"){
 $cnpj = $_POST["cnpj"];
-$razao_social =$_POST['razao_social'];
+$nome =$_POST['razao_social'];
 $site=$_POST['site'];
-$tipo_org="segmento";
-$nome=$_POST['razao_social'];
+$tipo_pj="segmento";
+$nome_fantasia=$_POST['razao_social'];
 if($_POST['tipo_usuario']=="organizacao")
 {
 $informacoes=$_POST['informacoes'];
@@ -44,11 +52,11 @@ $informacoes="";
 }
 }
 
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
+if(count($_SESSION['mensagem_form']>0)){
 
+    redireciona(5);
 
+}else{
 $cadastra_usuario = $conecta->query(cadastra_usuario($usuario,$senha));//cadastra usuário
 
 $cadastra=$conecta->query(cadastra_dados_gerais($tipo_cadastro,$nome,
@@ -60,11 +68,11 @@ $id_cadastro = mysqli_insert_id($conecta);//retorna id cadastro
 
 if($_POST['tipo_usuario']=="doador_pf")// Cadastra doador pf
 {
-    $cadastra_pf=$conecta->query(cadastra_pf($cpf,1));
+    $cadastra_pf=$conecta->query(cadastra_pf($cpf,$id_cadastro));
 
 }else if($_POST['tipo_usuario']=="organizacao" || $_POST['tipo_usuario']=="doador_pj"){
 
-$cadastra_pj=$conecta->query(cadastra_pj($cnpj,$dados_gerais_id,$razao_social,$site,$tipo_org,$informacoes));//cadastra organização
+$cadastra_pj=$conecta->query(cadastra_pj($cnpj,$nome_fantasia,$site,$tipo_pj,$id_cadastro));//cadastra organização
 
 
 
@@ -72,12 +80,15 @@ $cadastra_pj=$conecta->query(cadastra_pj($cnpj,$dados_gerais_id,$razao_social,$s
 
 $documento=mysqli_insert_id($conecta);// retorna documento cadastrado
 
-if(isset($id_cadastro) && isset($fk_user) && isset($documento)){
+
+if(!empty($id_cadastro)){
 
     sessao_mensagem(mensagem(9));
-   // redireciona(3);
+   redireciona(3);
 
 
 }else{
-   // redireciona(5);
+   redireciona(5);
+}
+
 }

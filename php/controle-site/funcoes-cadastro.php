@@ -6,12 +6,11 @@ $email,$numendereco,$logradouro,$cidade,$estado,$cep,$bairro,
 $complemento,$fk_user){
 
     $nivel_acesso=0;
-    $id_cadastro = 1;
-    $cadastro = 'INSERT INTO perfil(id_cadastro,
+    $cadastro = 'INSERT INTO perfil(
         tipo_cadastro,nivel_acesso,status_cadastro,nome,telefone,
         rede_social,e_mail,numendereco,logradouro,cidade,estado,cep,
         bairro,complemento,fk_user) 
-    VALUES("'.$id_cadastro.'","'.$tipo_cadastro.'","'.$nivel_acesso.'","EA","'.$nome.'","'.$telefone.'",
+    VALUES("'.$tipo_cadastro.'","'.$nivel_acesso.'","EA","'.$nome.'","'.$telefone.'",
     "'.$rede_social.'","'.$email.'","'.$numendereco.'","'.$logradouro.'","'.$cidade.'",
     "'.$estado.'","'.$cep.'","'.$bairro.'","'.$complemento.'","'.$fk_user.'")';
 
@@ -20,11 +19,11 @@ $complemento,$fk_user){
 }
 
 //Cadastra pj
-function cadastra_pj($cnpj,$dados_gerais_id,$razao_social,$site,$tipo_org,$informacoes){
+function cadastra_pj($cnpj,$nome_fantasia,$site,$tipo_pj,$fk_id_cadastro){
     $cadastro = 'INSERT INTO dados_pj(
-        cnpj,dados_gerais_id,razao_social,sites,tipo_org,
-    informacoes) 
-    VALUES("'.$cnpj.'","'.$dados_gerais_id.'","'.$razao_social.'","'.$site.'","'.$tipo_org.'","'.$informacoes.'")';
+        cnpj,nome_fantasia,site,tipo_pj,
+    fk_id_cadastro) 
+    VALUES("'.$cnpj.'","'.$nome_fantasia.'","'.$site.'","'.$tipo_pj.'","'.$fk_id_cadastro.'")';
 
     return $cadastro;
     
