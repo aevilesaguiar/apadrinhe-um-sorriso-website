@@ -29,4 +29,12 @@ function sessao_mensagem($mensagem){//Mensagem
 
 }
 
+function mensagens_form($mensagem,$name){
+    $_SESSION['mensagens_form'][$name]=$mensagem;
+}
+
+function limpa_mensagens_form($name){
+    unset($_SESSION['mensagens_form'][$name]);
+}
+
 ?>
