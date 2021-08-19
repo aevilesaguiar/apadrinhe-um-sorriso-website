@@ -200,17 +200,17 @@ CREATE TABLE `perfil` (
   `nivel_acesso` int(1) DEFAULT NULL,
   `status_cadastro` varchar(45) DEFAULT NULL,
   `nome` varchar(45) DEFAULT NULL,
-  `telefone` varchar(10) DEFAULT NULL,
+  `telefone` varchar(15) DEFAULT NULL,
   `rede_social` varchar(30) DEFAULT NULL,
-  `e_mail` varchar(40) DEFAULT NULL,
+  `e_mail` varchar(30) DEFAULT NULL,
   `numendereco` varchar(5) DEFAULT NULL,
   `logradouro` varchar(30) DEFAULT NULL,
   `cidade` varchar(30) DEFAULT NULL,
   `estado` enum('AC','AL','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RR','RO','RJ','RN','RS','SC','SP','SE','TO') DEFAULT NULL,
-  `cep` varchar(9) DEFAULT NULL,
+  `cep` varchar(10) DEFAULT NULL,
   `bairro` varchar(30) DEFAULT NULL,
-  `complemento` varchar(15) DEFAULT NULL,
-  `fk_user` varchar(10) DEFAULT NULL
+  `complemento` varchar(30) DEFAULT NULL,
+  `fk_user` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
