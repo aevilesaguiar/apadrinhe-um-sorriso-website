@@ -6,7 +6,7 @@ function redireciona($codpagina){// função que redireciona as paginas do siste
                     1 =>'../../pagina-controle-organizacao.php' ,
                     3 =>'../../login.php' ,
                     4 =>'login.php' ,
-                    5 =>'../../cadastro.php' ,
+                    5 =>'../../cadastro-pessoa-fisica.php' ,
 
     );
         header("Location:$pagina[$codpagina]");
