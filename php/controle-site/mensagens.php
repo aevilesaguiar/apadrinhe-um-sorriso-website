@@ -12,6 +12,14 @@ function mensagem($codmsg){
                         7=>'Seu usuário ainda não foi confirmado,por favor acesse seu email.',
                         8=>'Usuário confirmado com sucesso',
                         9=>'Cadastrado com sucesso, foi enviado um link de confirmação no seu email',
+                        10=>'CPF Inválido',
+                        11=>'Numero inválido',
+                        12=>'Senha diferentes',
+                        13=>'Senha deve conter no minimo 6 e no máximo 10 caracteres',
+                        14=>'CEP Inválido',
+                        15=>'Limite de caracteres excedido',
+                        16=>'Telefone Inválido',
+                        17=>'Usuario já existente',
                     );
 
     return $mensagem[$codmsg];
