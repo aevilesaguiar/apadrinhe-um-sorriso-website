@@ -1,18 +1,21 @@
 <?php
 
 include '../geral/conexao-banco.php';
-include 'funcoes-cadastro.php';
 include "redirecionamento-pagina.php"; //Registro de todas as paginas para redirecionamento
 include "mensagens.php";// Registro de todas mensagens do sistema
 include "sessao.php"; //Inicia sessao e encerra sessões
+include "consulta.php";
+include 'funcoes-cadastro.php';
 
 //Dados cadastro-pessoa-fisica diferenciado
 if($_POST['tipo_usuario']=="doador_pf"){
     $cpf = $_POST['cpf'];
+    $_SESSION['dados_form']['cpf']=$cpf;
     $nome = $_POST['nome'];
+    $_SESSION['dados_form']['nome']=$nome;
 
     //Validação cpf
-    strlen($_POST['cpf'])!==14?mensagens_form(mensagem(10),'cpf'):limpa_mensagens_form('cpf');
+    
     
 }
 
@@ -20,22 +23,32 @@ if($_POST['tipo_usuario']=="doador_pf"){
 //Dados comum cadastro-organização/cadastro-pessoa-fisica/juridica
 $tipo_cadastro=$_POST['tipo_usuario'];//Tipos de usuário : doador_pj/doador_pf/organizacao
 $email = $_POST['email'];
+$_SESSION['dados_form']['email']=$email;
 $telefone=$_POST['telefone'];
+$_SESSION['dados_form']['telefone']=$telefone;
 $cep=$_POST['cep'];
+$_SESSION['dados_form']['cep']=$cep;
 $endereco=$_POST['endereco'];
+$_SESSION['dados_form']['endereco']=$endereco;
 $numero=$_POST['numero'];
+$_SESSION['dados_form']['numero']=$numero;
 $cidade=$_POST['cidade'];
+$_SESSION['dados_form']['cidade']=$cidade;
 $estado=$_POST['estado'];
+$_SESSION['dados_form']['estado']=$estado;
 $bairro=$_POST['bairro'];
+$_SESSION['dados_form']['bairro']=$bairro;
 $complemento=$_POST['complemento'];
+$_SESSION['dados_form']['complemento']=$complemento;
 $redesocial=$_POST['rede_social'];
+$_SESSION['dados_form']['rede_social']=$redesocial;
     
 //Dados comuns para cadastro login
 $usuario=$_POST['email'];
 $senha=$_POST['senha'];
 $confirm_senha=$_POST['confirm_senha'];
 
-!is_numeric($numero)?mensagens_form(mensagem(11),'numero'):limpa_mensagens_form('numero');
+
 
 //Dados cadastro-organização/pj diferenciado
 if($_POST['tipo_usuario']=="organizacao" || $_POST['tipo_usuario']=="doador_pj"){
@@ -52,11 +65,17 @@ $informacoes="";
 }
 }
 
-if(count($_SESSION['mensagem_form']>0)){
+valida_cadastro($_POST);
 
-    redireciona(5);
+
+if(!empty($_SESSION['mensagens_form'])){
+   
+    redireciona(retorna_pagina_cadastro($tipo_cadastro));
 
 }else{
+
+unset($_SESSION['dados_form']);
+
 $cadastra_usuario = $conecta->query(cadastra_usuario($usuario,$senha));//cadastra usuário
 
 $cadastra=$conecta->query(cadastra_dados_gerais($tipo_cadastro,$nome,
@@ -84,11 +103,11 @@ $documento=mysqli_insert_id($conecta);// retorna documento cadastrado
 if(!empty($id_cadastro)){
 
     sessao_mensagem(mensagem(9));
-   redireciona(3);
+    redireciona(3);
 
 
 }else{
-   redireciona(5);
+    redireciona(5);
 }
 
 }
