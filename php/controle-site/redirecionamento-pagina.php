@@ -7,12 +7,35 @@ function redireciona($codpagina){// função que redireciona as paginas do siste
                     3 =>'../../login.php' ,
                     4 =>'login.php' ,
                     5 =>'../../cadastro-pessoa-fisica.php' ,
+                    6 =>'../../cadastro-pessoa-juridica.php',
+                    7 =>'../../cadastro-organizacao.php',
+                    8 =>'../../index.php',
 
     );
         header("Location:$pagina[$codpagina]");
     
     
    
+    }
+
+    function retorna_pagina_cadastro($tipo_usuario){
+
+        if($tipo_usuario=="organizacao"){
+            
+            return 7;
+
+        }else if($tipo_usuario=="doador_pj"){
+
+            return 6;
+
+        }else if($tipo_usuario=="doador_pf"){
+
+            return 5;
+
+        }else{
+            return 8;
+        }
+
     }
 
 ?>
