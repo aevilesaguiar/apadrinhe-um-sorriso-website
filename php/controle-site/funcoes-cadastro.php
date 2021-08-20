@@ -45,4 +45,21 @@ function cadastra_usuario($usuario,$senha){
     return $cadastro;
 }
 
+function valida_cadastro($nome){
+
+    if($nome['tipo_usuario']=="doador_pf"){
+        strlen($nome['cpf'])!==14?mensagens_form(mensagem(10),'cpf'):limpa_mensagens_form('cpf');
+    }
+    strlen($nome['numero'])>5?mensagens_form(mensagem(11),'numero'):limpa_mensagens_form('numero');
+    strlen($nome['telefone'])>=13?limpa_mensagens_form('telefone'):mensagens_form(mensagem(16),'telefone');
+    $nome['senha']===$nome['confirm_senha']?limpa_mensagens_form('senha'):mensagens_form(mensagem(12),'senha');
+    strlen($nome['senha'])>=6 && strlen($nome['senha'])<=10?limpa_mensagens_form('senha'):mensagens_form(mensagem(13),'senha');
+    strlen($nome['cep'])==10?limpa_mensagens_form('cep'):mensagens_form(mensagem(14),'cep');
+    strlen($nome['complemento'])<=30?limpa_mensagens_form('complemento'):mensagens_form(mensagem(15),'complemento');
+    strlen($nome['bairro'])<=30?limpa_mensagens_form('bairro'):mensagens_form(mensagem(15),'bairro');
+    strlen($nome['endereco'])<=30?limpa_mensagens_form('logradouro'):mensagens_form(mensagem(15),'endereco');
+    strlen($nome['cidade'])<=30?limpa_mensagens_form('cidade'):mensagens_form(mensagem(15),'cidade');
+    strlen($nome['rede_social'])<=30?limpa_mensagens_form('rede_social'):mensagens_form(mensagem(15),'rede_social');
+
+}
 
