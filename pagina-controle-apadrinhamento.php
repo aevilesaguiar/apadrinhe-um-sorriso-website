@@ -162,12 +162,7 @@ $(".toggle").on("click", function() {
 
             </tr>
         </tbody>
-        <tbody>
-                <tr>
-                <th scope="col"> <a href="confirmacao-dados-doacao.php" target=_blank class="text4">Confirmação dados doação</a></th>
 
-            </tr>
-        </tbody>
 
         <tbody>
                 <tr>

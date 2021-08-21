@@ -112,7 +112,8 @@ $(".toggle").on("click", function() {
               </div>
 
               <div class="col-md-6">
-                <input type="email" class="form-control" id="inputEmail4" name="email" value="<?php echo isset($_SESSION['dados_form']['email'])?$_SESSION['dados_form']['email']:"";?>" placeholder="E-mail">
+              <input type="text" class="form-control" id="inputAddress" name= "rede_social" value="<?php echo isset($_SESSION['dados_form']['rede_social'])?$_SESSION['dados_form']['rede_social']:"";?>" placeholder="Rede Social">
+                <?php echo isset($_SESSION['mensagens_form']['rede_social'])?$_SESSION['mensagens_form']['rede_social']:""; ?>
               </div>
 
               <div class="col-md-4">
@@ -182,30 +183,8 @@ $(".toggle").on("click", function() {
                 <?php echo isset($_SESSION['mensagens_form']['complemento'])?$_SESSION['mensagens_form']['complemento']:""; ?>
               </div>
 
-              <div class="col-md-6">
-                <select id="inputState" name="organizacao" class="form-select form-control" type="select" required>
-                  <option value="">Selecione a Ong Mais Próxima</option>
-                  <option > Orfanato pequeno Leão </option>
-                  <option > Organização de Crianças de Sertania </option>
-                
-                    </select>
-              </div>
-
-              <div class="col-md-6">
-                <select id="inputState" class="form-select form-control" type="select" required>
-                  <option value="">Selecione o Nome da Criança</option>
-                  <option > José da Silva </option>
-                  <option > Maria da Silva </option>
-                    </select>
-              </div>
-
-              <div class="col-md-12">
-                <input type="text" class="form-control" id="inputAddress" name= "rede_social" value="<?php echo isset($_SESSION['dados_form']['rede_social'])?$_SESSION['dados_form']['rede_social']:"";?>" placeholder="Rede Social">
-                <?php echo isset($_SESSION['mensagens_form']['rede_social'])?$_SESSION['mensagens_form']['rede_social']:""; ?>
-              </div>
-
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputAddress" name="usuario" placeholder="Usuario" required>
+              <input type="email" class="form-control" id="inputEmail4" name="email" value="<?php echo isset($_SESSION['dados_form']['email'])?$_SESSION['dados_form']['email']:"";?>" placeholder="E-mail">
               </div>
 
               <div class="col-md-4">

@@ -110,6 +110,40 @@ $(".toggle").on("click", function() {
         </div>
             <div class="sep-item "></div>
            
+           <div class="textos-item " >  
+        
+        <div class="row">
+          <div class="col-sm-3">
+          <img src="image/jovem.jpg" style=" border-radius: 10px 10px 0px 0px;" class="card-img-top"  alt="foto-doador">
+            <div class="card">
+              <div class="card-body" style="line-height: .6;">
+              <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"> Nome</th>
+                        <th scope="col"><?php echo $_SESSION['nome'];?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">E-mail</th>
+                        <td><?php echo $_SESSION['email'];?></td>
+                    </tr>
+                </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-9">
+            <div class="card">
+              <div class="card-body">
+                <p class="text-php-reprovado">Seja Bem Vindo!</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+           
    <div class="textos-item " >  
 
 <div class="dist-menu"></div>
@@ -142,19 +176,13 @@ $(".toggle").on("click", function() {
         </tbody>
         <tbody>
                 <tr>
-                <th scope="col"> <a href="cadastro-familia.php" target=_blank class="text4">Editar cadastro</a></th>
+                <th scope="col"> <a href="cadastro-familia.php" target=_blank class="text4">Editar cadastro Familia</a></th>
 
             </tr>
         </tbody>
         <tbody>
                 <tr>
                 <th scope="col"> <a href="cadastro-familia.php" target=_blank class="text4">Cadastrar</a></th>
-
-            </tr>
-        </tbody>
-        <tbody>
-                <tr>
-                <th scope="col"> <a href="confirmacao-organizacao-doacao.php" target=_blank class="text4">Confirmar recebimento</a></th>
 
             </tr>
         </tbody>

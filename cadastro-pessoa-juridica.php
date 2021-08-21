@@ -101,17 +101,30 @@ $(".toggle").on("click", function() {
             <div class="dist-menu"></div>
    <div class="sobre-dado-fale">      
     <form class="row g-3  dist-mob-form" method="POST" action="php/controle-site/cadastro.php">
-      <div class="col-md-6">
+      <div class="col-md-4">
 
         <input type="text" class="form-control"  id="inputCnpj" name="cnpj" onKeyPress="MascaraGenerica(this, 'CNPJ');" placeholder="CNPJ" required /> 
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
 
         <input type="text" class="form-control"  id="inputRaSocial" name="razao_social" placeholder="Razão Social" required /> 
       </div>
+      <div class="col-md-4">
+        
+      <input type="text" class="form-control" id="inputNfantasia" name="nome_fantasia" placeholder="Nome Fantasia" required>
+      </div>
       <div class="col-md-6">
-
-        <input type="email" class="form-control" id="inputEmail4" name="email" placeholder="E-mail" required>
+  <select id="inputState" name="tipo_organizacao" class="form-select form-control" type="select" required>
+          <option value="">Segmento</option>
+          <option value="COM">COMERCIO</option>
+          <option value="COMU">COMUNICAÇÃO</option>
+          <option value="ENER">ENERGIA</option>
+          <option value="IND">INDUSTRIA</option>
+          <option value="PRURAL">PRODUTOR RURAL</option>
+          <option value="SER">SERVIÇO</option>
+          <option value="TRANS">TRANSPORTE</option>
+          <option value="OUT">OUTROS</option>
+            </select>
       </div>
       <div class="col-md-4">
 
@@ -187,26 +200,10 @@ $(".toggle").on("click", function() {
 
         <input type="text" class="form-control" id="inputAddress" name="rede_social"placeholder="Rede Social" required>
       </div>
-      <div class="col-md-6">
-    
-        <select id="inputState" class="form-select form-control" type="select" required>
-          <option value="">Selecione a Ong Mais Próxima</option>
-          <option > Orfanato pequeno Leão </option>
-          <option > Organização de Crianças de Sertania </option>
-        
-            </select>
-      </div>
-      <div class="col-md-6">
-     
-        <select id="inputState" class="form-select form-control" type="select" required>
-          <option value="">Selecione o Nome da Criança</option>
-          <option > José da Silva </option>
-          <option > Maria da Silva </option>
-            </select>
-      </div>
+ 
       <div class="col-md-4">
 
-        <input type="text" class="form-control" id="inputAddress" name="usuario" placeholder="Usuario" required>
+      <input type="email" class="form-control" id="inputEmail4" name="email" placeholder="E-mail" required>
       </div>
       <div class="col-md-4">
 

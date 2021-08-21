@@ -168,7 +168,7 @@ $(".toggle").on("click", function() {
 <div class="container">
   <div class="row">
     <div class="col direc-button">
-    <a href="liberacao-doador-pf.php"> <button class="button-menu-form" type="submit">APROVADO</button> </a>
+    <a href=""> <button class="button-menu-form" type="submit">APROVADO</button> </a>
     </div>
     <div class="col">
 

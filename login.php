@@ -122,15 +122,6 @@ $(".toggle").on("click", function() {
                         </a>
                         </p>
                     </li>
-                    <li>
-                        <span class="text1">
-                            E-mail de ativação
-                        </span>
-
-                        <a href="redefinir-senha.php" class="text2">
-                            não chegou?
-                        </a>
-                    </li>
                     <div class="tit-log">
                     <p >Cadastrar novo Usuário:</p>
                     </div>
