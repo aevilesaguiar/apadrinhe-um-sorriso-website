@@ -134,7 +134,7 @@ $(".toggle").on("click", function() {
               <input type="text" class="form-control" id="inputZip" onKeyPress="MascaraGenerica(this, 'CEP');" placeholder="CEP" required /> 
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control" id="inputAddress" placeholder="Bairro">
+              <input type="text" class="form-control" id="inputAddress" placeholder="Rua">
             </div>
             <div class="col-md-1">
               <input type="text" class="form-control" id="inputNum" placeholder="Numero">

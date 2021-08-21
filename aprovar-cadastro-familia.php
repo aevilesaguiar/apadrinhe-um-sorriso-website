@@ -30,11 +30,13 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="js/mask.js"></script>
+
 <script
 src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
 crossorigin="anonymous"></script>
-<script src="js/mask.js"></script>
+
 
 <script>
 $(function() {
@@ -54,7 +56,7 @@ $(".toggle").on("click", function() {
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
- <title> Lista Crianças- APADRINHE UM SORRISO </title>
+ <title>Aprovar Cadastro-Família- APADRINHE UM SORRISO </title>
 </head>
 <body>
  <header class="menu-bg">
@@ -96,58 +98,130 @@ $(".toggle").on("click", function() {
 
 <div class="altura-doar ">
 
-            <h2>LISTA DE CRIANÇAS</h2>
+            <h2 class="tit">APROVAR CADASTRO FAMILIA</h2>
         </div>
             <div class="sep-item "></div>
-            <div class="dist-menu"></div>
-            
-   <div class="textos-item">   
 
-<table class="table">
-  <thead>
-  <tr>
-      <th scope="col">RG Criança</th>
-      <th scope="col">Nome criança</th>
-      <th scope="col">Nome Mãe</th>
-      <th scope="col">Telefone</th>
-      <th scope="col">Status</th>
-      <th scope="col">Visualizar Dados</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">25.258.369-5</th>
-      <td>Lais Maria da Silva</td>
-      <td>Joana Maria da Silva</td>
-      <td>(11) 2323-2525)</td>
-      <td> Apadrinhada </td>
-      <td>  <a href="aprovar-cadastro-familia.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <th scope="row">25.258.369-5</th>
-      <td>Lais Maria da Silva</td>
-      <td>Joana Maria da Silva</td>
-      <td>(11) 2323-2525)</td>
-      <td>Não Apadrinhada </td>
-      <td>  <a href="aprovar-cadastro-familia.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <th scope="row">25.258.369-5</th>
-      <td>Lais Maria da Silva</td>
-      <td>Joana Maria da Silva</td>
-      <td>(11) 2323-2525)</td>
-      <td>Não Apadrinhada </td>
-      <td>  <a href="aprovar-cadastro-familia.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-  </tbody>
- 
-</table>
-   </div>
-   <div class="dist-bot-button"></div>
+            
+   <div class="textos-item" >   
+   <div class="container">
+  <div class="row">
+    <div class="col" style="text-align: right;">CPF mãe:</div>
+    <div class="col">00.000.000/0000-00</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Nome da mãe:</div>
+    <div class="col">Lucia Maria</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">CPF pai:</div>
+    <div class="col">00.000.000/0000-00</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Nome do pai:</div>
+    <div class="col">João da Silva</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">RG criança::</div>
+    <div class="col">11.258.987-1</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Nome da criança:</div>
+    <div class="col">João da Silva</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Data de Aniversário</div>
+    <div class="col">15/05/2015</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Sexo: </div>
+    <div class="col">M</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">E-mail: </div>
+    <div class="col">N/A</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Telefone: </div>
+    <div class="col">(15)1212-4585</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Tamanho Calça: </div>
+    <div class="col">P</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Tamanho Camisa: </div>
+    <div class="col">P</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Tamanho Calçado: </div>
+    <div class="col">25</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Sugestão de presente: </div>
+    <div class="col">Carrinho</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Observação: </div>
+    <div class="col">Carrinho de controle remoto</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Endereço</div>
+    <div class="col">Rua maria da silva</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Num</div>
+    <div class="col">33</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Bairro</div>
+    <div class="col">Sampaio</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Complemento</div>
+    <div class="col">casa</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">CEP</div>
+    <div class="col">00.000-000</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Cidade</div>
+    <div class="col">Abreu e Lima</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Estado</div>
+    <div class="col">PE</div>
+  </div>
+
+  <div class="row">
+    <div class="col" style="text-align: right;">Usuário</div>
+    <div class="col">Amadeu</div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Senha</div>
+    <div class="col">1234</div>
+  </div>
+</div>
+            <div class="dist-bot-button"></div>
+           
+<div class="dist-bot-button"></div>
+<div class="container">
+  <div class="row">
+    <div class="col direc-button">
+    <a href=""> <button class="button-menu-form" type="submit">APROVADO</button> </a>
+    </div>
+    <div class="col">
+
+    <a href="cadastro-familia.php"> <button class="button-menu-form" type="submit">EDITAR</button> </a>
+    </div>
+ <div class="dist-bot-button"></div>
+
+        </div>
+
+  <div class="dist-bot-button"></div>
+   </div>               
+</div>
 </main>
 
 <footer >
