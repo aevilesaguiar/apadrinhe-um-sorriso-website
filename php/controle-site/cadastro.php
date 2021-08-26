@@ -53,20 +53,23 @@ $confirm_senha=$_POST['confirm_senha'];
 //Dados cadastro-organização/pj diferenciado
 if($_POST['tipo_usuario']=="organizacao" || $_POST['tipo_usuario']=="doador_pj"){
 $cnpj = $_POST["cnpj"];
+$_SESSION['dados_form']['cnpj']=$cnpj;
 $nome =$_POST['razao_social'];
+$_SESSION['dados_form']['razao_social']=$nome;
 $site=$_POST['site'];
-$tipo_pj="segmento";
-$nome_fantasia=$_POST['razao_social'];
+$_SESSION['dados_form']['site']=$site;
+$tipo_pj=$_POST['tipo_organizacao'];;
+$_SESSION['dados_form']['tipo_organizacao']=$tipo_pj;
+$nome_fantasia=$_POST['nome_fantasia'];
+$_SESSION['dados_form']['nome_fantasia']=$nome_fantasia;
 if($_POST['tipo_usuario']=="organizacao")
 {
 $informacoes=$_POST['informacoes'];
+$_SESSION['dados_form']['informacoes']=$informacoes;
 }else{
 $informacoes="";
 }
 }
-
-valida_cadastro($_POST);
-
 
 if(!empty($_SESSION['mensagens_form'])){
    
