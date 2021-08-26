@@ -20,6 +20,7 @@ function mensagem($codmsg){
                         15=>'Limite de caracteres excedido',
                         16=>'Telefone Inválido',
                         17=>'Usuario já existente',
+                        18=>'CNPJ Inválido',
                     );
 
     return $mensagem[$codmsg];
