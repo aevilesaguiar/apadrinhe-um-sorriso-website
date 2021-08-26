@@ -80,15 +80,9 @@ $(".toggle").on("click", function() {
                     <div><a class="button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>APADRINHAR</a>
                     </div>
                     <div>
-                    <?php if(isset($_SESSION['logado'])!==TRUE){?>
                     <a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
                     SAIR
                     </a>
-                    <?php }else{ ?>
-                    <a class=" button-menu" href="php/controle-site/seguranca.php?sair=true" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
-                    SAIR
-                    </a>
-                    <?php }?>
                      <li class="toggle"><span class="bars"></span></li>
                 </ul>
 
@@ -121,13 +115,13 @@ $(".toggle").on("click", function() {
                 <thead>
                     <tr>
                         <th scope="col"> Nome</th>
-                        <th scope="col"><?php echo $_SESSION['nome'];?></th>
+                        <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                         <th scope="row">E-mail</th>
-                        <td><?php echo $_SESSION['email'];?></td>
+                        <td></td>
                     </tr>
                 </tbody>
                 </table>
