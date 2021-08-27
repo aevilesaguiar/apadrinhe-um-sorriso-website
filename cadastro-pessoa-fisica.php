@@ -198,7 +198,7 @@ $(".toggle").on("click", function() {
 
                 <div class="dist-menu-botao"></div>
         <div class="sobre-dado-fale dist-menu-botao">
-          <input class="button-menu-form" type="submit" value="CADASTRAR">
+          <input class="button-menu-form" type="submit" name="btnCadastraUsuario" value="CADASTRAR">
 
         </div>
         <input name="tipo_usuario" type="hidden" value="doador_pf"/>
