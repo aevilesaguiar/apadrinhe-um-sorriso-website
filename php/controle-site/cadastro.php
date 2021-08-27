@@ -7,15 +7,18 @@ include "sessao.php"; //Inicia sessao e encerra sessões
 include "consulta.php";
 include 'funcoes-cadastro.php';
 
+
+if(isset($_POST['btnCadastraUsuario'])){
+
 //Dados cadastro-pessoa-fisica diferenciado
 if($_POST['tipo_usuario']=="doador_pf"){
     $cpf = $_POST['cpf'];
     $_SESSION['dados_form']['cpf']=$cpf;
     $nome = $_POST['nome'];
     $_SESSION['dados_form']['nome']=$nome;
-
-    //Validação cpf
     
+    //Validação cpf
+ 
     
 }
 
@@ -71,6 +74,8 @@ $informacoes="";
 }
 }
 
+valida_cadastro($_POST);
+
 if(!empty($_SESSION['mensagens_form'])){
    
     redireciona(retorna_pagina_cadastro($tipo_cadastro));
@@ -110,7 +115,25 @@ if(!empty($id_cadastro)){
 
 
 }else{
-    redireciona(5);
+    redireciona(retorna_pagina_cadastro($tipo_cadastro));
 }
 
 }
+
+}else if(isset($_POST['btnIncluirOrg']) || isset($_POST['btnAlterarOrg']) ){
+
+    isset($_POST['btnIncluirOrg'])?$acao=1:$acao=0;
+
+    $dados_organizacao = explode("-",$_POST['organizacao']);
+
+    inlui_organizacao($dados_organizacao[0],$dados_organizacao[1],$dados_organizacao[2],$dados_organizacao[3],$acao);
+
+    isset($_POST['btnIncluirOrg'])?sessao_mensagem(mensagem(19)):sessao_mensagem(mensagem(20));
+
+    redireciona(9);
+}else{
+
+    redireciona(8);
+
+}
+
