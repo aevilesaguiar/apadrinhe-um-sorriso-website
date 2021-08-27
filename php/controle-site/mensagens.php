@@ -21,6 +21,8 @@ function mensagem($codmsg){
                         16=>'Telefone Inválido',
                         17=>'Usuario já existente',
                         18=>'CNPJ Inválido',
+                        19=>'Organização incluida com sucesso',
+                        20=>'Organização alterada com sucesso',
                     );
 
     return $mensagem[$codmsg];
