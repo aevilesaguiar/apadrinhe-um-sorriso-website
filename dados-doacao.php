@@ -1,7 +1,10 @@
-<?php     
+<?php   
+  include "php/geral/conexao-banco.php";  
   include "php/controle-site/sessao.php"; //Inicia sessao e encerra sessões
   include "php/controle-site/redirecionamento-pagina.php";//Registro de todas as paginas para redirecionamento
-  include "php/controle-site/seguranca.php";//Expulsa usuário desta pagina caso não esteja logado?>
+  include "php/controle-site/seguranca.php";//Expulsa usuário desta pagina caso não esteja logado
+  include "php/controle-site/consulta.php";
+  ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -140,20 +143,40 @@ $(".toggle").on("click", function() {
  <div class="dist-bot-button"></div>
 
  
-   <form class="row g-3">
+   <form class="row g-3" method="POST" action="php/controle-site/cadastro.php">
   <div class="col-md-10">
-  <select id="inputState" class="form-select form-control" type="select">
-          <option value="">Organização</option>
-          <option >Lar Pequeno Leão </option>
-          <option >Lar de Maria</option>
+  <select id="inputState" name="organizacao" class="form-select form-control" type="select">
+          <option value="<?php echo isset($_SESSION['doacao']['id_cadastro'])?$_SESSION['doacao']['organizacao_selecionada']:'Selecione uma organização';?>"><?php echo isset($_SESSION['doacao']['id_cadastro'])?$_SESSION['doacao']['organizacao_selecionada']:'Selecione uma organização';?></option>
+          <?php
+              $organizacao = $conecta->query(lista_organizacao());
+              if($organizacao->num_rows>=1){
+                foreach($organizacao as $dados){
+          ?>
+          <option><?php echo $dados['id_cadastro']." - ".$dados['nome']." - ".$dados['cidade']." - ".$dados['estado'];?></option>
+          <?php
+                 
+              }
+            }else{
+          ?>
+                  <option>Indisponível no momento</option>    
+          <?php    
+                }
+            
+          ?>
             </select>
   </div>
 
   <div class="col-md-2">
-  <input class="button-menu-form"  type="submit" value="INCLUIR">
+  <?php if(isset($_SESSION['doacao']['acao'])==1){?>
+    <input class="button-menu-form"  name="btnAlterarOrg" type="submit" value="ALTERAR">
+  <?php }else if(isset($_SESSION['doacao']['acao'])==0){?>
+  <input class="button-menu-form"  name="btnIncluirOrg" type="submit" value="INCLUIR">
+  <?php }else{?>
+  <input class="button-menu-form"  name="btnIncluirOrg" type="submit" value="INCLUIR">
+  <?php } ?>
   </div>
   <div class="col-md-12">
-    <p class="text4 " style="text-align: center; margin-bottom:30px;">Organização Incluida com Sucesso!</p>
+    <p class="text4 " style="text-align: center; margin-bottom:30px;"><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>
       </div>
 
 </form>  
