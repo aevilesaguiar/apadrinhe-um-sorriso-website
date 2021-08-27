@@ -16,7 +16,11 @@
 
     }
 
-    
+    function lista_organizacao(){
+            $select = 'SELECT * FROM  perfil where tipo_cadastro="organizacao"';
+
+            return $select;
+    }
 
 
 ?>
