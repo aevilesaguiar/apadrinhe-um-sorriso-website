@@ -1,6 +1,6 @@
 <?php
 
-    if($_GET["sair"]=="true"){// Encerra sessão caso usuário deseja sair do login
+    if(isset($_GET["sair"])=="true"){// Encerra sessão caso usuário deseja sair do login
     include "sessao.php";
     include "redirecionamento-pagina.php";
     encerra_sessao();
