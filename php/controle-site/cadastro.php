@@ -131,8 +131,12 @@ if(!empty($id_cadastro)){
     isset($_POST['btnIncluirOrg'])?sessao_mensagem(mensagem(19)):sessao_mensagem(mensagem(20));
 
     redireciona(9);
-}else{
+}else if(isset($_POST['btnIncluirCriancaKit'])){
 
+    redireciona(9);
+
+}else{
+    
     redireciona(8);
 
 }
