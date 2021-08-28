@@ -153,9 +153,7 @@ $(".toggle").on("click", function() {
                 foreach($organizacao as $dados){
           ?>
           <option><?php echo $dados['id_cadastro']." - ".$dados['nome']." - ".$dados['cidade']." - ".$dados['estado'];?></option>
-          <?php
-                 
-              }
+          <?php  }
             }else{
           ?>
                   <option>Indisponível no momento</option>    
@@ -183,23 +181,31 @@ $(".toggle").on("click", function() {
 <div class="dist-menu-botao"></div>
 
 
-   <form class="row g-3">
+   <form class="row g-3" method="POST" action="php/controle-site/cadastro.php">
   <div class="col-md-6">
-  <select id="inputState" class="form-select form-control" type="select">
-          <option value="">Nome</option>
-          <option >João </option>
-          <option >Maria</option>
-            </select>
+  <select id="inputState" name="dados_crianca" class="form-select form-control" type="select">
+            <option value="">Nome</option>
+            <?php if(isset($_SESSION['doacao']['id_cadastro'])){?>
+            <?php $criancas = $conecta->query(lista_criancas($_SESSION['doacao']['id_cadastro']));
+                  if($criancas->num_rows>=1){
+                    foreach($criancas as $dados_criancas){
+            ?>
+          <option><?php echo $dados_criancas['nome_crianca']."-".$dados_criancas['nasc_crianca']."-".$dados_criancas['sexo'];?></option>
+          <?php     }
+                  } 
+                }   
+          ?>
+  </select>
   </div>
   <div class="col-md-4">
-  <select id="inputState" class="form-select form-control" type="select">
+  <select id="inputState" name="tipo_kit" class="form-select form-control" type="select">
           <option value="">Tipo de Kit</option>
           <option > KIT SIMPLES </option>
           <option > KIT COMPLETO </option>
             </select>
   </div>
   <div class="col-md-2">
-  <input class="button-menu-form"  type="submit" value="INCLUIR">
+  <input class="button-menu-form" name="btnIncluirCriancaKit"  type="submit" value="INCLUIR">
   </div>
   <div class="col-md-12">
   <p class="text4 " style="text-align: center; margin-bottom:30px;">Organização Incluida com Sucesso!</p>

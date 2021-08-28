@@ -22,5 +22,10 @@
             return $select;
     }
 
-
+    function lista_criancas($codigo_organizacao){
+            $select = 'SELECT dc.*
+             FROM dados_crianca dc inner join cadastra c on dc.rg_crianca=c.fk_rg_crianca
+                                    where c.fk_id_cadastro ="'.$codigo_organizacao.'"';
+            return $select;
+    }
 ?>
