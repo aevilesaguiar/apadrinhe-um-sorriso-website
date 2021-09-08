@@ -4,6 +4,7 @@
   include "php/controle-site/redirecionamento-pagina.php";//Registro de todas as paginas para redirecionamento
   include "php/controle-site/seguranca.php";//Expulsa usuário desta pagina caso não esteja logado
   include "php/controle-site/consulta.php";
+  include 'php/controle-site/funcoes-sistema.php';
   ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -184,32 +185,39 @@ $(".toggle").on("click", function() {
    <form class="row g-3" method="POST" action="php/controle-site/cadastro.php">
   <div class="col-md-6">
   <select id="inputState" name="dados_crianca" class="form-select form-control" type="select">
-            <option value="">Nome</option>
+            <option value="<?php echo isset($_SESSION['doacao']['rg_crianca'])?$_SESSION['doacao']['crianca_selecionada']:'Selecione uma criança';?>"><?php echo isset($_SESSION['doacao']['rg_crianca'])?$_SESSION['doacao']['crianca_selecionada_exib']:'Selecione uma criança';?></option>
             <?php if(isset($_SESSION['doacao']['id_cadastro'])){?>
             <?php $criancas = $conecta->query(lista_criancas($_SESSION['doacao']['id_cadastro']));
                   if($criancas->num_rows>=1){
                     foreach($criancas as $dados_criancas){
             ?>
-          <option><?php echo $dados_criancas['nome_crianca']."-".$dados_criancas['nasc_crianca']."-".$dados_criancas['sexo'];?></option>
-          <?php     }
+          <option value='<?php echo $dados_criancas['rg_crianca']."/".$dados_criancas['nome_crianca']."/".$dados_criancas['nasc_crianca']."/".$dados_criancas['sexo']."/".$dados_criancas['tamanho_camiseta']."/".$dados_criancas['tamanho_sapato']."/".$dados_criancas['tamanho_calca'];?>'>
+          <?php echo $dados_criancas['nome_crianca']."-".$dados_criancas['nasc_crianca']."-".$dados_criancas['sexo'];?>
+          </option>
+          <?php    
+                    }
                   } 
                 }   
+              
           ?>
   </select>
   </div>
   <div class="col-md-4">
   <select id="inputState" name="tipo_kit" class="form-select form-control" type="select">
-          <option value="">Tipo de Kit</option>
+  <option value="<?php echo isset($_SESSION['doacao']['rg_crianca'])?$_SESSION['doacao']['tipo_kit']:'Tipo Kit';?>"><?php echo isset($_SESSION['doacao']['rg_crianca'])?$_SESSION['doacao']['tipo_kit']:'Tipo Kit';?></option>
           <option > KIT SIMPLES </option>
           <option > KIT COMPLETO </option>
             </select>
   </div>
   <div class="col-md-2">
-  <input class="button-menu-form" name="btnIncluirCriancaKit"  type="submit" value="INCLUIR">
+  <?php if(isset($_SESSION['doacao']['acaocriancakit'])==1){?>
+    <input class="button-menu-form"  name="btnAlterarCriancaKit" type="submit" value="ALTERAR">
+  <?php }else if(isset($_SESSION['doacao']['acao'])==0){?>
+  <input class="button-menu-form"  name="btnIncluirCriancaKit" type="submit" value="INCLUIR">
+  <?php }else{?>
+  <input class="button-menu-form"  name="btnIncluirCriancaKit" type="submit" value="INCLUIR">
+  <?php } ?>
   </div>
-  <div class="col-md-12">
-  <p class="text4 " style="text-align: center; margin-bottom:30px;">Organização Incluida com Sucesso!</p>
-      </div>
 </form>
 
 
@@ -225,16 +233,17 @@ $(".toggle").on("click", function() {
       <th scope="col">Calça</th>
       <th scope="col">Camisa</th>
       <th scope="col">Calçado</th>
-      <th scope="col">KIT</th>
+      <th scope="col"><?php echo exibe_doacao('tipo_kit');?></th>
       <th scope="col">Briquedo</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td>M</td>
-      <td>G</td>
-      <td>29</td>
+      <td><?php echo exibe_doacao('tamanho_calca');?></td>
+      <td><?php echo exibe_doacao('tamanho_camisa');?></td>
+      <td><?php echo exibe_doacao('tipo_calcado');?></td>
+      <?php if(exibe_doacao('tipo_kit')=="KIT SIMPLES"){ ?>
       <td>  <li>3 Cadernos capa dura com 160 folhas</li>
                 <li>1 apontador</li>
                 <li>2 borrachas</li>
@@ -242,8 +251,20 @@ $(".toggle").on("click", function() {
                 <li>1 Caixa de lápis de cor -12 uni</li>
                 <li>1 Caixa de canetinha hidrográfica-12 uni</li>
                 <li>1 tesoura sem ponta</li>
-                <li>1 cola bastão</li> </td>
-    <td>Carrinho de Controle</td>    
+                <li>1 cola bastão</li> </td>   
+                <?php }else if(exibe_doacao('tipo_kit')=="KIT COMPLETO"){?> 
+                  <td>  <li>6 Cadernos capa dura com 160 folhas/li>
+                <li>1 apontador</li>
+                <li>2 borrachas</li>
+                <li>3 lápis de escrita HB</li>
+                <li>1 Caixa de lápis de cor -12 uni</li>
+                <li>1 Caixa de canetinha hidrográfica-12 uni</li>
+                <li>1 Caixa de giz de cera -12 unidades</li>
+                <li>1 estojo para lapis</li>
+                <li>1 mochila escolar</li>
+                <li>1 tesoura sem ponta</li>
+                <li>1 cola bastão</li> </td> 
+               <?php }?>
     </tr>
   </tbody>
 </table>
@@ -266,9 +287,9 @@ $(".toggle").on("click", function() {
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td>Ana</td>
-      <td>6</td>
-      <td>F</td>
+      <td><?php echo exibe_doacao('nome_crianca');?></td>
+      <td><?php echo calcula_idade(exibe_doacao('idade'));?></td>
+      <td><?php echo exibe_doacao('sexo');?></td>
  
     </tr>
   </tbody>
