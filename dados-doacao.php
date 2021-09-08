@@ -152,9 +152,18 @@ $(".toggle").on("click", function() {
               $organizacao = $conecta->query(lista_organizacao());
               if($organizacao->num_rows>=1){
                 foreach($organizacao as $dados){
+                  if(isset($_SESSION['doacao']['id_cadastro']) && $_SESSION['doacao']['id_cadastro']!==$dados_criancas['id_cadastro']){
           ?>
-          <option><?php echo $dados['id_cadastro']." - ".$dados['nome']." - ".$dados['cidade']." - ".$dados['estado'];?></option>
-          <?php  }
+          <option value='<?php echo $dados['id_cadastro']." - ".$dados['nome']." - ".$dados['logradouro']." - ".$dados['numendereco']." - ".$dados['cidade']." - ".$dados['estado']." - ".$dados['cep']."-".$dados['telefone'];?>'>
+            <?php echo $dados['id_cadastro']." - ".$dados['nome']." - ".$dados['logradouro']." - ".$dados['numendereco']." - ".$dados['cidade']." - ".$dados['estado'];?></option>
+          <?php  
+                  }else{
+                      ?>
+                      <option value='<?php echo $dados['id_cadastro']." - ".$dados['nome']." - ".$dados['logradouro']." - ".$dados['numendereco']." - ".$dados['cidade']." - ".$dados['estado']." - ".$dados['cep']."-".$dados['telefone'];?>'>
+                        <?php echo $dados['id_cadastro']." - ".$dados['nome']." - ".$dados['logradouro']." - ".$dados['numendereco']." - ".$dados['cidade']." - ".$dados['estado'];?></option>
+                    <?php
+                  }
+              }
             }else{
           ?>
                   <option>Indisponível no momento</option>    
@@ -185,19 +194,42 @@ $(".toggle").on("click", function() {
    <form class="row g-3" method="POST" action="php/controle-site/cadastro.php">
   <div class="col-md-6">
   <select id="inputState" name="dados_crianca" class="form-select form-control" type="select">
-            <option value="<?php echo isset($_SESSION['doacao']['rg_crianca'])?$_SESSION['doacao']['crianca_selecionada']:'Selecione uma criança';?>"><?php echo isset($_SESSION['doacao']['rg_crianca'])?$_SESSION['doacao']['crianca_selecionada_exib']:'Selecione uma criança';?></option>
-            <?php if(isset($_SESSION['doacao']['id_cadastro'])){?>
+            <?php          
+               if(isset($_SESSION['doacao']['rg_crianca'])) {
+            ?>
+            <option value='<?php  echo dados_crianca();?>'><?php  echo dados_crianca_lista();?></option>
+            <?php
+                }
+            ?>
+            <?php if(isset($_SESSION['doacao']['id_cadastro']) && isset($_SESSION['doacao']['rg_crianca'])){?>
             <?php $criancas = $conecta->query(lista_criancas($_SESSION['doacao']['id_cadastro']));
                   if($criancas->num_rows>=1){
                     foreach($criancas as $dados_criancas){
+                     if($_SESSION['doacao']['rg_crianca']!==$dados_criancas['rg_crianca']){
             ?>
           <option value='<?php echo $dados_criancas['rg_crianca']."/".$dados_criancas['nome_crianca']."/".$dados_criancas['nasc_crianca']."/".$dados_criancas['sexo']."/".$dados_criancas['tamanho_camiseta']."/".$dados_criancas['tamanho_sapato']."/".$dados_criancas['tamanho_calca'];?>'>
           <?php echo $dados_criancas['nome_crianca']."-".$dados_criancas['nasc_crianca']."-".$dados_criancas['sexo'];?>
           </option>
-          <?php    
+          <?php     
+                     }
                     }
                   } 
-                }   
+                }else if(isset($_SESSION['doacao']['id_cadastro'])){
+                  ?>
+              <?php $criancas = $conecta->query(lista_criancas($_SESSION['doacao']['id_cadastro']));
+                  if($criancas->num_rows>=1){
+                    foreach($criancas as $dados_criancas){
+                     if($_SESSION['doacao']['rg_crianca']!==$dados_criancas['rg_crianca']){
+            ?>
+          <option value='<?php echo $dados_criancas['rg_crianca']."/".$dados_criancas['nome_crianca']."/".$dados_criancas['nasc_crianca']."/".$dados_criancas['sexo']."/".$dados_criancas['tamanho_camiseta']."/".$dados_criancas['tamanho_sapato']."/".$dados_criancas['tamanho_calca'];?>'>
+          <?php echo $dados_criancas['nome_crianca']."-".$dados_criancas['nasc_crianca']."-".$dados_criancas['sexo'];?>
+          </option>
+          <?php     
+                     }
+                    }
+                  }
+
+                }
               
           ?>
   </select>
