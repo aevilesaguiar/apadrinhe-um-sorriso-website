@@ -1,3 +1,7 @@
+<?php
+  include "php/controle-site/sessao.php"; //Inicia sessao e encerra sessões
+  include 'php/controle-site/funcoes-sistema.php'
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -109,9 +113,9 @@ $(".toggle").on("click", function() {
 <th colspan="7"  style="text-align: center;">Dados Organização</th>
 </tr>
   <tr>
+      <th class="text4" scope="col" style="width: 14%">CNPJ</th>
       <th class="text4" scope="col" style="width: 14%">Razão Social</th>
       <th class="text4" scope="col" style="width: 20%" >Endereço</th>
-      <th class="text4" scope="col" style="width: 8%">Num</th>
       <th class="text4" scope="col" style="width: 12%" >Cep</th>
       <th class="text4" scope="col" style="width: 12%" >Telefone</th>
     </tr>
@@ -120,11 +124,10 @@ $(".toggle").on("click", function() {
     
     <tr>
     <th scope="row">25.256.256/0001-08</th>
-      <td>AACDF Criança Carente</td>
-      <td>Ruas das Flores</td>
-      <td>81</td>
-      <td>08587-025</td>
-      <td>(11)9 98989-6565)</td>
+      <td><?php echo exibe_doacao('nome_organizacao');?></td>
+      <td><?php echo exibe_doacao('endereco')."-".exibe_doacao('numero')."-".exibe_doacao('cidade')."-".exibe_doacao('estado');?></td>
+      <td><?php echo exibe_doacao('cep');?></td>
+      <td><?php echo exibe_doacao('telefone');?></td>
  
     </tr>
   </tbody>
@@ -146,9 +149,9 @@ $(".toggle").on("click", function() {
   <tbody>
     <tr>
 
-      <td>Ana</td>
-      <td>6</td>
-      <td>F</td>
+      <td><?php echo exibe_doacao('nome_crianca');?></td>
+      <td><?php echo calcula_idade(exibe_doacao('idade'));?></td>
+      <td><?php echo exibe_doacao('sexo');?></td>
  
     </tr>
   </tbody>
@@ -168,16 +171,17 @@ $(".toggle").on("click", function() {
       <th scope="col">Calça</th>
       <th scope="col">Camisa</th>
       <th scope="col">Calçado</th>
-      <th scope="col">KIT</th>
+      <th scope="col"><?php echo exibe_doacao('tipo_kit');?></th>
       <th scope="col">Briquedo</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td>M</td>
-      <td>G</td>
-      <td>29</td>
+      <td><?php echo exibe_doacao('tamanho_calca');?></td>
+      <td><?php echo exibe_doacao('tamanho_camisa');?></td>
+      <td><?php echo exibe_doacao('tipo_calcado');?></td>
+      <?php if(exibe_doacao('tipo_kit')=="KIT SIMPLES"){ ?>
       <td>  <li>3 Cadernos capa dura com 160 folhas</li>
                 <li>1 apontador</li>
                 <li>2 borrachas</li>
@@ -185,8 +189,20 @@ $(".toggle").on("click", function() {
                 <li>1 Caixa de lápis de cor -12 uni</li>
                 <li>1 Caixa de canetinha hidrográfica-12 uni</li>
                 <li>1 tesoura sem ponta</li>
-                <li>1 cola bastão</li> </td>
-    <td>Carrinho de Controle</td>    
+                <li>1 cola bastão</li> </td>   
+                <?php }else if(exibe_doacao('tipo_kit')=="KIT COMPLETO"){?> 
+                  <td>  <li>6 Cadernos capa dura com 160 folhas/li>
+                <li>1 apontador</li>
+                <li>2 borrachas</li>
+                <li>3 lápis de escrita HB</li>
+                <li>1 Caixa de lápis de cor -12 uni</li>
+                <li>1 Caixa de canetinha hidrográfica-12 uni</li>
+                <li>1 Caixa de giz de cera -12 unidades</li>
+                <li>1 estojo para lapis</li>
+                <li>1 mochila escolar</li>
+                <li>1 tesoura sem ponta</li>
+                <li>1 cola bastão</li> </td> 
+               <?php }?>
     </tr>
   </tbody>
 </table>
