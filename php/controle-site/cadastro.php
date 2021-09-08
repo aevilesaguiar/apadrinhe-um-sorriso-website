@@ -128,14 +128,14 @@ if(!empty($id_cadastro)){
 
     limpa_dados_criança();
 
-    inlui_organizacao($dados_organizacao[0],$dados_organizacao[1],$dados_organizacao[2],$dados_organizacao[3],$acao);
+    inlui_organizacao($dados_organizacao[0],$dados_organizacao[1],$dados_organizacao[2],$dados_organizacao[3],$dados_organizacao[4],$dados_organizacao[5],$dados_organizacao[6],$dados_organizacao[7],$dados_organizacao[8],$dados_organizacao[9],$acao);
 
     isset($_POST['btnIncluirOrg'])?sessao_mensagem(mensagem(19)):sessao_mensagem(mensagem(20));
 
     redireciona(9);
 }else if(isset($_POST['btnIncluirCriancaKit']) || isset($_POST['btnAlterarCriancaKit']) ){
 
-    isset($_POST['btnIncluirOrg'])?$acao=1:$acao=0;
+    isset($_POST['btnIncluirCriancaKit'])?$acao=1:$acao=0;
 
     echo $_POST['tipo_kit'];
 
