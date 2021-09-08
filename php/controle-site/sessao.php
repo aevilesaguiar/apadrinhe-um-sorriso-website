@@ -37,15 +37,19 @@ function limpa_mensagens_form($name){
     unset($_SESSION['mensagens_form'][$name]);
 }
 
-function inlui_organizacao($id_cadastro,$nome_organizacao,$cidade,$estado,$acao){
+function inlui_organizacao($id_cadastro,$nome_organizacao,$logradouro,$numero,$cidade,$estado,$cep,$cep1,$tel,$tel1,$acao){
     
     $_SESSION['doacao']['acao']=$acao;
     $_SESSION['doacao']['id_cadastro'] = $id_cadastro;
     $_SESSION['doacao']['nome_organizacao']= $nome_organizacao;
+    $_SESSION['doacao']['endereco']= $logradouro;
+    $_SESSION['doacao']['numero']= $numero;
     $_SESSION['doacao']['cidade']= $cidade;
     $_SESSION['doacao']['estado']= $estado;
+    $_SESSION['doacao']['cep']= $cep."-".$cep1;
+    $_SESSION['doacao']['telefone']= $tel."-".$tel1;
     $_SESSION['doacao']['organizacao_selecionada']=$_SESSION['doacao']['id_cadastro']." - ".$_SESSION['doacao']['nome_organizacao'].
-    " - ".$_SESSION['doacao']['cidade']." - ".$_SESSION['doacao']['estado'];
+    " - ".$_SESSION['doacao']['endereco']."-".$_SESSION['doacao']['numero']."-".$_SESSION['doacao']['cidade']." - ".$_SESSION['doacao']['estado'];
 
 }
 
@@ -61,12 +65,34 @@ $tipo_kit,$tamanho_calca,$tamanho_camisa,$tamanho_calcado,$acao){
     $_SESSION['doacao']['tamanho_camisa'] = $tamanho_camisa;
     $_SESSION['doacao']['tipo_calcado'] = $tamanho_calcado;
     $_SESSION['doacao']['acaocriancakit']=$acao;
-    $_SESSION['doacao']['crianca_selecionada']=$_SESSION['doacao']['rg_crianca']."/".$_SESSION['doacao']['nome_crianca'].
-    " - ".$_SESSION['doacao']['idade']."/".$_SESSION['doacao']['sexo']."/".$_SESSION['doacao']['tipo_kit']
-    ."/".$_SESSION['doacao']['tamanho_calca']."/".$_SESSION['doacao']['tamanho_camisa']."/".$_SESSION['doacao']['tipo_calcado'];
-    $_SESSION['doacao']['crianca_selecionada_exib']=$_SESSION['doacao']['nome_crianca'].
-    "-".$_SESSION['doacao']['idade']."-".$_SESSION['doacao']['sexo']
-    ;
+    $_SESSION['doacao']['status']='true';
+
+    return $_SESSION['doacao']['rg_crianca']."".$_SESSION['doacao']['nome_crianca']."/".
+    $_SESSION['doacao']['idade']."/".
+    $_SESSION['doacao']['sexo']."/".
+    $_SESSION['doacao']['tamanho_calca']."/".
+    $_SESSION['doacao']['tamanho_camisa']."/".
+    $_SESSION['doacao']['tipo_calcado'];
+    
+}
+
+function dados_crianca(){
+
+    return $_SESSION['doacao']['rg_crianca']."/".$_SESSION['doacao']['nome_crianca']."/".
+    $_SESSION['doacao']['idade']."/".
+    $_SESSION['doacao']['sexo']."/".
+    $_SESSION['doacao']['tamanho_calca']."/".
+    $_SESSION['doacao']['tamanho_camisa']."/".
+    $_SESSION['doacao']['tipo_calcado'];
+    
+}
+
+function dados_crianca_lista(){
+
+    return $_SESSION['doacao']['nome_crianca']."-".
+    $_SESSION['doacao']['idade']."-".
+    $_SESSION['doacao']['sexo'];
+    
 }
 
 function limpa_dados_criança(){
@@ -82,5 +108,5 @@ function limpa_dados_criança(){
     unset($_SESSION['doacao']['acaocriancakit']);
     unset($_SESSION['doacao']['crianca_selecionada']);
     unset($_SESSION['doacao']['crianca_selecionada_exib']);
+    unset($_SESSION['doacao']['status']);
 }
-?>
