@@ -23,6 +23,8 @@ function mensagem($codmsg){
                         18=>'CNPJ Inválido',
                         19=>'Organização incluida com sucesso',
                         20=>'Organização alterada com sucesso',
+                        21=>'Criança e Tipo de Kit incluido com sucesso',
+                        22=>'Criança e Tipo de Kit alterado com sucesso',
                     );
 
     return $mensagem[$codmsg];
