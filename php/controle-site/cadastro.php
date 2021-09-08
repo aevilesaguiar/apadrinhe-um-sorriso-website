@@ -126,15 +126,25 @@ if(!empty($id_cadastro)){
 
     $dados_organizacao = explode("-",$_POST['organizacao']);
 
+    limpa_dados_criança();
+
     inlui_organizacao($dados_organizacao[0],$dados_organizacao[1],$dados_organizacao[2],$dados_organizacao[3],$acao);
 
     isset($_POST['btnIncluirOrg'])?sessao_mensagem(mensagem(19)):sessao_mensagem(mensagem(20));
 
     redireciona(9);
-}else if(isset($_POST['btnIncluirCriancaKit'])){
+}else if(isset($_POST['btnIncluirCriancaKit']) || isset($_POST['btnAlterarCriancaKit']) ){
 
+    isset($_POST['btnIncluirOrg'])?$acao=1:$acao=0;
+
+    echo $_POST['tipo_kit'];
+
+    $dados_crianca = explode("/",$_POST['dados_crianca']);
+
+    inlui_dados_criança($dados_crianca[0],$dados_crianca[1],$dados_crianca[2],$dados_crianca[3],$_POST['tipo_kit'],$dados_crianca[4],$dados_crianca[5],$dados_crianca[6],$acao);
+    isset($_POST['btnIncluirCriancaKit'])?sessao_mensagem(mensagem(21)):sessao_mensagem(mensagem(22));
+    
     redireciona(9);
-
 }else{
     
     redireciona(8);
