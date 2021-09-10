@@ -68,3 +68,22 @@ function valida_cadastro($nome){
 
 }
 
+function cadastra_doacao(){//Responsável por cadastrar doação
+
+        $cadastro = 'INSERT INTO doacao(status_doacao,data_hora_entrega,tipo_presente,fk_rg_crianca)
+                                    VALUES("N","'.data_hora().'","'.exibe_doacao('tipo_kit').'","'.exibe_doacao('rg_crianca').'")';
+        return $cadastro;
+}
+
+function cadastra_doador($id_doacao,$id_cadastro){//Responsável por cadastrar doador
+        $cadastro = 'INSERT INTO realiza(fk_id_doacao,fk_id_cadastro)
+                                    VALUES("'.$id_doacao.'","'.$id_cadastro.'")';
+        return $cadastro;
+}
+
+function cadastra_gerenciador_doacao($id_doacao,$id_cadastro){//Responsável por cadastrar gerenciador
+        $cadastro = 'INSERT INTO gerencia(fk_id_doacao,fk_id_cadastro)
+            VALUES("'.$id_doacao.'","'.$id_cadastro.'")';
+        return $cadastro;
+}
+
