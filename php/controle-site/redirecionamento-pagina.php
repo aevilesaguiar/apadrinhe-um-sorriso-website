@@ -11,6 +11,7 @@ function redireciona($codpagina){// função que redireciona as paginas do siste
                     7 =>'../../cadastro-organizacao.php',
                     8 =>'../../index.php',
                     9 =>'../../dados-doacao.php',
+                    10 =>'../../impressao-dados-doacao.php',
 
     );
         header("Location:$pagina[$codpagina]");

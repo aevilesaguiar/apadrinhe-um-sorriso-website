@@ -1,23 +1,26 @@
 <?php
 session_start();
 
-function sessao_login($nome,$email,$telefone){ //Inicia sessão de login
+function sessao_login($nome,$email,$telefone,$id_cadastro){ //Inicia sessão de login
 
     unset($_SESSION['mensagem']);
 
-    $_SESSION['usuario'] = $nome;
-    $_SESSION['nome'] = $nome;
-    $_SESSION['email'] = $email;
-    $_SESSION['telefone'] = $telefone;
-    $_SESSION['logado'] = true;
+    $_SESSION['usuario']['id_cadastro']=$id_cadastro;
+    $_SESSION['usuario']['usuario'] = $nome;
+    $_SESSION['usuario']['nome'] = $nome;
+    $_SESSION['usuario']['email'] = $email;
+    $_SESSION['usuario']['telefone'] = $telefone;
+    $_SESSION['usuario']['logado'] = true;
 
 }
 
 function encerra_sessao(){//Encerra sessão de login
 
-    unset($_SESSION['usuario']);
-    unset($_SESSION['email']);
-    unset($_SESSION['telefone']);
+    unset($_SESSION['usuario']['id_cadastro']);
+    unset($_SESSION['usuario']['usuario']);
+    unset($_SESSION['usuario']['nome']);
+    unset($_SESSION['usuario']['email']);
+    unset($_SESSION['usuario']['telefone']);
     
     $_SESSION['logado']=false;
 

@@ -130,9 +130,9 @@ $(".toggle").on("click", function() {
   </thead>
   <tbody>
     <tr>
-    <th scope="row"><?php echo $_SESSION['usuario']; ?></th>
-    <td><?php echo $_SESSION['email'];?></td>
-    <td><?php echo$_SESSION['telefone'];?></td>
+    <th scope="row"><?php echo $_SESSION['usuario']['usuario']; ?></th>
+    <td><?php echo $_SESSION['usuario']['email'];?></td>
+    <td><?php echo$_SESSION['usuario']['telefone'];?></td>
     </tr>
   </tbody>
 </table>

@@ -1,6 +1,7 @@
 <?php
   include "php/controle-site/sessao.php"; //Inicia sessao e encerra sessões
-  include 'php/controle-site/funcoes-sistema.php'
+  include 'php/controle-site/funcoes-sistema.php';
+  include "php/controle-site/consulta.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -123,7 +124,7 @@ $(".toggle").on("click", function() {
   <tbody>
     
     <tr>
-    <th scope="row">25.256.256/0001-08</th>
+    <th scope="row"><?php echo isset($_SESSION['doacao']['id_cadastro'])?cnpj($_SESSION['doacao']['id_cadastro']):"";?></th>
       <td><?php echo exibe_doacao('nome_organizacao');?></td>
       <td><?php echo exibe_doacao('endereco')."-".exibe_doacao('numero')."-".exibe_doacao('cidade')."-".exibe_doacao('estado');?></td>
       <td><?php echo exibe_doacao('cep');?></td>
@@ -214,7 +215,7 @@ $(".toggle").on("click", function() {
     </div>
     <div class="col">
 
-    <a href="impressao-dados-doacao.php"> <button class="button-menu-form" type="submit">APROVAR</button> </a>
+    <a href="php/controle-site/cadastro.php"> <button class="button-menu-form" type="submit">APROVAR</button> </a>
     </div>
  <div class="dist-bot-button"></div>
 

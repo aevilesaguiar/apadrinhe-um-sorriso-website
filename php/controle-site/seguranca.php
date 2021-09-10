@@ -5,7 +5,7 @@
     include "redirecionamento-pagina.php";
     encerra_sessao();
     redireciona(3);
-    }else if(empty($_SESSION['logado']) || $_SESSION['logado']!== true){// Expulsa usuário caso não esteja conectado
+    }else if(empty($_SESSION['usuario']['logado']) || $_SESSION['usuario']['logado']!== true){// Expulsa usuário caso não esteja conectado
         redireciona(4);
     }
     
