@@ -5,6 +5,7 @@ include "redirecionamento-pagina.php"; //Registro de todas as paginas para redir
 include "mensagens.php";// Registro de todas mensagens do sistema
 include "sessao.php"; //Inicia sessao e encerra sessões
 include "consulta.php";
+include 'funcoes-sistema.php';
 include 'funcoes-cadastro.php';
 
 
@@ -147,7 +148,14 @@ if(!empty($id_cadastro)){
     redireciona(9);
 }else{
     
-    redireciona(8);
+    redireciona(10);
+    $resultado = $conecta->query(cadastra_doacao());
+
+    $id_doacao=mysqli_insert_id($conecta);
+
+    $resultado = $conecta->query(cadastra_doador($id_doacao,exibe_doador('id_cadastro')));
+    
+    $resultado = $conecta->query(cadastra_gerenciador_doacao($id_doacao,exibe_doacao('id_cadastro')));
 
 }
 
