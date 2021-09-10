@@ -22,6 +22,20 @@
             return $select;
     }
 
+    function cnpj($id_cadastro){
+            include "php/geral/conexao-banco.php"; 
+            $select ='SELECT * FROM dados_pj where fk_id_cadastro="'.$id_cadastro.'"';
+            $cnpj = $conecta->query($select);
+
+            if($conta=$cnpj->num_rows==1){
+            foreach($cnpj as $bcnpj){
+                return $bcnpj['cnpj'];
+            }
+        }else{
+            return "";
+        }
+    }
+
     function lista_criancas($codigo_organizacao){
             $select = 'SELECT dc.*
              FROM dados_crianca dc inner join cadastra c on dc.rg_crianca=c.fk_rg_crianca
