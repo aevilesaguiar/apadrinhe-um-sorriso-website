@@ -1,3 +1,9 @@
+<?php
+    include 'php/geral/conexao-banco.php';
+    include "php/controle-site/sessao.php"; //Inicia sessao e encerra sessões
+    include "php/controle-site/consulta.php";
+    include 'php/controle-site/funcoes-sistema.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -101,7 +107,16 @@ $(".toggle").on("click", function() {
             <h2 class="tit">DOAÇÕES REALIZADAS</h2>
         </div>
             <div class="sep-item "></div>
-           
+            
+            <?php
+
+            $doacoes_realizadas = $conecta->query(lista_doacoes_realizadas($_SESSION['usuario']['id_cadastro']));
+
+            if($doacoes_realizadas->num_rows>=1){
+            foreach($doacoes_realizadas as $doacoes){
+            
+            ?>
+    <form method="POST" action="impressao-dados-doacao.php">       
    <div class="textos-item " >   
    <div class="container">
    <div class="dist-bot-button"></div>
@@ -118,11 +133,11 @@ $(".toggle").on("click", function() {
             </thead>
             <tbody>
                 <tr>
-                <th scope="row">001</th>
-                <td>CAPS - Centro de Atenção Psicossocial - Adulto e Infantil</td>
-                <td>Ana</td>
-                <td>Sexo</td>
-                <td>Pendente </td>
+                <th scope="row"><?php echo $doacoes['id_doacao'];?><input type="hidden" name="id_doacao" value="<?php echo $doacoes['id_doacao'];?>"/></th>
+                <td><?php echo $doacoes['nome'];?></td>
+                <td><?php echo $doacoes['nome_crianca'];?></td>
+                <td><?php echo $doacoes['sexo'];?></td>
+                <td><?php echo $doacoes['status_doacao'];?> </td>
             </tr>
         </tbody>
         </table>
@@ -137,29 +152,33 @@ $(".toggle").on("click", function() {
 </tr>
             <tr>
                 <th scope="col"> Item</th>
-                <th scope="col">Data</th>
-                <th scope="col">Hora</th>
+                <th scope="col">Data/Hora</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                <th scope="row">Presente Entregue</th>
+                <th scope="row">Data de entrega do presente para criança</th>
                 <td> </td>
-                <td>14:01</td>
+                <td><?php echo $doacoes['data_hora_recebimento'];?></td>
+            </tr>
+        </tbody>
+            <tbody>
+                <tr>
+                <th scope="row">Presente Entregue na ONG</th>
+                <td> </td>
+                <td><?php echo $doacoes['data_hora_recebimento'];?></td>
             </tr>
         </tbody>
         <tbody>
                 <tr>
                 <th scope="row">Aguardando envio do Presente</th>
-                <td> 04/07/2021</td>
-                <td>14:01</td>
+                <td><?php echo $doacoes['data_hora_entrega'];?></td>
             </tr>
         </tbody>
         <tbody>
                 <tr>
                 <th scope="row">Doação Realizada</th>
-                <td> 04/07/2021</td>
-                <td>14:01</td>
+                <td><?php echo $doacoes['data_hora_entrega'];?></td>
             </tr>
         </tbody>
         </table>
@@ -167,8 +186,9 @@ $(".toggle").on("click", function() {
         <div class="dist-menu-botao"></div>
        
         <div style="text-align: center;"> 
-        <a href=" "> <button class="button-menu-form" type="submit">VISUALIZAR DOAÇÃO</button> </a>
+            <input class="button-menu-form" type="submit" name="btnVisualizarDoacao" value="VISUALIZAR DOAÇÃO">
         </div>
+            </form>
         <div class="dist-bot-button"></div>
 
         <p class="text-php-aprovado"> Agradecemos a sua Doação!</p>
@@ -180,6 +200,14 @@ $(".toggle").on("click", function() {
    </div>               
 </div>
 </main>
+<?php 
+        }
+    }else{
+
+        echo "</br>Sem doação no momento<a href='dados-doacao.php'><button>Doar</button></a>";
+
+    }
+?>
 
 <footer >
     <div class="sep-item-footer-1"></div>
