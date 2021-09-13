@@ -1,3 +1,9 @@
+<?php
+    include 'php/geral/conexao-banco.php';
+    include "php/controle-site/sessao.php"; //Inicia sessao e encerra sessões
+    include "php/controle-site/consulta.php";
+    include 'php/controle-site/funcoes-sistema.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -26,11 +32,11 @@
 <meta name="msapplication-TileImage" content="image/favicon/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-crossorigin="anonymous"></script>
+<crossorigin="anonymous"></script>
 <script src="js/mask.js"></script>
 
 <script
@@ -91,7 +97,23 @@ $(".toggle").on("click", function() {
            
         </div>
 </header>
+<?php
 
+    if($_GET['btnDoar']==1){
+        $id_doacao = $_SESSION['usuario']['id_doacao'];
+    }else if($_POST['btnVisualizarDoacao']){
+        $id_doacao = $_POST['id_doacao'];
+    }
+    
+    $doacao = $conecta->query(consulta_doacao($id_doacao));
+
+    foreach($doacao as $dados){
+
+    }
+
+    if($doacao->num_rows>=1){
+
+?>
 
 <main class="main-board dist-mob-form">
     <div class="dist-menu"></div>
@@ -109,16 +131,16 @@ $(".toggle").on("click", function() {
 
    <div class="col-md-12">
       <div class="col-md-12">
-    <p class="text4 " style="text-align: left; margin-bottom:30px;  font-weight: 600; font-size:1.5em; ">Doação 001</p>
+    <p class="text4 " style="text-align: left; margin-bottom:30px;  font-weight: 600; font-size:1.5em; ">Doação <?php echo $dados['fk_id_doacao'];?></p>
       </div>
       <div class="col-md-12">
     <p class="text4 " style="text-align: left; margin-bottom:30px;  font-weight: 600; font-size:1.5em; ">Organização</p>
       </div>
       <div class="col-md-12">
-    <p style="text-align: left; margin-bottom:30px;  font-weight: 600; font-size:1.5em; ">CAPS - Centro de Atenção Psicossocial - Adulto e Infantil</p>
-    <p style="text-align: left; margin-bottom:30px;  font-weight: 600; font-size:1.5em; ">Endereço: R. Oriente Monti, 28 - Centro, Diadema - SP, 09910-250
+    <p style="text-align: left; margin-bottom:30px;  font-weight: 600; font-size:1.5em; "><?php echo $dados['nome'];?></p>
+    <p style="text-align: left; margin-bottom:30px;  font-weight: 600; font-size:1.5em; ">Endereço: <?php echo $dados['logradouro'].", ".$dados['numendereco']."- ".$dados['bairro'].", ".$dados['cidade']." - ".$dados['cep'];?>
     <br>Horas: 08:00 ás12:00 e 14:00 ás 17:00
-    <br>Telefone: (11) 4053-5300</p>
+    <br>Telefone: <?php echo $dados['telefone'];?></p>
       </div>
       <div class="dist-menu"></div>
 
@@ -138,9 +160,9 @@ $(".toggle").on("click", function() {
   <tbody>
     <tr>
 
-      <td>Ana</td>
-      <td>6</td>
-      <td>F</td>
+      <td><?php echo $dados['nome_crianca'];?></td>
+      <td><?php echo calcula_idade($dados['nasc_crianca']);?></td>
+      <td><?php echo $dados['sexo'];?></td>
  
     </tr>
   </tbody>
@@ -157,31 +179,45 @@ $(".toggle").on("click", function() {
                 <th scope="col">Calça</th>
                 <th scope="col">Camisa</th>
                 <th scope="col">Calçado</th>
-                <th scope="col">KIT</th>
+                <th scope="col"><?php echo $dados['tipo_presente'];?></th>
                 <th scope="col">Briquedo</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                 <th scope="row">1</th>
-                <td>M</td>
-                <td>G</td>
-                <td>29</td>
-                <td>  <li>3 Cadernos capa dura com 160 folhas</li>
+                <td><?php echo $dados['tamanho_calca'];?></td>
+                <td><?php echo $dados['tamanho_camiseta'];?></td>
+                <td><?php echo $dados['tamanho_sapato'];?></td>
+                <?php if($dados['tipo_presente']=="KIT SIMPLES"){ ?>
+      <td>  <li>3 Cadernos capa dura com 160 folhas</li>
                 <li>1 apontador</li>
                 <li>2 borrachas</li>
                 <li>3 lápis de escrita HB</li>
                 <li>1 Caixa de lápis de cor -12 uni</li>
                 <li>1 Caixa de canetinha hidrográfica-12 uni</li>
                 <li>1 tesoura sem ponta</li>
-                        <li>1 cola bastão</li> </td>
-            <td>Carrinho de Controle</td>    
-            </tr>
+                <li>1 cola bastão</li> </td>   
+                <?php }else if($dados['tipo_presente']=="KIT COMPLETO"){?> 
+                  <td>  <li>6 Cadernos capa dura com 160 folhas/li>
+                <li>1 apontador</li>
+                <li>2 borrachas</li>
+                <li>3 lápis de escrita HB</li>
+                <li>1 Caixa de lápis de cor -12 uni</li>
+                <li>1 Caixa de canetinha hidrográfica-12 uni</li>
+                <li>1 Caixa de giz de cera -12 unidades</li>
+                <li>1 estojo para lapis</li>
+                <li>1 mochila escolar</li>
+                <li>1 tesoura sem ponta</li>
+                <li>1 cola bastão</li> </td> 
+               <?php }?>
+    </tr>
         </tbody>
         </table>
             <div class="dist-bot-button"></div>
             <div class="btn-info-geral">
            <div class="alt-form"></div>
+          <a href="doacoes-realizadas.php"><button class="button-menu-form">DOAÇÕES REALIZADAS</button></a>
          <button class="button-menu-form" type="submit" onclick="window.print()">IMPRIMIR DOAÇÃO</button>
           </div>
         </div>
@@ -190,7 +226,11 @@ $(".toggle").on("click", function() {
    </div>               
 </div>
 </main>
+<?php }else{
 
+    echo "<br/>Sem doação no momento";
+
+} ?>
 <footer >
     <div class="sep-item-footer-1"></div>
     <div class="sobre-dado-footer">
