@@ -146,9 +146,9 @@ if(!empty($id_cadastro)){
     isset($_POST['btnIncluirCriancaKit'])?sessao_mensagem(mensagem(21)):sessao_mensagem(mensagem(22));
     
     redireciona(9);
-}else{
+}else if($_GET['btnDoar']==1){
     
-    redireciona(10);
+    
     $resultado = $conecta->query(cadastra_doacao());
 
     $id_doacao=mysqli_insert_id($conecta);
@@ -156,6 +156,11 @@ if(!empty($id_cadastro)){
     $resultado = $conecta->query(cadastra_doador($id_doacao,exibe_doador('id_cadastro')));
     
     $resultado = $conecta->query(cadastra_gerenciador_doacao($id_doacao,exibe_doacao('id_cadastro')));
+
+    limpa_dados_doacao();
+
+    $_SESSION['usuario']['id_doacao'] = $id_doacao;
+    redireciona(10);
 
 }
 

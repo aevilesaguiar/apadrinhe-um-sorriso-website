@@ -215,7 +215,7 @@ $(".toggle").on("click", function() {
     </div>
     <div class="col">
 
-    <a href="php/controle-site/cadastro.php"> <button class="button-menu-form" type="submit">APROVAR</button> </a>
+    <a href="php/controle-site/cadastro.php?btnDoar=1"> <button class="button-menu-form" name="btnDoar"type="submit">DOAR</button> </a>
     </div>
  <div class="dist-bot-button"></div>
 
