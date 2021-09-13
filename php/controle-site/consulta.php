@@ -42,4 +42,24 @@
                                     where c.fk_id_cadastro ="'.$codigo_organizacao.'"';
             return $select;
     }
+
+    function consulta_doacao($id_doacao){
+
+            $select = 'SELECT g.*,d.*,dc.*,p.* FROM gerencia g inner join realiza r on g.fk_id_doacao=r.fk_id_doacao
+                                                    inner join doacao d on d.id_doacao = g.fk_id_doacao
+                                                    inner join dados_crianca dc on dc.rg_crianca=d.fk_rg_crianca
+                                                    inner join perfil p on p.id_cadastro=g.fk_id_cadastro
+                                                    where g.fk_id_doacao="'.$id_doacao.'"';
+            return $select;
+
+    }
+
+    function lista_doacoes_realizadas($id_cadastro){
+        $select = 'SELECT g.*,d.*,dc.*,p.* FROM gerencia g inner join realiza r on g.fk_id_doacao=r.fk_id_doacao
+                                                    inner join doacao d on d.id_doacao = g.fk_id_doacao
+                                                    inner join dados_crianca dc on dc.rg_crianca=d.fk_rg_crianca
+                                                    inner join perfil p on p.id_cadastro=g.fk_id_cadastro
+                                                    where r.fk_id_cadastro="'.$id_cadastro.'"';
+            return $select;
+    }
 ?>
