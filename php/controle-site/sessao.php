@@ -113,3 +113,15 @@ function limpa_dados_criança(){
     unset($_SESSION['doacao']['crianca_selecionada_exib']);
     unset($_SESSION['doacao']['status']);
 }
+
+function limpa_dados_doacao(){
+    unset($_SESSION['doacao']['acao']);
+    unset($_SESSION['doacao']['id_cadastro']);
+    unset($_SESSION['doacao']['nome_organizacao']);
+    unset($_SESSION['doacao']['endereco']);
+    unset($_SESSION['doacao']['numero']);
+    unset($_SESSION['doacao']['cidade']);
+    unset($_SESSION['doacao']['estado']);
+    unset($_SESSION['doacao']['cep']);
+    unset($_SESSION['doacao']['telefone']);
+}
