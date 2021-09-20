@@ -25,6 +25,8 @@ function mensagem($codmsg){
                         20=>'Organização alterada com sucesso',
                         21=>'Criança e Tipo de Kit incluido com sucesso',
                         22=>'Criança e Tipo de Kit alterado com sucesso',
+                        23=>'Selecione uma organização',
+                        24=>'Selecione uma Criança e um Kit',
                     );
 
     return $mensagem[$codmsg];
