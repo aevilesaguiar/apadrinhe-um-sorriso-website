@@ -147,21 +147,25 @@ $(".toggle").on("click", function() {
    <form class="row g-3" method="POST" action="php/controle-site/cadastro.php">
   <div class="col-md-10">
   <select id="inputState" name="organizacao" class="form-select form-control" type="select">
-          <option value="<?php echo isset($_SESSION['doacao']['id_cadastro'])?$_SESSION['doacao']['organizacao_selecionada']:'Selecione uma organização';?>"><?php echo isset($_SESSION['doacao']['id_cadastro'])?$_SESSION['doacao']['organizacao_selecionada']:'Selecione uma organização';?></option>
           <?php
+              if($_SESSION['doacao']['id_cadastro']){
+          ?>
+                  <option value='<?php echo $_SESSION['doacao']['organizacao_selecionada'];?>'>
+                  <?php echo $_SESSION['doacao']['organizacao_selecionada'];?></option>
+          <?php
+              }else{
+          ?>
+                  <option value='0'>Selecione uma organização</option>
+          <?php
+              }
               $organizacao = $conecta->query(lista_organizacao());
               if($organizacao->num_rows>=1){
                 foreach($organizacao as $dados){
-                  if(isset($_SESSION['doacao']['id_cadastro']) && $_SESSION['doacao']['id_cadastro']!==$dados_criancas['id_cadastro']){
+                  if($_SESSION['doacao']['id_cadastro']!==$dados['id_cadastro']){
           ?>
-          <option value='<?php echo $dados['id_cadastro']." - ".$dados['nome']." - ".$dados['logradouro']." - ".$dados['numendereco']." - ".$dados['cidade']." - ".$dados['estado']." - ".$dados['cep']."-".$dados['telefone'];?>'>
+          <option value='<?php echo $dados['id_cadastro']."-".$dados['nome']." - ".$dados['logradouro']." - ".$dados['numendereco']." - ".$dados['cidade']." - ".$dados['estado']." - ".$dados['cep']."-".$dados['telefone'];?>'>
             <?php echo $dados['id_cadastro']." - ".$dados['nome']." - ".$dados['logradouro']." - ".$dados['numendereco']." - ".$dados['cidade']." - ".$dados['estado'];?></option>
           <?php  
-                  }else{
-                      ?>
-                      <option value='<?php echo $dados['id_cadastro']." - ".$dados['nome']." - ".$dados['logradouro']." - ".$dados['numendereco']." - ".$dados['cidade']." - ".$dados['estado']." - ".$dados['cep']."-".$dados['telefone'];?>'>
-                        <?php echo $dados['id_cadastro']." - ".$dados['nome']." - ".$dados['logradouro']." - ".$dados['numendereco']." - ".$dados['cidade']." - ".$dados['estado'];?></option>
-                    <?php
                   }
               }
             }else{
@@ -183,9 +187,7 @@ $(".toggle").on("click", function() {
   <input class="button-menu-form"  name="btnIncluirOrg" type="submit" value="INCLUIR">
   <?php } ?>
   </div>
-  <div class="col-md-12">
-    <p class="text4 " style="text-align: center; margin-bottom:30px;"><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>
-      </div>
+  
 
 </form>  
 <div class="dist-menu-botao"></div>
@@ -198,6 +200,10 @@ $(".toggle").on("click", function() {
                if(isset($_SESSION['doacao']['rg_crianca'])) {
             ?>
             <option value='<?php  echo dados_crianca();?>'><?php  echo dados_crianca_lista();?></option>
+            <?php
+                }else{
+            ?>
+              <option value="selecionar">Selecione uma Criança</option>
             <?php
                 }
             ?>
@@ -236,9 +242,38 @@ $(".toggle").on("click", function() {
   </div>
   <div class="col-md-4">
   <select id="inputState" name="tipo_kit" class="form-select form-control" type="select">
-  <option value="<?php echo isset($_SESSION['doacao']['rg_crianca'])?$_SESSION['doacao']['tipo_kit']:'Tipo Kit';?>"><?php echo isset($_SESSION['doacao']['rg_crianca'])?$_SESSION['doacao']['tipo_kit']:'Tipo Kit';?></option>
-          <option > KIT SIMPLES </option>
-          <option > KIT COMPLETO </option>
+          <?php
+              $kit[] = 'KIT SIMPLES';
+              $kit[] = 'KIT COMPLETO';
+              if($_SESSION['doacao']['tipo_kit']){
+          ?>
+          <option value='<?php echo $_SESSION['doacao']['tipo_kit'] ?>'><?php echo $_SESSION['doacao']['tipo_kit'] ?></option>
+          <?php
+      
+              }else{
+          ?>
+          <option value="selecionar">Selecione o Kit</option>
+          <?php
+              }
+              
+              if($_SESSION['doacao']['tipo_kit']){
+
+                foreach($kit as $res){
+                  if($res!==$_SESSION['doacao']['tipo_kit']){
+          ?>
+              <option value ='<?php echo $res;?>'><?php echo $res;?></option>
+          <?php
+                  }
+                }
+
+              }else{
+                  foreach($kit as $res){
+          ?>
+              <option value ='<?php echo $res;?>'><?php echo $res;?></option>
+          <?php
+                  }
+                }
+          ?>
             </select>
   </div>
   <div class="col-md-2">
@@ -251,7 +286,9 @@ $(".toggle").on("click", function() {
   <?php } ?>
   </div>
 </form>
-
+<div class="col-md-12">
+    <p class="text4 " style="text-align: center; margin-bottom:30px;"><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>
+      </div>
 
 <div>
   <h2>O que você está Doando</h2>
@@ -328,7 +365,7 @@ $(".toggle").on("click", function() {
 </table>
 
 <div style="text-align: right;"> 
- <a href="confirmacao-dados-doacao.php"> <button class="button-menu-form" type="submit">AVANÇAR</button> </a>
+ <a href="php/controle-site/cadastro.php?Confirmar=1"> <button class="button-menu-form" name="btnConfirmar"type="submit">AVANÇAR</button> </a>
 
  </div>
  <div class="dist-bot-button"></div>
