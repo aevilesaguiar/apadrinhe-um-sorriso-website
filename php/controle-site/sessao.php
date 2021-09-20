@@ -43,7 +43,7 @@ function limpa_mensagens_form($name){
 function inlui_organizacao($id_cadastro,$nome_organizacao,$logradouro,$numero,$cidade,$estado,$cep,$cep1,$tel,$tel1,$acao){
     
     $_SESSION['doacao']['acao']=$acao;
-    $_SESSION['doacao']['id_cadastro'] = $id_cadastro;
+    $_SESSION['doacao']['id_cadastro'] =$id_cadastro;
     $_SESSION['doacao']['nome_organizacao']= $nome_organizacao;
     $_SESSION['doacao']['endereco']= $logradouro;
     $_SESSION['doacao']['numero']= $numero;
@@ -124,4 +124,6 @@ function limpa_dados_doacao(){
     unset($_SESSION['doacao']['estado']);
     unset($_SESSION['doacao']['cep']);
     unset($_SESSION['doacao']['telefone']);
+    unset($_SESSION['doacao']['organizacao_selecionada']);
+    unset($_SESSION['mensagem']);
 }
