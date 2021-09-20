@@ -123,6 +123,13 @@ if(!empty($id_cadastro)){
 
 }else if(isset($_POST['btnIncluirOrg']) || isset($_POST['btnAlterarOrg']) ){
 
+    if($_POST['organizacao']== 0){
+        
+        sessao_mensagem(mensagem(23));
+        redireciona(9);
+
+    }else{
+
     isset($_POST['btnIncluirOrg'])?$acao=1:$acao=0;
 
     $dados_organizacao = explode("-",$_POST['organizacao']);
@@ -134,8 +141,16 @@ if(!empty($id_cadastro)){
     isset($_POST['btnIncluirOrg'])?sessao_mensagem(mensagem(19)):sessao_mensagem(mensagem(20));
 
     redireciona(9);
+
+    }
 }else if(isset($_POST['btnIncluirCriancaKit']) || isset($_POST['btnAlterarCriancaKit']) ){
 
+    if($_POST['dados_crianca']== "selecionar" || $_POST['tipo_kit']=="selecionar"){
+        sessao_mensagem(mensagem(24));
+        redireciona(9);
+
+    }else{
+    
     isset($_POST['btnIncluirCriancaKit'])?$acao=1:$acao=0;
 
     echo $_POST['tipo_kit'];
@@ -146,8 +161,21 @@ if(!empty($id_cadastro)){
     isset($_POST['btnIncluirCriancaKit'])?sessao_mensagem(mensagem(21)):sessao_mensagem(mensagem(22));
     
     redireciona(9);
-}else if($_GET['btnDoar']==1){
+
+    }
+}else if($_GET['Confirmar']==1){
+
+    if(isset($_SESSION['doacao']['id_cadastro']) && 
+    isset($_SESSION['doacao']['rg_crianca']) || isset($_SESSION['doacao']['tipo_kit '])){
+            redireciona(11);
+        }else{
+            
+            redireciona(9);
+        }
+
+}else if(isset($_GET['btnDoar'])){
     
+    if($_GET['btnDoar']==1){
     
     $resultado = $conecta->query(cadastra_doacao());
 
@@ -158,9 +186,12 @@ if(!empty($id_cadastro)){
     $resultado = $conecta->query(cadastra_gerenciador_doacao($id_doacao,exibe_doacao('id_cadastro')));
 
     limpa_dados_doacao();
+    limpa_dados_criança();
 
     $_SESSION['usuario']['id_doacao'] = $id_doacao;
     redireciona(10);
+    
+    }
 
 }
 
