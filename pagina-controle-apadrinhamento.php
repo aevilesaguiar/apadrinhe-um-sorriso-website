@@ -1,5 +1,7 @@
 <?php
+    include 'php/geral/conexao-banco.php';
     include "php/controle-site/sessao.php";
+    include "php/controle-site/consulta.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -140,7 +142,32 @@ $(".toggle").on("click", function() {
   <div class="col-sm-9">
     <div class="card">
       <div class="card-body">
-        <p class="text-php-reprovado">Cadastro em Análise:</p>
+          <?php
+                $status_cadastro = $conecta->query(consulta_status_cadastro($_SESSION['usuario']['id_cadastro']));
+                foreach($status_cadastro as $status){
+                }
+                if($status['status_cadastro']=="EA"){
+            ?>
+                <p class="text-php-reprovado">Cadastro em Análise:</p>
+                    <?php
+
+                }else if($status['status_cadastro']=="RP"){
+            ?>
+                <p class="text-php-reprovado">Cadastro Reprovado:</p>
+            <?php
+                $mensagens = $conecta->query(consulta_mensagem($_SESSION['usuario']['id_cadastro']));
+
+                if($conta=$mensagens->num_rows>=1){
+                foreach($mensagens as $status_mensagem){
+                    if($status_mensagem['status_sistema']!=="N"){
+            ?>
+            <p class=""><?php echo $status_mensagem['mensagem']; ?></p>
+            <?php
+                }
+            }
+            }
+        }
+          ?>
       </div>
     </div>
   </div>
