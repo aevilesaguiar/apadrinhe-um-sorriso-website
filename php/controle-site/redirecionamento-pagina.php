@@ -13,6 +13,7 @@ function redireciona($codpagina){// função que redireciona as paginas do siste
                     9 =>'../../dados-doacao.php',
                     10 =>'../../impressao-dados-doacao.php?btnDoar=1',
                     11 =>'../../confirmacao-dados-doacao.php',
+                    12=>'../../editar-cadastro-pessoa-fisica.php',
 
     );
         header("Location:$pagina[$codpagina]");
@@ -21,19 +22,22 @@ function redireciona($codpagina){// função que redireciona as paginas do siste
    
     }
 
-    function retorna_pagina_cadastro($tipo_usuario){
+    function retorna_pagina_cadastro($tipo_usuario,$acao){
 
-        if($tipo_usuario=="organizacao"){
+        if($tipo_usuario=="organizacao" && $acao=="cadastro"){
             
             return 7;
 
-        }else if($tipo_usuario=="doador_pj"){
+        }else if($tipo_usuario=="doador_pj" && $acao=="cadastro"){
 
             return 6;
 
         }else if($tipo_usuario=="doador_pf"){
-
-            return 5;
+            if($acao=="cadastro"){
+                return 5;
+            }else if($acao=="alteracao"){
+                return 12;
+            }
 
         }else{
             return 8;
