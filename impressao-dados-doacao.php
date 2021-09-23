@@ -86,7 +86,15 @@ $(".toggle").on("click", function() {
 
                     <div><a class="button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>APADRINHAR</a>
                     </div>
-                    <div><a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>LOGAR</a>
+                    <?php if(isset($_SESSION['logado'])!==TRUE){?>
+                    <a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                    SAIR
+                    </a>
+                    <?php }else{ ?>
+                    <a class=" button-menu" href="php/controle-site/seguranca.php?sair=true" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                    SAIR
+                    </a>
+                    <?php }?>
                     </div>
                      <li class="toggle"><span class="bars"></span></li>
                 </ul>

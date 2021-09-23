@@ -85,7 +85,15 @@ $(".toggle").on("click", function() {
 
                     <div><a class="button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>APADRINHAR</a>
                     </div>
-                    <div><a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>LOGAR</a>
+                    <?php if(isset($_SESSION['logado'])!==TRUE){?>
+                    <a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                    SAIR
+                    </a>
+                    <?php }else{ ?>
+                    <a class=" button-menu" href="php/controle-site/seguranca.php?sair=true" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                    SAIR
+                    </a>
+                    <?php }?>
                     </div>
                      <li class="toggle"><span class="bars"></span></li>
                 </ul>
@@ -158,27 +166,25 @@ $(".toggle").on("click", function() {
             <tbody>
                 <tr>
                 <th scope="row">Data de entrega do presente para criança</th>
-                <td> </td>
                 <td><?php echo $doacoes['data_hora_recebimento'];?></td>
             </tr>
         </tbody>
             <tbody>
                 <tr>
                 <th scope="row">Presente Entregue na ONG</th>
-                <td> </td>
-                <td><?php echo $doacoes['data_hora_recebimento'];?></td>
+                <td><?php echo $doacoes['data_hora_entrega'];?></td>
             </tr>
         </tbody>
         <tbody>
                 <tr>
                 <th scope="row">Aguardando envio do Presente</th>
-                <td><?php echo $doacoes['data_hora_entrega'];?></td>
+                <td><?php echo $doacoes['data_hora_selecao'];?></td>
             </tr>
         </tbody>
         <tbody>
                 <tr>
                 <th scope="row">Doação Realizada</th>
-                <td><?php echo $doacoes['data_hora_entrega'];?></td>
+                <td><?php echo $doacoes['data_hora_selecao'];?></td>
             </tr>
         </tbody>
         </table>
@@ -190,12 +196,25 @@ $(".toggle").on("click", function() {
         </div>
             </form>
         <div class="dist-bot-button"></div>
-
+        <?php
+            if($doacoes['status_doacao']=="FINALIZADO"){
+        ?>
         <p class="text-php-aprovado"> Agradecemos a sua Doação!</p>
+        <?php
+            }else if($doacoes['status_doacao']=="PENDENTE"){
+                $notificacao = $conecta->query(consulta_mensagem_doacao($doacoes['id_doacao']));
 
-        <p class="text-php-reprovado"> Reprovado!</p>
-        <p class="text-php-reprovado"> Doação Reprovada devido a falta de kit e calçados - Doador informou que retornaria dia 15/11/21 </p>
-
+                if($notificacao->num_rows>=1){
+                    foreach($notificacao as $notificacaodoacao){
+                        if($notificacaodoacao['status_sistema']!=="FINALIZADO"){
+        ?>
+        <p class="text-php-reprovado"> <?php echo $notificacaodoacao['mensagem'] ?></p>
+        <?php
+                        }    
+                    }
+            }
+        }
+        ?>
         <div class="dist-bot-button"></div>
    </div>               
 </div>

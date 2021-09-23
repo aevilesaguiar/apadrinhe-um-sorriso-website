@@ -159,7 +159,7 @@ $(".toggle").on("click", function() {
 
                 if($conta=$mensagens->num_rows>=1){
                 foreach($mensagens as $status_mensagem){
-                    if($status_mensagem['status_sistema']!=="N"){
+                    if($status_mensagem['status_sistema']!=="FINALIZADO"){
             ?>
             <p class=""><?php echo $status_mensagem['mensagem']; ?></p>
             <?php
@@ -185,7 +185,7 @@ $(".toggle").on("click", function() {
             </thead>
         <tbody>
                 <tr>
-                <th scope="col"> <a href="cadastro-pessoa-fisica.php" target=_blank class="text4">Editar Cadastro</a></th>
+                <th scope="col"> <a href="editar-cadastro-pessoa-fisica.php" target=_blank class="text4">Editar Cadastro</a></th>
 
             </tr>
         </tbody>

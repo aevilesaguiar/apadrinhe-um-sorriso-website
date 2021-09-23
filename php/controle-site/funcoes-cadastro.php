@@ -70,8 +70,8 @@ function valida_cadastro($nome){
 
 function cadastra_doacao(){//Responsável por cadastrar doação
 
-        $cadastro = 'INSERT INTO doacao(status_doacao,data_hora_entrega,tipo_presente,fk_rg_crianca)
-                                    VALUES("N","'.data_hora().'","'.exibe_doacao('tipo_kit').'","'.exibe_doacao('rg_crianca').'")';
+        $cadastro = 'INSERT INTO doacao(status_doacao,data_hora_selecao,tipo_presente,fk_rg_crianca)
+                                    VALUES("PENDENTE","'.data_hora().'","'.exibe_doacao('tipo_kit').'","'.exibe_doacao('rg_crianca').'")';
         return $cadastro;
 }
 

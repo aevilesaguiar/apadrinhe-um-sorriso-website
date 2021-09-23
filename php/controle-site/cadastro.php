@@ -7,9 +7,10 @@ include "sessao.php"; //Inicia sessao e encerra sessões
 include "consulta.php";
 include 'funcoes-sistema.php';
 include 'funcoes-cadastro.php';
+include 'funcoes-alteracao.php';
 
 
-if(isset($_POST['btnCadastraUsuario'])){
+if(isset($_POST['btnCadastraUsuario']) || isset($_POST['btnEditCadastraUsuario'])){
 
 //Dados cadastro-pessoa-fisica diferenciado
 if($_POST['tipo_usuario']=="doador_pf"){
@@ -77,11 +78,18 @@ $informacoes="";
 
 valida_cadastro($_POST);
 
-if(!empty($_SESSION['mensagens_form'])){
-   
-    redireciona(retorna_pagina_cadastro($tipo_cadastro));
+}
 
-}else{
+if(!empty($_SESSION['mensagens_form'])){
+
+    if(isset($_POST['btnCadastraUsuario'])){
+        redireciona(retorna_pagina_cadastro($tipo_cadastro,'cadastro'));
+    }elseif(isset($_POST['btnEditCadastraUsuario'])){
+        redireciona(retorna_pagina_cadastro($tipo_cadastro,'alteracao'));
+        unset($_SESSION['mensagem']);
+    }
+   
+}else if(isset($_POST['btnCadastraUsuario'])){
 
 unset($_SESSION['dados_form']);
 
@@ -94,7 +102,7 @@ $complemento,$usuario));
 $id_cadastro = mysqli_insert_id($conecta);//retorna id cadastro
 
 
-if($_POST['tipo_usuario']=="doador_pf")// Cadastra doador pf
+if(isset($_POST['btnCadastraUsuario']) && $_POST['tipo_usuario']=="doador_pf")// Cadastra doador pf
 {
     $cadastra_pf=$conecta->query(cadastra_pf($cpf,$id_cadastro));
 
@@ -117,8 +125,6 @@ if(!empty($id_cadastro)){
 
 }else{
     redireciona(retorna_pagina_cadastro($tipo_cadastro));
-}
-
 }
 
 }else if(isset($_POST['btnIncluirOrg']) || isset($_POST['btnAlterarOrg']) ){
@@ -163,7 +169,7 @@ if(!empty($id_cadastro)){
     redireciona(9);
 
     }
-}else if($_GET['Confirmar']==1){
+}else if(isset($_GET['Confirmar'])==1){
 
     if(isset($_SESSION['doacao']['id_cadastro']) && 
     isset($_SESSION['doacao']['rg_crianca']) || isset($_SESSION['doacao']['tipo_kit '])){
@@ -193,5 +199,13 @@ if(!empty($id_cadastro)){
     
     }
 
-}
+}else if($_POST['btnEditCadastraUsuario']){
 
+    echo $nome."</br>";
+    unset($_SESSION['dados_form']);
+    $cadastra_usuario = $conecta->query(altera_usuario($usuario,$senha));//Altera usuário
+    $cadastra=$conecta->query(altera_dados_gerais($nome,$telefone,$redesocial,$numero,$endereco,$cidade,$estado,$cep,$bairro,
+    $complemento,$_SESSION['usuario']['id_cadastro']));
+    redireciona(12);
+    sessao_mensagem(mensagem(25));
+}
