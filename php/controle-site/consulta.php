@@ -59,7 +59,7 @@
                                                     inner join doacao d on d.id_doacao = g.fk_id_doacao
                                                     inner join dados_crianca dc on dc.rg_crianca=d.fk_rg_crianca
                                                     inner join perfil p on p.id_cadastro=g.fk_id_cadastro
-                                                    where  r.fk_id_cadastro="'.$id_cadastro.'"';
+                                                    where  r.fk_id_cadastro="'.$id_cadastro.'" ORDER BY d.id_doacao DESC';
             return $select;
     }
 
@@ -75,5 +75,21 @@
         inner join mensagem_sistema ms on ms.id_mensagem=pe.fk_id_mensagem
          where id.id_cadastro="'.$id_cadastro.'"';
             return $select;
+    }
+
+    function consulta_mensagem_doacao($id_doacao){
+        $select = 'SELECT ms.mensagem,MS.status_sistema FROM doacao d 
+        inner join doa_exibe de on de.fk_id_doacao=d.id_doacao
+        inner join mensagem_sistema ms on ms.id_mensagem=de.fk_id_mensagem
+        where d.id_doacao="'.$id_doacao.'"';
+        return $select;
+    }
+
+    function consulta_cadastro_pf($id_cadastro){
+        $select = 'SELECT * FROM perfil p 
+        inner join dados_pf dpf on dpf.fk_id_cadastro=p.id_cadastro 
+        inner join usuario u on u.user=p.fk_user where p.id_cadastro="'.$id_cadastro.'"';
+
+        return $select;
     }
 ?>
