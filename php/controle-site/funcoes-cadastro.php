@@ -87,3 +87,9 @@ function cadastra_gerenciador_doacao($id_doacao,$id_cadastro){//Responsável por
         return $cadastro;
 }
 
+function cadastra_fale_conosco($nome,$email,$telefone,$mensagem){
+        $cadastro = 'INSERT INTO fale_conosco(e_mail_fale_conosco,nome,telefone,mensagem)
+        VALUES("'.$email.'","'.$nome.'","'.$telefone.'","'.$mensagem.'")';
+        return $cadastro;
+}
+

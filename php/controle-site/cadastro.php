@@ -208,4 +208,12 @@ if(!empty($id_cadastro)){
     $complemento,$_SESSION['usuario']['id_cadastro']));
     redireciona(12);
     sessao_mensagem(mensagem(25));
+}else if($_POST['btnEnviarmensagem']){
+    $nome=$_POST['nome'];
+    $email = $_POST['email'];
+    $telefone=$_POST['telefone'];
+    $mensagem=$_POST['mensagem'];
+    $cadastra_fale_conosco=$conecta->query(cadastra_fale_conosco($nome,$email,$telefone,$mensagem));
+    redireciona(13);
+    sessao_mensagem(mensagem(26));
 }
