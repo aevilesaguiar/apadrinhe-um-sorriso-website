@@ -1,3 +1,4 @@
+<?php include "php/controle-site/sessao.php"; //Inicia sessao e encerra sessões?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -286,15 +287,14 @@ $(".toggle").on("click", function() {
 
 
         <div class="sobre-item-fale">
-            <form  class="textos-item" action="/action_page.php">
+            <form  class="textos-item" method="POST" action="php/controle-site/cadastro.php">
                 <input type="text" class=" form-control"  name="nome" placeholder="Nome" required />  
                  <input type="text" class="form-control" name="email" placeholder="Email" required />  
-                 <input type="text" class="form-control" onKeyPress="MascaraGenerica(this, 'TELEFONE');" placeholder="Telefone" required /> 
+                 <input type="text" class="form-control" name="telefone"onKeyPress="MascaraGenerica(this, 'TELEFONE');" placeholder="Telefone" required /> 
               
                   <textarea id="subject" class="form-control" type="mensagem" name="subject" placeholder="Mensagem" style="height:200px"></textarea>
-
-                <input class="button-menu-form" type="submit" value="ENVIAR MENSAGEM">
-
+                <input class="button-menu-form" type="submit" name="btnEnviarmensagem" value="ENVIAR MENSAGEM">
+                <p><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>
                 </form>
           
         </div>
