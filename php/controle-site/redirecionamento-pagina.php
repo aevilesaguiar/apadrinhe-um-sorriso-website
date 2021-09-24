@@ -14,6 +14,7 @@ function redireciona($codpagina){// função que redireciona as paginas do siste
                     10 =>'../../impressao-dados-doacao.php?btnDoar=1',
                     11 =>'../../confirmacao-dados-doacao.php',
                     12=>'../../editar-cadastro-pessoa-fisica.php',
+                    13 =>'../../index.php#contato',
 
     );
         header("Location:$pagina[$codpagina]");

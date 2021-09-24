@@ -28,6 +28,7 @@ function mensagem($codmsg){
                         23=>'Selecione uma organização',
                         24=>'Selecione uma Criança e um Kit',
                         25=>'Os dados foram atualizados com sucesso',
+                        26=>'Mensagem enviada com sucesso, entraremos em contato com você o mais breve possível, obrigado !',
                     );
 
     return $mensagem[$codmsg];
