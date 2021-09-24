@@ -96,7 +96,7 @@ $(".toggle").on("click", function() {
             
                   <img class="img-direc-login " src="image/logo-contato.svg" alt="" style="margin: 0 auto; margin-top: 50px;"  >
                   <div class="dist-menu-botao"></div>
-                    <form action="">
+                    <form method="POST"action="php/controle-site/lembrar-senha.php">
             <label class="label-form" for="fname">Informe seu E-mail:</label><br>
             <input type="text" class="form-contact-input form-control" name="email" placeholder="Email" required />  
            
