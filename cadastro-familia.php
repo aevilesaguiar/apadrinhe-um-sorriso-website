@@ -94,57 +94,57 @@ $(".toggle").on("click", function() {
           <div class="sep-item "></div>
           <div class="dist-menu"></div>
       <div class="sobre-dado-fale">      
-     <form class="row g-3  dist-mob-form">
+     <form class="row g-3  dist-mob-form" action="cadastro-org.php" method="post" enctype="multipart/form-data">
             <div class="col-md-6">
-              <input type="text" class="form-control"  id="inputCpf" onKeyPress="MascaraGenerica(this, 'CPF');" placeholder="CPF da mãe" required /> 
+              <input type="text" class="form-control"  id="inputCpf" name="cpf" onKeyPress="MascaraGenerica(this, 'CPF');" placeholder="CPF da mãe" required /> 
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control"  id="inputNome" placeholder="Nome da  Mãe" required /> 
+              <input type="text" class="form-control"  id="inputNome" name="nome_mae" placeholder="Nome da  Mãe" required /> 
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control"  id="inputCpf" onKeyPress="MascaraGenerica(this, 'CPF');" placeholder="CPF do Pai" required /> 
+              <input type="text" class="form-control"  id="inputCpf" name="cpf_pai" onKeyPress="MascaraGenerica(this, 'CPF');" placeholder="CPF do Pai" required /> 
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control"  id="inputNome" placeholder="Nome do pai" required /> 
+              <input type="text" class="form-control"  id="inputNome" name="nome_pai" placeholder="Nome do pai" required /> 
             </div>
             <div class="col-md-3">
-              <input type="text" class="form-control"  id="inputCpf" onKeyPress="MascaraGenerica(this, 'RG');" placeholder="RG da Criança"  /> 
+              <input type="text" class="form-control"  id="inputCpf" name="rg_crianca" onKeyPress="MascaraGenerica(this, 'RG');" placeholder="RG da Criança"  /> 
             </div>
             <div class="col-md-5">
-              <input type="text" class="form-control"  id="inputNome" placeholder="Nome da Criança" required /> 
+              <input type="text" class="form-control"  id="inputNome" name="nome_crianca" placeholder="Nome da Criança" required /> 
             </div>
             <div class="col-md-2">
-              <input type="text" class="form-control"  id="inputNome" placeholder="Data de Aniversário"  onKeyPress="MascaraGenerica(this, 'DATA');"required /> 
+              <input type="text" class="form-control"  id="inputNome" name="nasc_crianca" placeholder="Data de Aniversário"  onKeyPress="MascaraGenerica(this, 'DATA');"required /> 
             </div>
             <div class="col-md-2">
-            <select id="inputState" class="form-select form-control" type="select">
+            <select id="inputState" name="sexo" class="form-select form-control" type="select">
               <option value="">Sexo</option>
               <option value="F">Feminino</option>
               <option value="M">Masculino</option>
                 </select>
           </div>
             <div class="col-md-6">
-              <input type="email" class="form-control" id="inputEmail4" placeholder="E-mail">
+              <input type="email" class="form-control" id="inputEmail4" name="email" placeholder="E-mail">
             </div>
             <div class="col-md-4">
-              <input type="text" class="form-control"  id="inputEmail" onKeyPress="MascaraGenerica(this, 'TELEFONE');" placeholder="Telefone" required /> 
+              <input type="text" class="form-control"  id="inputEmail" name="telefone" onKeyPress="MascaraGenerica(this, 'TELEFONE');" placeholder="Telefone" required /> 
             </div>
 
             <div class="col-md-2">
-              <input type="text" class="form-control" id="inputZip" onKeyPress="MascaraGenerica(this, 'CEP');" placeholder="CEP" required /> 
+              <input type="text" class="form-control" id="inputZip" name="cep" onKeyPress="MascaraGenerica(this, 'CEP');" placeholder="CEP" required /> 
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control" id="inputAddress" placeholder="Rua">
+              <input type="text" class="form-control" id="inputAddress" name="rua" placeholder="Rua">
             </div>
             <div class="col-md-1">
-              <input type="text" class="form-control" id="inputNum" placeholder="Numero">
+              <input type="text" class="form-control" id="inputNum" name="numero" placeholder="Numero">
             </div>
 
             <div class="col-md-3">
-              <input type="text" class="form-control" id="inputNum" placeholder="Cidade">
+              <input type="text" class="form-control" id="inputNum" name="cidade" placeholder="Cidade">
             </div>
             <div class="col-md-2">
-              <select id="inputState" class="form-select form-control" type="select">
+              <select id="inputState" name="estado" class="form-select form-control" type="select">
                 <option value="">Estado</option>
                 <option value="AC">AC</option>
                 <option value="AL">AL</option>
@@ -176,13 +176,13 @@ $(".toggle").on("click", function() {
                   </select>
             </div>
             <div class="col-md-4">
-              <input type="text" class="form-control" id="inputAddress" placeholder="Bairro">
+              <input type="text" class="form-control" id="inputAddress" name="bairro" placeholder="Bairro">
             </div>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="inputCity" placeholder="Complemento">
+              <input type="text" class="form-control" id="inputCity" name="complemento" placeholder="Complemento">
             </div>
             <div class="col-md-2">
-              <select id="inputState" class="form-select form-control" type="select">
+              <select id="inputState" name="tamanho_calca" class="form-select form-control" type="select">
                 <option value="">Tamanho do Calça</option>
                 <option > RN - Recém-nascido </option>
                 <option > P (0-3 meses) </option>
@@ -213,7 +213,7 @@ $(".toggle").on("click", function() {
                   </select>
             </div>
             <div class="col-md-2">
-              <select id="inputState" class="form-select form-control" type="select">
+              <select id="inputState" name="tamanho_camiseta" class="form-select form-control" type="select">
                 <option value="">Tamanho da Camisa</option>
                 <option > RN - Recém-nascido </option>
                 <option > P (0-3 meses) </option>
@@ -236,7 +236,7 @@ $(".toggle").on("click", function() {
                   </select>
             </div>
             <div class="col-md-2">
-              <select id="inputState" class="form-select form-control" type="select">
+              <select id="inputState" name="tamanho_sapato" class="form-select form-control" type="select">
                 <option value="">Numeração Calçado</option>
                 <option > RN(0-3 meses) </option>
                 <option > 16 (3-6 meses) </option>
@@ -269,14 +269,15 @@ $(".toggle").on("click", function() {
               </select>
             </div>
             <div class="col-md-6">
-            <input type="text" class="form-control" id="inputAddress" placeholder="Sugestão de Presente">
+            <input type="text" class="form-control" id="inputAddress" name="sug_presente" placeholder="Sugestão de Presente">
           </div>
             <div class="col-md-4">
+              <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
               <label for="formFileLg" class="form-label text4">Anexar termo de Responsabilidade</label>
-              <input class="form-control form-control-lg  " id="formFileLg" type="file" style="height: 60px;">
+              <input class="form-control form-control-lg  " id="formFileLg" name="termo_arq" type="file" style="height: 60px;">
             </div>
             <div class="col-md-12">
-              <textarea type="mensagem" class="form-control" aria-label="With textarea"  placeholder="Observação" style="height: 120px;"></textarea>
+              <textarea type="mensagem" class="form-control" aria-label="With textarea"  name="observacao" placeholder="Observação" style="height: 120px;"></textarea>
             </div>
             <div class="dist-menu-botao"></div>
             <div class="sobre-dado-fale dist-menu-botao">
