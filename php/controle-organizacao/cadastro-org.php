@@ -1,14 +1,14 @@
 <?php
 
 include '../geral/conexao-banco.php';
-include "redirecionamento-pagina.php"; //Registro de todas as paginas para redirecionamento
-include "mensagens.php";// Registro de todas mensagens do sistema
-include "sessao.php"; //Inicia sessao e encerra sessões
-include "consulta.php";
-include 'funcoes-cadastro.php';
+//include "redirecionamento-pagina.php"; //Registro de todas as paginas para redirecionamento
+//include "mensagens.php"; // Registro de todas mensagens do sistema
+include "sessao-org.php"; //Inicia sessao e encerra sessões
+//include "consulta.php";
+include 'funcoes-cadastro-org.php';
 
-
-if(isset($_POST['btnCadastraUsuario'])){
+/*
+if(isset($_POST['btnCadastraFamilia'])){
 
 //Dados cadastro-pessoa-fisica diferenciado
 if($_POST['tipo_usuario']=="doador_pf"){
@@ -19,17 +19,41 @@ if($_POST['tipo_usuario']=="doador_pf"){
     
     //Validação cpf     
 }
+*/
 
 
-//Dados comum cadastro-organização/cadastro-pessoa-fisica/juridica
+
+
+
+
+
+//Dados comum cadastro-familia
+/*
 $tipo_cadastro=$_POST['tipo_usuario'];//Tipos de usuário : doador_pj/doador_pf/organizacao
+*/
+//cadastra_pf - dados_pf
+$cpf = $_POST['cpf_mae'];
+$_SESSION['dados_form']['cpf']=$cpf;
+
+
+//cadastra_familia - dados_responsavel
+$cpf_resp = $_POST['cpf_pai'];
+$_SESSION['dados_form']['cpf']=$cpf_resp;
+$nome_resp = $_POST['nome_pai'];
+$_SESSION['dados_form']['nome']=$nome_resp;
+
+
+//cadastra_perfil - perfil
+$tipo_cadastro=$_POST['tipo_usuario'];//Tipos de usuário : familia
+$nome = $_POST['nome_mae'];
+$_SESSION['dados_form']['nome']=$nome;
 $email = $_POST['email'];
 $_SESSION['dados_form']['email']=$email;
 $telefone=$_POST['telefone'];
 $_SESSION['dados_form']['telefone']=$telefone;
 $cep=$_POST['cep'];
 $_SESSION['dados_form']['cep']=$cep;
-$endereco=$_POST['endereco'];
+$endereco=$_POST['rua'];
 $_SESSION['dados_form']['endereco']=$endereco;
 $numero=$_POST['numero'];
 $_SESSION['dados_form']['numero']=$numero;
@@ -41,15 +65,19 @@ $bairro=$_POST['bairro'];
 $_SESSION['dados_form']['bairro']=$bairro;
 $complemento=$_POST['complemento'];
 $_SESSION['dados_form']['complemento']=$complemento;
+/*
 $redesocial=$_POST['rede_social'];
 $_SESSION['dados_form']['rede_social']=$redesocial;
-    
+*/
+
+/*
 //Dados comuns para cadastro login
 $usuario=$_POST['email'];
 $senha=$_POST['senha'];
 $confirm_senha=$_POST['confirm_senha'];
+*/
 
-//Dados inclusao criancas
+//Dados inclusao criancas dados_crianca
 $rg_crianca=$_POST['rg_crianca'];
 $_SESSION['dados_form']['rg_crianca']=$rg_crianca;
 $nome_crianca=$_POST['nome_crianca'];
@@ -66,6 +94,17 @@ $tamanho_sapato=$_POST['tamanho_sapato'];
 $_SESSION['dados_form']['tamanho_sapato']=$tamanho_sapato;
 $sug_presente=$_POST['sug_presente'];
 $_SESSION['dados_form']['sug_presente']=$sug_presente;
+
+if ($tipo_cadastro = "familia"){
+    $redesocial = null;
+    $fk_user = null;
+    $status_cadastro = "OK";
+
+}
+
+
+//arquivo
+/*
 $termo_arq=$_POST['termo_arq'];
 $_SESSION['dados_form']['termo_arq']=$termo_arq;
 $nome_arq=$_POST['nome_arq'];
@@ -77,8 +116,19 @@ $_SESSION['dados_form']['tamanho_arq']=$tamanho_arq;
 $observacao=$_POST['observacao'];
 $_SESSION['dados_form']['observacao']=$observacao;
 
-//Upload do arquivo no banco de dados
 
+echo $tipo_cadastro. PHP_EOL ;
+echo $cpf_resp. PHP_EOL ;
+echo $tamanho_calca. PHP_EOL ;
+echo $termo_arq. PHP_EOL ;
+echo $nome_arq. PHP_EOL ;
+echo $tipo_arq. PHP_EOL ;
+echo $tamanho_arq. PHP_EOL ;
+echo $observacao. PHP_EOL ;
+*/
+
+/*
+//Upload do arquivo no banco de dados
 if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
 {
 $fileName = $_FILES['userfile']['name'];
@@ -91,12 +141,12 @@ $content = fread($fp, filesize($tmpName));
 $content = addslashes($content);
 fclose($fp);
 
-/*
+
 if(!get_magic_quotes_gpc())
 {
     $fileName = addslashes($fileName);
 }
-*/ 
+
 
 include 'library/config.php';
 include 'library/opendb.php';
@@ -109,9 +159,9 @@ include 'library/closedb.php';
  
 echo "<br>File $fileName uploaded<br>";
 }
+*/ 
 
-
-
+/*
 //Dados cadastro-organização/pj diferenciado
 if($_POST['tipo_usuario']=="organizacao" || $_POST['tipo_usuario']=="doador_pj"){
 $cnpj = $_POST["cnpj"];
@@ -132,7 +182,10 @@ $_SESSION['dados_form']['informacoes']=$informacoes;
 $informacoes="";
 }
 }
+*/
 
+
+/*
 valida_cadastro($_POST);
 
 if(!empty($_SESSION['mensagens_form'])){
@@ -142,16 +195,27 @@ if(!empty($_SESSION['mensagens_form'])){
 }else{
 
 unset($_SESSION['dados_form']);
+*/
 
-$cadastra_usuario = $conecta->query(cadastra_usuario($usuario,$senha));//cadastra usuário
+//$cadastra_usuario = $conecta->query(cadastra_usuario($usuario,$senha));//cadastra usuário
 
-$cadastra=$conecta->query(cadastra_dados_gerais($tipo_cadastro,$nome,
+$cadastra=mysqli_query($conecta, cadastra_dados_gerais($tipo_cadastro,$status_cadastro,$nome,
 $telefone,$redesocial,$email,$numero,$endereco,$cidade,$estado,$cep,$bairro,
 $complemento,$usuario));
 
 $id_cadastro = mysqli_insert_id($conecta);//retorna id cadastro
 
+if ($cadastra) {
 
+    echo 'cadastro realizado com sucesso';
+} else {
+    echo 'cadastro não realizado';
+}
+
+//echo $id_cadastro;
+
+
+/*
 if($_POST['tipo_usuario']=="doador_pf")// Cadastra doador pf
 {
     $cadastra_pf=$conecta->query(cadastra_pf($cpf,$id_cadastro));
@@ -199,4 +263,4 @@ if(!empty($id_cadastro)){
     redireciona(8);
 
 }
-
+*/
