@@ -94,9 +94,9 @@ $(".toggle").on("click", function() {
           <div class="sep-item "></div>
           <div class="dist-menu"></div>
       <div class="sobre-dado-fale">      
-     <form class="row g-3  dist-mob-form" action="cadastro-org.php" method="post" enctype="multipart/form-data">
+     <form class="row g-3  dist-mob-form" action="php/controle-organizacao/cadastro-org.php" method="post" enctype="multipart/form-data">
             <div class="col-md-6">
-              <input type="text" class="form-control"  id="inputCpf" name="cpf" onKeyPress="MascaraGenerica(this, 'CPF');" placeholder="CPF da mãe" required /> 
+              <input type="text" class="form-control"  id="inputCpf" name="cpf_mae" onKeyPress="MascaraGenerica(this, 'CPF');" placeholder="CPF da mãe" required /> 
             </div>
             <div class="col-md-6">
               <input type="text" class="form-control"  id="inputNome" name="nome_mae" placeholder="Nome da  Mãe" required /> 
@@ -281,8 +281,9 @@ $(".toggle").on("click", function() {
             </div>
             <div class="dist-menu-botao"></div>
             <div class="sobre-dado-fale dist-menu-botao">
-              <input class="button-menu-form" type="submit" value="CADASTRAR">
+              <input class="button-menu-form" name="btnCadastraFamilia" type="submit" value="CADASTRAR">
       </div>
+      <input name="tipo_usuario" type="hidden" value="familia"/>
  </form>
     <div class="dist-menu"></div>
 </div>
