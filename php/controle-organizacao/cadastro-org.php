@@ -1,6 +1,6 @@
 <?php
 
-include '../geral/conexao-banco.php';
+include 'conexao-banco-org.php';
 //include "redirecionamento-pagina.php"; //Registro de todas as paginas para redirecionamento
 //include "mensagens.php"; // Registro de todas mensagens do sistema
 include "sessao-org.php"; //Inicia sessao e encerra sessões
@@ -65,6 +65,8 @@ $bairro=$_POST['bairro'];
 $_SESSION['dados_form']['bairro']=$bairro;
 $complemento=$_POST['complemento'];
 $_SESSION['dados_form']['complemento']=$complemento;
+
+
 /*
 $redesocial=$_POST['rede_social'];
 $_SESSION['dados_form']['rede_social']=$redesocial;
@@ -82,24 +84,48 @@ $rg_crianca=$_POST['rg_crianca'];
 $_SESSION['dados_form']['rg_crianca']=$rg_crianca;
 $nome_crianca=$_POST['nome_crianca'];
 $_SESSION['dados_form']['nome_crianca']=$nome_crianca;
-$nasc_crianca=$_POST['nasc_crianca'];
-$_SESSION['dados_form']['nasc_crianca']=$nasc_crianca;
 $sexo=$_POST['sexo'];
 $_SESSION['dados_form']['sexo']=$sexo;
-$tamanho_calca=$_POST['tamanho_calca'];
-$_SESSION['dados_form']['tamanho_calca']=$tamanho_calca;
+$nasc_crianca=$_POST['nasc_crianca'];
+$_SESSION['dados_form']['nasc_crianca']=$nasc_crianca;
 $tamanho_camiseta=$_POST['tamanho_camiseta'];
 $_SESSION['dados_form']['tamanho_camiseta']=$tamanho_camiseta;
 $tamanho_sapato=$_POST['tamanho_sapato'];
 $_SESSION['dados_form']['tamanho_sapato']=$tamanho_sapato;
+$tamanho_calca=$_POST['tamanho_calca'];
+$_SESSION['dados_form']['tamanho_calca']=$tamanho_calca;
 $sug_presente=$_POST['sug_presente'];
 $_SESSION['dados_form']['sug_presente']=$sug_presente;
+$observacao=$_POST['observacao'];
+$_SESSION['dados_form']['observacao']=$observacao;
+
 
 if ($tipo_cadastro = "familia"){
     $redesocial = null;
-    $fk_user = null;
-    $status_cadastro = "OK";
+    $usuario = "familia@padrao.com";
+    //$status_cadastro = "OK";
 
+}
+
+//Upload arquivo
+
+$termo_arq = $_FILES['termo_arq'];
+
+if($termo_arq !==null) {
+
+preg_match("/\.(pdf|jpeg|png|jpg){1}$/i", $termo_arq["name"], $ext);
+//gera um nome ramdomico para a imagem
+
+if ($ext == true) {
+
+$nome_arq = md5(uniqid(time())) . "." . $ext[1];
+
+$path_arq = "documentos/" . $nome_arq;
+
+move_uploaded_file($termo_arq["tmp_name"], $path_arq);
+
+
+}
 }
 
 
@@ -199,17 +225,37 @@ unset($_SESSION['dados_form']);
 
 //$cadastra_usuario = $conecta->query(cadastra_usuario($usuario,$senha));//cadastra usuário
 
-$cadastra=mysqli_query($conecta, cadastra_dados_gerais($tipo_cadastro,$status_cadastro,$nome,
+//cadastra os dados gerais da familia no banco de dados
+$cadastra=mysqli_query($conecta, cadastra_dados_gerais($tipo_cadastro,$nome,
 $telefone,$redesocial,$email,$numero,$endereco,$cidade,$estado,$cep,$bairro,
 $complemento,$usuario));
 
-$id_cadastro = mysqli_insert_id($conecta);//retorna id cadastro
+//retorna id cadastro
+$id_cadastro = mysqli_insert_id($conecta);
 
-if ($cadastra) {
+//cadastra mae no banco de dados de pessoa física
+$cadastra_pf=mysqli_query($conecta, cadastra_pf($cpf,$id_cadastro));
+
+//cadastro no banco de dados de responsavel
+$cadastra_resp=mysqli_query($conecta, cadastra_resp($cpf_resp,$nome_resp,$cpf,$id_cadastro));
+
+//cadastra no banco dados da crianca
+$cadastra_crianca=mysqli_query($conecta, cadastra_crianca($rg_crianca,$nome_crianca,$sexo,$nasc_crianca,$tamanho_camiseta,$tamanho_sapato,$tamanho_calca,$nome_arq,$sug_presente,$observacao));
+
+
+if ($cadastra && $cadastra_pf && $cadastra_resp && $cadastra_crianca) {
 
     echo 'cadastro realizado com sucesso';
 } else {
     echo 'cadastro não realizado';
+    echo $nome_arq;
+}
+
+if ($cadastra_crianca) {
+
+    echo 'crianca cadastrada com sucesso';
+} else {
+    echo 'deu ruim de novo';
 }
 
 //echo $id_cadastro;
@@ -223,9 +269,6 @@ if($_POST['tipo_usuario']=="doador_pf")// Cadastra doador pf
 }else if($_POST['tipo_usuario']=="organizacao" || $_POST['tipo_usuario']=="doador_pj"){
 
 $cadastra_pj=$conecta->query(cadastra_pj($cnpj,$nome_fantasia,$site,$tipo_pj,$id_cadastro));//cadastra organização
-
-
-
 }
 
 $documento=mysqli_insert_id($conecta);// retorna documento cadastrado
