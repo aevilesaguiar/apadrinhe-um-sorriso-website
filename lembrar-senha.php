@@ -92,23 +92,18 @@ $(".toggle").on("click", function() {
     <div class="dist-menu"></div>
  
     <div class="sobre-dado-fale">
-        <div class="sobre-item-fale-login item-esc-imagem">
-            
-                  <img class="img-direc-login " src="image/logo-contato.svg" alt="" style="margin: 0 auto; margin-top: 50px;"  >
-                  <div class="dist-menu-botao"></div>
-                    <form method="POST"action="php/controle-site/lembrar-senha.php">
-            <label class="label-form" for="fname">Informe seu E-mail:</label><br>
-            <input type="text" class="form-contact-input form-control" name="email" placeholder="Email" required />  
+        <div class="sobre-item-fale-login button-menu-form-distancia"  style="margin: 0 auto; margin-top: 120px; margin-bottom:50px">
+                    <form  method="POST"action="php/controle-site/lembrar-senha.php">
+                  <label class="label-form" for="fname">Informe seu E-mail:</label><br>
+                     <input type="text" class="form-contact-input form-control" name="email" placeholder="Email" required />  
            
-             <input class="button-menu" type="submit" value="ENVIAR">
-                    </form>
-                      
-           
+                     <input class="button-menu-form" type="submit" value="ENVIAR">
 
+                    </form>               
+                   
       </div>
     </div>
-    <div class="dist-menu-botao"></div>
-    <div class="dist-menu-botao"></div>
+ 
  </main>
 
  <footer >
