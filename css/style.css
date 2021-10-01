@@ -844,8 +844,11 @@ h2{
 
 }
 
-
-
+#titulo {
+  font-family:cambria;
+  font-size:12px;
+  color:#CCC;
+  }
 
 /* Mobile menu */
 
@@ -894,6 +897,8 @@ h2{
 .bars:after {
   top: -8px;
 }
+
+
 
 /* Tablet menu */
 @media all and (min-width: 468px) {

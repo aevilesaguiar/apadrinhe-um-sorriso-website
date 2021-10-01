@@ -223,7 +223,15 @@ $(".toggle").on("click", function() {
         }
     }else{
 
-        echo "</br>Sem doação no momento<a href='dados-doacao.php'><button>Doar</button></a>";
+        echo "<div style='text-align:center; border:2px ;'><br></br><p>Sem doação no momento<a href='dados-doacao.php'><button style='padding: 15px 25px;
+        margin-left:30px ;
+        font-size: 1.2em;
+        text-align: center;
+        color: #fff;
+        background-color: #F57600;
+        border-radius: 3px;
+        box-shadow: 0 2px #999; 
+        '>Doar</button></a></p> <br><br></div>";
 
     }
 ?>
