@@ -249,8 +249,8 @@ $cadastra_pf=mysqli_query($conecta, cadastra_pf($cpf,$id_cadastro));
 $cadastra_resp=mysqli_query($conecta, cadastra_resp($cpf_resp,$nome_resp,$cpf,$id_cadastro));
 
 //cadastra no banco dados da crianca
-$cadastra_crianca=mysqli_query($conecta, cadastra_crianca($rg_crianca,$nome_crianca,
-$sexo,$nasc_crianca,$tamanho_camiseta,$tamanho_sapato,$tamanho_calca,$nome_arq,$sug_presente,$observacao));
+$cadastra_crianca=$conecta->query(cadastra_crianca($rg_crianca,$nome_crianca,
+$sexo,$nasc_crianca,$tamanho_camiseta,$tamanho_sapato,$tamanho_calca,"",$sug_presente,$observacao));
 
 
 if ($cadastra && $cadastra_pf && $cadastra_resp && $cadastra_crianca) {
@@ -258,15 +258,15 @@ if ($cadastra && $cadastra_pf && $cadastra_resp && $cadastra_crianca) {
     echo 'cadastro realizado com sucesso';
 } else {
     echo 'cadastro não realizado';
-    echo $nasc_crianca;
-    echo $rg_crianca;
-    echo $sexo;
-    echo $nome_crianca;
-    echo $tamanho_camiseta;
-    echo $tamanho_sapato;
-    echo $tamanho_calca;
-    echo $sug_presente;
-    echo $observacao;
+    echo "<br>".$nasc_crianca."<br>";
+    echo $rg_crianca."<br>";
+    echo $sexo."<br>";
+    echo $nome_crianca."<br>";
+    echo $tamanho_camiseta."<br>";
+    echo $tamanho_sapato."<br>";
+    echo $tamanho_calca."<br>";
+    echo $sug_presente."<br>";
+    echo $observacao."<br>";
 }
 
 if ($cadastra_crianca) {
