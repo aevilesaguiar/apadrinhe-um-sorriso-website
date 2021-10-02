@@ -119,8 +119,8 @@ $(".toggle").on("click", function() {
             <div class="col-md-2">
             <select id="inputState" name="sexo" class="form-select form-control" type="select">
               <option value="">Sexo</option>
-              <option value="F">Feminino</option>
-              <option value="M">Masculino</option>
+              <option value="F">F</option>
+              <option value="M">M</option>
                 </select>
           </div>
             <div class="col-md-6">
@@ -184,88 +184,79 @@ $(".toggle").on("click", function() {
             <div class="col-md-2">
               <select id="inputState" name="tamanho_calca" class="form-select form-control" type="select">
                 <option value="">Tamanho do Calça</option>
-                <option > RN - Recém-nascido </option>
-                <option > P (0-3 meses) </option>
-                <option > M (4-6 meses)</option>
-                <option > G (7-10 meses) </option>
-                <option > GG (11-12 meses) </option>
-                <option > 1 (1-2 anos)</option>
-                <option > 2 (1-2 anos) </option>
-                <option > 3 (2-3 anos)</option>
-                <option > 4 (3-5 anos) </option>
-                <option > 6 (4-4 anos)</option>
-                <option > 8 (7-8 anos) </option>
-                <option > 10 (9-10 anos) </option>
-                <option > 12 (11-12 anos) </option>
-                <option > 14 (13-14 anos) </option>
-                <option > P </option>
-                <option > M </option>
-                <option > G </option>
-                <option > GG </option>
-                <option > 34 </option>
-                <option > 35 </option>
-                <option > 36 </option>
-                <option > 37 </option>
-                <option > 38 </option>
-                <option > 40 </option>
-                <option > 42 </option>
-                <option > 44 </option>   
+                <option >P</option>
+                <option >M</option>
+                <option >G</option>
+                <option >1</option>
+                <option >2</option>
+                <option >4</option>
+                <option >6</option>
+                <option >8</option>
+                <option >10</option>
+                <option >12</option>
+                <option >14</option>
+                <option >16</option>  
                   </select>
             </div>
             <div class="col-md-2">
               <select id="inputState" name="tamanho_camiseta" class="form-select form-control" type="select">
                 <option value="">Tamanho da Camisa</option>
-                <option > RN - Recém-nascido </option>
-                <option > P (0-3 meses) </option>
-                <option > M (4-6 meses)</option>
-                <option > G (7-10 meses) </option>
-                <option > GG (11-12 meses) </option>
-                <option > 1 (1-2 anos)</option>
-                <option > 2 (1-2 anos) </option>
-                <option > 3 (2-3 anos)</option>
-                <option > 4 (3-5 anos) </option>
-                <option > 6 (4-4 anos)</option>
-                <option > 8 (7-8 anos) </option>
-                <option > 10 (9-10 anos) </option>
-                <option > 12 (11-12 anos) </option>
-                <option > 14 (13-14 anos) </option>
-                <option > P </option>
-                <option > M </option>
-                <option > G </option>
-                <option > GG </option>
+                <option >RN</option>
+                <option >P</option>
+                <option >M</option>
+                <option >G</option>
+                <option >1</option>
+                <option >2</option>
+                <option >4</option>
+                <option >6</option>
+                <option >8</option>
+                <option >10</option>
+                <option >12</option>
+                <option >14</option>
+                <option >16</option>
                   </select>
             </div>
             <div class="col-md-2">
               <select id="inputState" name="tamanho_sapato" class="form-select form-control" type="select">
                 <option value="">Numeração Calçado</option>
-                <option > RN(0-3 meses) </option>
-                <option > 16 (3-6 meses) </option>
-                <option > 17 (6-9 meses) </option>
-                <option > 18 (9-12 meses) </option>
-                <option > 19  </option>
-                <option > 20  </option>
-                <option > 21  </option>
-                <option > 22  </option>
-                <option > 23  </option>
-                <option > 24  </option>
-                <option > 25  </option>
-                <option > 26 </option>
-                <option > 27  </option>
-                <option > 28  </option>
-                <option > 29  </option>
-                <option > 30  </option>
-                <option > 31  </option>
-                <option > 32  </option>
-                <option > 33  </option>
-                <option > 34 </option>
-                <option > 35  </option>
-                <option > 36  </option>
-                <option > 37  </option>
-                <option > 38  </option>
-                <option > 39  </option>
-                <option > 40  </option>
-                <option > 41  </option>
-                <option > 42 </option>
+                <option >14</option>
+                <option >15</option>
+                <option >16</option>
+                <option >17.5</option>
+                <option >18.5</option>
+                <option >19</option>
+                <option >20</option>
+                <option >21</option>
+                <option >21.5</option>
+                <option >22</option>
+                <option >22.5</option>
+                <option >23</option>
+                <option >23.5</option>
+                <option >24</option>
+                <option >24.5</option>
+                <option >25</option>
+                <option >25.5</option>
+                <option >26</option>
+                <option >26.5 </option>
+                <option >27</option>
+                <option >28</option>
+                <option >29</option>
+                <option >30</option>
+                <option >31</option>
+                <option >32</option>
+                <option >33</option>
+                <option >34</option>
+                <option >35</option>
+                <option >36</option>
+                <option >37</option>
+                <option >38</option>
+                <option >39</option>
+                <option >40</option>
+                <option >41</option>
+                <option >42</option>
+                <option >43</option>
+                <option >44</option>
+                <option >45</option>
               </select>
             </div>
             <div class="col-md-6">
