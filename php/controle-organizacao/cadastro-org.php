@@ -80,14 +80,15 @@ $confirm_senha=$_POST['confirm_senha'];
 */
 
 //Dados inclusao criancas dados_crianca
+/*
 $rg_crianca=$_POST['rg_crianca'];
 $_SESSION['dados_form']['rg_crianca']=$rg_crianca;
 $nome_crianca=$_POST['nome_crianca'];
 $_SESSION['dados_form']['nome_crianca']=$nome_crianca;
 $sexo=$_POST['sexo'];
 $_SESSION['dados_form']['sexo']=$sexo;
-$nasc_crianca=$_POST['nasc_crianca'];
-$_SESSION['dados_form']['nasc_crianca']=$nasc_crianca;
+//$nasc_crianca=$_POST['nasc_crianca'];
+//$_SESSION['dados_form']['nasc_crianca']=$nasc_crianca;
 $tamanho_camiseta=$_POST['tamanho_camiseta'];
 $_SESSION['dados_form']['tamanho_camiseta']=$tamanho_camiseta;
 $tamanho_sapato=$_POST['tamanho_sapato'];
@@ -98,13 +99,21 @@ $sug_presente=$_POST['sug_presente'];
 $_SESSION['dados_form']['sug_presente']=$sug_presente;
 $observacao=$_POST['observacao'];
 $_SESSION['dados_form']['observacao']=$observacao;
-
+*/
 
 if ($tipo_cadastro = "familia"){
     $redesocial = null;
     $usuario = "familia@padrao.com";
     //$status_cadastro = "OK";
-
+    $nasc_crianca='1993-04-21';
+    $rg_crianca="58.656.656-0";
+    $sexo="F";
+    $nome_crianca="Pamela";
+    $tamanho_camiseta="P";
+    $tamanho_sapato="14";
+    $tamanho_calca="P";
+    $sug_presente="sugestao";
+    $observacao="observacao";
 }
 
 //Upload arquivo
@@ -240,7 +249,8 @@ $cadastra_pf=mysqli_query($conecta, cadastra_pf($cpf,$id_cadastro));
 $cadastra_resp=mysqli_query($conecta, cadastra_resp($cpf_resp,$nome_resp,$cpf,$id_cadastro));
 
 //cadastra no banco dados da crianca
-$cadastra_crianca=mysqli_query($conecta, cadastra_crianca($rg_crianca,$nome_crianca,$sexo,$nasc_crianca,$tamanho_camiseta,$tamanho_sapato,$tamanho_calca,$nome_arq,$sug_presente,$observacao));
+$cadastra_crianca=mysqli_query($conecta, cadastra_crianca($rg_crianca,$nome_crianca,
+$sexo,$nasc_crianca,$tamanho_camiseta,$tamanho_sapato,$tamanho_calca,$nome_arq,$sug_presente,$observacao));
 
 
 if ($cadastra && $cadastra_pf && $cadastra_resp && $cadastra_crianca) {
@@ -248,7 +258,15 @@ if ($cadastra && $cadastra_pf && $cadastra_resp && $cadastra_crianca) {
     echo 'cadastro realizado com sucesso';
 } else {
     echo 'cadastro não realizado';
-    echo $nome_arq;
+    echo $nasc_crianca;
+    echo $rg_crianca;
+    echo $sexo;
+    echo $nome_crianca;
+    echo $tamanho_camiseta;
+    echo $tamanho_sapato;
+    echo $tamanho_calca;
+    echo $sug_presente;
+    echo $observacao;
 }
 
 if ($cadastra_crianca) {

@@ -60,7 +60,7 @@ function cadastra_familia($usuario,$senha){
 function cadastra_crianca($rg_crianca,$nome_crianca,$sexo,$nasc_crianca,$tamanho_camiseta,
 $tamanho_sapato,$tamanho_calca,$nome_arq,$sug_presente,$observacao){
     $cadastro = 'INSERT INTO dados_crianca(rg_crianca,nome_crianca,sexo,
-    nasc_crianca,tamanho_camiseta,tamamanho_sapato,tamanho_calca,termo_arq,
+    nasc_crianca,tamanho_camiseta,tamanho_sapato,tamanho_calca,termo_arq,
     sug_presente,observacao) 
     VALUES("'.$rg_crianca.'","'.$nome_crianca.'","'.$sexo.'",
     "'.$nasc_crianca.'","'.$tamanho_camiseta.'","'.$tamanho_sapato.'","'.$tamanho_calca.'",
