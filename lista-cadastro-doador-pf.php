@@ -1,3 +1,7 @@
+<?php
+    include "php/controle-organizacao/listagem-doadores-pf-org.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -110,36 +114,23 @@ $(".toggle").on("click", function() {
       <th scope="col">Nome</th>
       <th scope="col">Telefone</th>
       <th scope="col">E-mail</th>
+      <th scope="col">Status</th>
       <th scope="col">Visualizar Dados</th>
     </tr>
   </thead>
   <tbody>
+  <?php while($rows_resp = mysqli_fetch_assoc($result_search)) {?>
     <tr>
-      <th scope="row">258.369.369-23</th>
-      <td>Amelia dos Santos</td>
-      <td>(11)5656-8956</td>
-      <td>amelia@hotmail.com</td>
+      <th scope="row"><?php echo $rows_resp['cpf']; ?></th>
+      <td><?php echo $rows_resp['nome']; ?></td>
+      <td><?php echo $rows_resp['telefone']; ?></td>
+      <td><?php echo $rows_resp['e_mail']; ?></td>
+      <td><?php echo $rows_resp['status_cadastro']; ?></td>
       <td>  <a href="aprovar-cadastro-pf.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
     </tr>
+    <?php }?>
   </tbody>
-  <tbody>
-  <tr>
-      <th scope="row">258.369.369-23</th>
-      <td>Amelia dos Santos</td>
-      <td>(11)5656-8956</td>
-      <td>amelia@hotmail.com</td>
-      <td>  <a href="aprovar-cadastro-pf.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-  </tbody>
-  <tbody>
-  <tr>
-      <th scope="row">258.369.369-23</th>
-      <td>Amelia dos Santos</td>
-      <td>(11)5656-8956</td>
-      <td>amelia@hotmail.com</td>
-      <td>  <a href="aprovar-cadastro-pf.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-  </tbody>
+
 </table>
    </div>
    <div class="dist-bot-button"></div>

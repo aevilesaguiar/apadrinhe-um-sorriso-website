@@ -1,3 +1,7 @@
+<?php
+    include "php/controle-organizacao/listagem-doadores-pj-org.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -114,33 +118,18 @@ $(".toggle").on("click", function() {
     </tr>
   </thead>
   <tbody>
+  <?php while($rows_resp = mysqli_fetch_assoc($result_search)) {?>
     <tr>
-      <th scope="row">23.256.569/0001/05</th>
-      <td>America do sul Ltda</td>
-      <td>(11)5656-8956</td>
-      <td>americadosul@americadosul.com.br</td>
+      <th scope="row"><?php echo $rows_resp['cnpj']; ?></th>
+      <td><?php echo $rows_resp['nome_fantasia']; ?></td>
+      <td><?php echo $rows_resp['telefone']; ?></td>
+      <td><?php echo $rows_resp['e_mail']; ?></td>
       <td>  <a href="aprovar-cadastro-pj.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
      
     </tr>
+    <?php }?>
   </tbody>
-  <tbody>
-    <tr>
-      <th scope="row">23.256.569/0001/05</th>
-      <td>America do sul Ltda</td>
-      <td>(11)5656-8956</td>
-      <td>americadosul@americadosul.com.br</td>
-      <td>  <a href="aprovar-cadastro-pj.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <th scope="row">23.256.569/0001/05</th>
-      <td>America do sul Ltda</td>
-      <td>(11)5656-8956</td>
-      <td>americadosul@americadosul.com.br</td>
-      <td>  <a href="aprovar-cadastro-pj.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-  </tbody>
+
 </table>
    </div>
    <div class="dist-bot-button"></div>
