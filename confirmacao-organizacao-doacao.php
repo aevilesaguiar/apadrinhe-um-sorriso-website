@@ -157,7 +157,7 @@ $(".toggle").on("click", function() {
                 <th scope="col">Camisa</th>
                 <th scope="col">Calçado</th>
                 <th scope="col">KIT</th>
-                <th scope="col">Briquedo</th>
+                <th scope="col">Brinquedo</th>
                 </tr>
             </thead>
             <tbody>
