@@ -1,3 +1,9 @@
+<?php
+    include 'php/geral/conexao-banco.php';
+    include "php/controle-site/sessao.php";
+    include "php/controle-site/consulta.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -77,12 +83,19 @@ $(".toggle").on("click", function() {
                     <li class="item menu-sep"><a href="index.php">SERVIÇO</a></li>              
                     <li class="item menu-sep"><a href="index.php">CONTATO</a></li>
 
+                    
                     <div><a class="button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>APADRINHAR</a>
                     </div>
                     <div>
-                    <a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
-                    SAIR
-                    </a>
+                    <?php if(isset($_SESSION['logado'])!==TRUE){?>
+                        <a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                        SAIR
+                        </a>
+                        <?php }else{ ?>
+                            <a class=" button-menu" href="php/controle-site/seguranca.php?sair=true" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                            SAIR
+                            </a>
+                    <?php }?>
                      <li class="toggle"><span class="bars"></span></li>
                 </ul>
 
@@ -115,13 +128,13 @@ $(".toggle").on("click", function() {
                 <thead>
                     <tr>
                         <th scope="col"> Nome</th>
-                        <th scope="col"></th>
+                        <th scope="col"><?php echo $_SESSION['usuario']['nome'];?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                         <th scope="row">E-mail</th>
-                        <td></td>
+                        <td><?php echo $_SESSION['usuario']['email'];?></td>
                     </tr>
                 </tbody>
                 </table>
