@@ -18,6 +18,18 @@ $complemento,$fk_user){
     
 }
 
+//Cadastra Usuário e Senha.
+function cadastra_usuario($usuario,$senha){
+    $cadastro = 'INSERT INTO usuario(user,senha) VALUES("'.$usuario.'","'.$senha.'")';
+    return $cadastro;
+}
+
+
+function cadastra_possui_colab($cpf,$cnpj,$id_colaborador){
+    $cadastro = 'INSERT INTO possui_colab(fk_cpf,fk_cnpj,fk_id_colaborador) VALUES("'.$cpf.'","'.$cnpj.'","'.$id_colaborador.'")';
+    return $cadastro;
+}
+
 //Cadastra pj
 //function cadastra_pj($cnpj,$nome_fantasia,$site,$tipo_pj,$fk_id_cadastro){
  //   $cadastro = 'INSERT INTO dados_pj(
@@ -59,6 +71,34 @@ $termo_arq,$nome_arq,$tipo_arq,$tamanho_arq,$observacao){
     return $cadastro;
 }
 
+//Cadastra crianca na tabela de doacao inicialmente.
+//function doacao_inicial($rg_crianca){
+//    $cadastro = 'INSERT INTO doacao(status_doacao, data_hora_entrega, data_hora_selecao, data_hora_recebimento, 
+//    tipo_presente, fk_rg_crianca) 
+//    VALUES("N",NULL,NULL,NULL,NULL,"'.$rg_crianca.'")';
+//   return $cadastro;
+//}
+
+function cadastra_colaborador($funcao, $id_cadastro){
+    $cadastro = 'INSERT INTO colaborador(funcao,fk_id_cadastro) 
+    VALUES("'.$funcao.'","'.$id_cadastro.'")';
+    return $cadastro;
+}
+
+
+function possui_crianca($rg_crianca,$id_cadastro){
+    $cadastro = 'INSERT INTO possui_cri(fk_rg_crianca,fk_id_familia) 
+    VALUES("'.$rg_crianca.'","'.$id_cadastro.'")';
+    return $cadastro;
+}
+
+function converte_data($data){
+
+    $data = explode("/",$data);
+
+    return $data[2]."-".$data[1]."-".$data[0];
+
+}
 
 function valida_cadastro($nome){
 

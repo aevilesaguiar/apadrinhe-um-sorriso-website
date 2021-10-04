@@ -91,132 +91,148 @@ $(".toggle").on("click", function() {
 
 
 <main class="main-board dist-mob-form">
-    <div class="dist-menu"></div>
-<div class="p-doar">
+  <div class="dist-menu"></div>
+  <div class="p-doar">
 
-<div class="altura-doar ">
+  <div class="altura-doar ">
 
-            <h2>CADASTRO COLABORADOR ORGANIZAÇÃO</h2>
-        </div>
-            <div class="sep-item "></div>
-            <div class="dist-menu"></div>
-            
-   <div class="sobre-dado-fale">      
-    <form class="row g-3  dist-mob-form">
-      <div class="col-md-6">
-
-        <input type="text" class="form-control"  id="inputCpf" onKeyPress="MascaraGenerica(this, 'CPF');" placeholder="CPF" required /> 
-      </div>
-      <div class="col-md-6">
-
-        <input type="text" class="form-control"  id="inputNome" placeholder="Nome" required /> 
-      </div>
-      <div class="col-md-6">
-
-        <input type="email" class="form-control" id="inputEmail4" placeholder="E-mail">
-      </div>
-      <div class="col-md-4">
-
-        <input type="text" class="form-control"  id="inputEmail" onKeyPress="MascaraGenerica(this, 'TELEFONE');" placeholder="Telefone" required /> 
-      </div>
-
-      <div class="col-md-2">
-
-        <input type="text" class="form-control" id="inputZip" onKeyPress="MascaraGenerica(this, 'CEP');" placeholder="CEP" required /> 
-      </div>
-      <div class="col-md-6">
-
-        <input type="text" class="form-control" id="inputAddress" placeholder="Endereço">
-      </div>
-      <div class="col-md-1">
-
-        <input type="text" class="form-control" id="inputNum" placeholder="Numero">
-      </div>
-
-      <div class="col-md-3">
-
-        <input type="text" class="form-control" id="inputNum" placeholder="Cidade">
-      </div>
-      <div class="col-md-2">
-  
-        <select id="inputState" class="form-select form-control" type="select">
-          <option value="">Estado</option>
-          <option value="AC">AC</option>
-          <option value="AL">AL</option>
-          <option value="AP">AP</option>
-          <option value="AM">AM</option>
-          <option value="BA">BA</option>
-          <option value="CE">CE</option>
-          <option value="DF">DF</option>
-          <option value="ES">ES</option>
-          <option value="GO">GO</option>
-          <option value="MA">MA</option>
-          <option value="MT">MT</option>
-          <option value="MS">MS</option>
-          <option value="MG">MG</option>
-          <option value="PA">PA</option>
-          <option value="PB">PB</option>
-          <option value="PR">PR</option>
-          <option value="PE">PE</option>
-          <option value="PI">PI</option>
-          <option value="RJ">RJ</option>
-          <option value="RN">RN</option>
-          <option value="RS">RS</option>
-          <option value="RO">RO</option>
-          <option value="RR">RR</option>
-          <option value="SC">SC</option>
-          <option value="SP">SP</option>
-          <option value="SE">SE</option>
-          <option value="TO">TO</option>
-            </select>
-      </div>
-
-      <div class="col-md-4">
-
-        <input type="text" class="form-control" id="inputAddress" placeholder="Bairro">
-      </div>
-      <div class="col-md-8">
-
-        <input type="text" class="form-control" id="inputCity" placeholder="Complemento">
-      </div>
-      <div class="col-md-6">
-        <input type="text" class="form-control" id="inputAddress" placeholder="Função" required>
-      </div>
-
-      <div class="col-md-6">
-     
-        <select id="inputState" class="form-select form-control" type="select">
-          <option value="">Nome Organização</option>
-          <option > ..... </option>
-          <option > Lar Pequeno Leão </option>
-            </select>
-      </div>
-
-      <div class="col-md-4">
-
-        <input type="text" class="form-control" id="inputAddress" placeholder="Usuario">
-      </div>
-      <div class="col-md-4">
-
-        <input type="password" class="form-control" id="inputPassword4" placeholder="Digite uma senha">
-      </div>
-      <div class="col-md-4">
-
-        <input type="password" class="form-control" id="inputPassword4" placeholder="Confirme a  senha">
-      </div>
-      <div class="col-md-12">
-        <textarea type="mensagem" class="form-control" aria-label="With textarea"  placeholder="Descrição de Cargo" style="height: 120px;"></textarea>
-      </div>
-
-        <div class="dist-menu-botao"></div>
-<div class="sobre-dado-fale dist-menu-botao">
-  <input class="button-menu-form" type="submit" value="CADASTRAR">
+    <h2>CADASTRO COLABORADOR ORGANIZAÇÃO</h2>
     </div>
-      </div>
-            <div class="dist-menu"></div>
-  
-</div>
-</form>
+    <div class="sep-item "></div>
+    <div class="dist-menu"></div>
+            
+    <div class="sobre-dado-fale">      
+      <form class="row g-3  dist-mob-form" action="php/controle-organizacao/cadastro-org.php" enctype="multipart/form-data">
+          <div class="col-md-6">
+
+            <input type="text" class="form-control"  id="inputCpf" name="cpf_colaborador" onKeyPress="MascaraGenerica(this, 'CPF');" placeholder="CPF" required /> 
+          </div>
+
+          <div class="col-md-6">
+
+            <input type="text" class="form-control"  id="inputNome" name="nome" placeholder="Nome" required /> 
+          </div>
+
+          <div class="col-md-6">
+
+            <input type="email" class="form-control" id="inputEmail4" name="email" placeholder="E-mail">
+          </div>
+
+          <div class="col-md-4">
+
+            <input type="text" class="form-control"  id="inputEmail" name="telefone" onKeyPress="MascaraGenerica(this, 'TELEFONE');" placeholder="Telefone" required /> 
+          </div>
+
+          <div class="col-md-2">
+
+            <input type="text" class="form-control" id="inputZip" name="cep" onKeyPress="MascaraGenerica(this, 'CEP');" placeholder="CEP" required /> 
+          </div>
+
+          <div class="col-md-6">
+
+            <input type="text" class="form-control" id="inputAddress" name="endereco" placeholder="Endereço">
+          </div>
+
+          <div class="col-md-1">
+
+            <input type="text" class="form-control" id="inputNum" name="numero" placeholder="Numero">
+          </div>
+
+          <div class="col-md-3">
+
+            <input type="text" class="form-control" id="inputNum" name="cidade" placeholder="Cidade">
+          </div>
+
+          <div class="col-md-2">
+      
+            <select id="inputState" name="estado" class="form-select form-control" type="select">
+              <option value="">Estado</option>
+              <option value="AC">AC</option>
+              <option value="AL">AL</option>
+              <option value="AP">AP</option>
+              <option value="AM">AM</option>
+              <option value="BA">BA</option>
+              <option value="CE">CE</option>
+              <option value="DF">DF</option>
+              <option value="ES">ES</option>
+              <option value="GO">GO</option>
+              <option value="MA">MA</option>
+              <option value="MT">MT</option>
+              <option value="MS">MS</option>
+              <option value="MG">MG</option>
+              <option value="PA">PA</option>
+              <option value="PB">PB</option>
+              <option value="PR">PR</option>
+              <option value="PE">PE</option>
+              <option value="PI">PI</option>
+              <option value="RJ">RJ</option>
+              <option value="RN">RN</option>
+              <option value="RS">RS</option>
+              <option value="RO">RO</option>
+              <option value="RR">RR</option>
+              <option value="SC">SC</option>
+              <option value="SP">SP</option>
+              <option value="SE">SE</option>
+              <option value="TO">TO</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+
+            <input type="text" class="form-control" id="inputAddress" name="bairro" placeholder="Bairro">
+          </div>
+
+          <div class="col-md-8">
+
+            <input type="text" class="form-control" id="inputCity" name="complemento" placeholder="Complemento">
+          </div>
+
+          <div class="col-md-6">
+            <input type="text" class="form-control" id="inputAddress" name="funcao" placeholder="Função" required>
+          </div>
+
+          <div class="col-md-6">
+        
+            <select id="inputState" name="nome_org" class="form-select form-control" type="select">
+              <option value="">Nome Organização</option>
+              <option > ..... </option>
+              <option > Lar Pequeno Leão </option>
+                </select>
+          </div>
+
+          <div class="col-md-4">
+
+            <input type="text" class="form-control" id="inputAddress" name="user" placeholder="usuario">
+          </div>
+
+          <div class="col-md-4">
+
+            <input type="password" class="form-control" id="inputPassword4" name="senha" placeholder="Digite uma senha">
+          </div>
+
+          <div class="col-md-4">
+
+            <input type="password" class="form-control" id="inputPassword4" name="confirm_senha" placeholder="Confirme a  senha">
+          </div>
+
+          <div class="col-md-12">
+            <textarea type="mensagem" class="form-control" aria-label="With textarea"  placeholder="Descrição de Cargo" style="height: 120px;"></textarea>
+          </div>
+
+          <div class="dist-menu-botao"></div>
+
+          <div class="sobre-dado-fale dist-menu-botao">
+            <input name="tipo_usuario" type="hidden" value="colaborador"/>
+            <input class="button-menu-form" name="btnCadastraColaborador" type="submit" value="CADASTRAR">
+          </div>
+          
+        </div>
+        
+          <div class="dist-menu"></div>
+      
+        
+      </form>
+  </div>
 </main>
 
 <footer >

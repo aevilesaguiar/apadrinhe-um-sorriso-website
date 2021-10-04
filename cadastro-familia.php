@@ -268,7 +268,7 @@ $(".toggle").on("click", function() {
               <input class="form-control form-control-lg  " id="formFileLg" name="termo_arq" type="file" style="height: 60px;">
             </div>
             <div class="col-md-12">
-              <textarea type="mensagem" class="form-control" aria-label="With textarea"  name="observacao" placeholder="Observação" style="height: 120px;"></textarea>
+              <textarea type="text" class="form-control" aria-label="With textarea"  name="observacao" placeholder="Observação" style="height: 120px;"></textarea>
             </div>
             <div class="dist-menu-botao"></div>
             <div class="sobre-dado-fale dist-menu-botao">
