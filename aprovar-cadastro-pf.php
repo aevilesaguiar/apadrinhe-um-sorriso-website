@@ -1,3 +1,7 @@
+<?php
+    include "php/controle-organizacao/dados-aprovacao-doador-pf-org.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -91,97 +95,101 @@ $(".toggle").on("click", function() {
         </div>
 </header>
 
+<?php while($rows_resp = mysqli_fetch_assoc($result_search)) {?>
+  <main class="main-board dist-mob-form">
+      <div class="dist-menu"></div>
+  <div class="p-doar">
 
-<main class="main-board dist-mob-form">
-    <div class="dist-menu"></div>
-<div class="p-doar">
+  <div class="altura-doar ">
 
-<div class="altura-doar ">
+              <h2 class="tit">APROVAR CADASTRO PF</h2>
+          </div>
+              <div class="sep-item "></div>
 
-            <h2 class="tit">APROVAR CADASTRO PF</h2>
-        </div>
-            <div class="sep-item "></div>
-
+              
+    <div class="textos-item" >   
+    <div class="container">
+    <div class="row">
+      <div class="col" style="text-align: right;">CPF</div>
+      <div class="col"><?php echo $rows_resp['cpf']; ?></div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: right;">Nome</div>
+      <div class="col"><?php echo $rows_resp['nome']; ?></div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: right;">E-mail</div>
+      <div class="col"><?php echo $rows_resp['e_mail']; ?></div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: right;">Telefone </div>
+      <div class="col"><?php echo $rows_resp['telefone']; ?></div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: right;">Endereço</div>
+      <div class="col"><?php echo $rows_resp['logradouro']; ?></div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: right;">Num</div>
+      <div class="col"><?php echo $rows_resp['numendereco']; ?></div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: right;">Bairro</div>
+      <div class="col"><?php echo $rows_resp['bairro']; ?></div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: right;">Complemento</div>
+      <div class="col"><?php echo $rows_resp['complemento']; ?></div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: right;">CEP</div>
+      <div class="col"><?php echo $rows_resp['cep']; ?></div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: right;">Cidade</div>
+      <div class="col"><?php echo $rows_resp['cidade']; ?></div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: right;">Estado</div>
+      <div class="col"><?php echo $rows_resp['estado']; ?></div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: right;">Rede Social</div>
+      <div class="col"><?php echo $rows_resp['rede_social']; ?></div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: right;">Usuário</div>
+      <div class="col"><?php echo $rows_resp['fk_user']; ?></div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: right;">Senha</div>
+      <div class="col">1234</div>
+    </div>
+  </div>
+              <div class="dist-bot-button"></div>
             
-   <div class="textos-item" >   
-   <div class="container">
-  <div class="row">
-    <div class="col" style="text-align: right;">CPF</div>
-    <div class="col">000.000.000-00</div>
-  </div>
-  <div class="row">
-    <div class="col" style="text-align: right;">Nome</div>
-    <div class="col">Amadeu Lima </div>
-  </div>
-  <div class="row">
-    <div class="col" style="text-align: right;">E-mail</div>
-    <div class="col">amadeu@amadeu.com.br</div>
-  </div>
-  <div class="row">
-    <div class="col" style="text-align: right;">Telefone </div>
-    <div class="col">(11)5656-8989</div>
-  </div>
-  <div class="row">
-    <div class="col" style="text-align: right;">Endereço</div>
-    <div class="col">Rua maria da silva</div>
-  </div>
-  <div class="row">
-    <div class="col" style="text-align: right;">Num</div>
-    <div class="col">33</div>
-  </div>
-  <div class="row">
-    <div class="col" style="text-align: right;">Bairro</div>
-    <div class="col">Sampaio</div>
-  </div>
-  <div class="row">
-    <div class="col" style="text-align: right;">Complemento</div>
-    <div class="col">casa</div>
-  </div>
-  <div class="row">
-    <div class="col" style="text-align: right;">CEP</div>
-    <div class="col">00.000-000</div>
-  </div>
-  <div class="row">
-    <div class="col" style="text-align: right;">Cidade</div>
-    <div class="col">Abreu e Lima</div>
-  </div>
-  <div class="row">
-    <div class="col" style="text-align: right;">Estado</div>
-    <div class="col">PE</div>
-  </div>
-  <div class="row">
-    <div class="col" style="text-align: right;">Rede Social</div>
-    <div class="col">facebook.com.br/amadeu</div>
-  </div>
-  <div class="row">
-    <div class="col" style="text-align: right;">Usuário</div>
-    <div class="col">Amadeu</div>
-  </div>
-  <div class="row">
-    <div class="col" style="text-align: right;">Senha</div>
-    <div class="col">1234</div>
-  </div>
-</div>
-            <div class="dist-bot-button"></div>
-           
-<div class="dist-bot-button"></div>
-<div class="container">
-  <div class="row">
-    <div class="col direc-button">
-    <a href=""> <button class="button-menu-form" type="submit">APROVADO</button> </a>
-    </div>
-    <div class="col">
-
-    <a href="dados-pf-reprovado.php"> <button class="button-menu-form" type="submit">REPROVADO</button> </a>
-    </div>
- <div class="dist-bot-button"></div>
-
-        </div>
-
   <div class="dist-bot-button"></div>
-   </div>               
-</div>
-</main>
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col direc-button">
+      <a href="php/controle-organizacao/aprovar-cadastro-doador-pf-org.php?codigo=<?php echo $rows_resp['id_cadastro']; ?>"> <button class="button-menu-form" type="submit">APROVADO</button> </a>
+      </div>
+      <div class="col">
+
+      <a href="dados-pf-reprovado.php"> <button class="button-menu-form" type="submit">REPROVADO</button> </a>
+      </div>
+  <div class="dist-bot-button"></div>
+
+          </div>
+
+    <div class="dist-bot-button"></div>
+    </div>               
+  </div>
+  </main>
+<?php }?>
 
 <footer >
     <div class="sep-item-footer-1"></div>
