@@ -187,9 +187,9 @@ $(".toggle").on("click", function() {
             <input type="text" class="form-control" id="inputCity" name="complemento" placeholder="Complemento">
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-4">
           <select id="inputState" name="funcao" class="form-select form-control" type="select" required >
-              <option value="">Função </option>
+              <option value="">Função Colaborador </option>
               <option value="gerente" >Gerente</option>
               <option value="analista_de_cadastro">Analista de Cadastro</option>
               <option value="recebedor">Recebedor</option>
@@ -198,21 +198,13 @@ $(".toggle").on("click", function() {
 
           </div>
 
-          <div class="col-md-6">
-        
-            <select id="inputState" name="nome_org" class="form-select form-control" type="select">
-              <option value="">Nome Organização</option>
-              <option > ..... </option>
-              <option > Lar Pequeno Leão </option>
-                </select>
-          </div>
 
-          <div class="col-md-6">
+          <div class="col-md-4">
 
             <input type="password" class="form-control" id="inputPassword4" name="senha" placeholder="Digite uma senha">
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-4">
 
             <input type="password" class="form-control" id="inputPassword4" name="confirm_senha" placeholder="Confirme a  senha">
           </div>
