@@ -188,7 +188,14 @@ $(".toggle").on("click", function() {
           </div>
 
           <div class="col-md-6">
-            <input type="text" class="form-control" id="inputAddress" name="funcao" placeholder="Função" required>
+          <select id="inputState" name="funcao" class="form-select form-control" type="select" required >
+              <option value="">Função </option>
+              <option value="gerente" >Gerente</option>
+              <option value="analista_de_cadastro">Analista de Cadastro</option>
+              <option value="recebedor">Recebedor</option>
+              <option value="entregador">Entregador</option>
+                </select>
+
           </div>
 
           <div class="col-md-6">
@@ -200,26 +207,17 @@ $(".toggle").on("click", function() {
                 </select>
           </div>
 
-          <div class="col-md-4">
-
-            <input type="text" class="form-control" id="inputAddress" name="user" placeholder="usuario">
-          </div>
-
-          <div class="col-md-4">
+          <div class="col-md-6">
 
             <input type="password" class="form-control" id="inputPassword4" name="senha" placeholder="Digite uma senha">
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-6">
 
             <input type="password" class="form-control" id="inputPassword4" name="confirm_senha" placeholder="Confirme a  senha">
           </div>
 
-          <div class="col-md-12">
-            <textarea type="mensagem" class="form-control" aria-label="With textarea"  placeholder="Descrição de Cargo" style="height: 120px;"></textarea>
-          </div>
-
-          <div class="dist-menu-botao"></div>
+                  <div class="dist-menu-botao"></div>
 
           <div class="sobre-dado-fale dist-menu-botao">
             <input name="tipo_usuario" type="hidden" value="colaborador"/>
