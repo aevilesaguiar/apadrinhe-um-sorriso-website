@@ -76,7 +76,7 @@ $informacoes="";
 }
 }
 
-valida_cadastro($_POST);
+    valida_cadastro($_POST);
 
 }
 
@@ -124,7 +124,7 @@ if(!empty($id_cadastro)){
 
 
 }else{
-    redireciona(retorna_pagina_cadastro($tipo_cadastro));
+    redireciona(retorna_pagina_cadastro($tipo_cadastro,"cadastro"));
 }
 
 }else if(isset($_POST['btnIncluirOrg']) || isset($_POST['btnAlterarOrg']) ){
