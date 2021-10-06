@@ -110,11 +110,13 @@ $(".toggle").on("click", function() {
       <div class="col-md-4">
 
         <input type="text" class="form-control"  id="inputRaSocial" name="razao_social" value="<?php echo isset($_SESSION['dados_form']['razao_social'])?$_SESSION['dados_form']['razao_social']:"";?>" placeholder="Razão Social" required /> 
+        <?php echo isset($_SESSION['mensagens_form']['razao_social'])?$_SESSION['mensagens_form']['razao_social']:""; ?>
       </div>
       <div class="col-md-4">
         
       <input type="text" class="form-control" id="inputNfantasia" name="nome_fantasia" value="<?php echo isset($_SESSION['dados_form']['nome_fantasia'])?$_SESSION['dados_form']['nome_fantasia']:"";?>" placeholder="Nome Fantasia" required>
-      </div>
+      <?php echo isset($_SESSION['mensagens_form']['nome_fantasia'])?$_SESSION['mensagens_form']['nome_fantasia']:""; ?>
+    </div>
       <div class="col-md-6">
   <select id="inputState" name="tipo_organizacao" class="form-select form-control" type="select" required>
           <option value="<?php echo isset($_SESSION['dados_form']['tipo_organizacao'])?$_SESSION['dados_form']['tipo_organizacao']:"Segmento";?>"><?php echo isset($_SESSION['dados_form']['tipo_organizacao'])?$_SESSION['dados_form']['tipo_organizacao']:"Segmento";?></option>
@@ -192,26 +194,31 @@ $(".toggle").on("click", function() {
       <div class="col-md-4">
 
         <input type="text" class="form-control" id="inputAddress" name="bairro" value="<?php echo isset($_SESSION['dados_form']['bairro'])?$_SESSION['dados_form']['bairro']:"";?>" placeholder="Bairro" required>
+        <?php echo isset($_SESSION['mensagens_form']['bairro'])?$_SESSION['mensagens_form']['bairro']:""; ?>
       </div>
       <div class="col-md-8">
 
         <input type="text" class="form-control" id="inputCity" name="complemento" value="<?php echo isset($_SESSION['dados_form']['complemento'])?$_SESSION['dados_form']['complemento']:"";?>" placeholder="Complemento" required>
+        <?php echo isset($_SESSION['mensagens_form']['complemento'])?$_SESSION['mensagens_form']['complemento']:""; ?>
       </div>
 
       <div class="col-md-6">
 
         <input type="text" class="form-control" id="inputAddress" name="site" value="<?php echo isset($_SESSION['dados_form']['site'])?$_SESSION['dados_form']['site']:"";?>" placeholder="Site" required>
+        <?php echo isset($_SESSION['mensagens_form']['site'])?$_SESSION['mensagens_form']['site']:""; ?>
       </div>
 
       <div class="col-md-6">
 
         <input type="text" class="form-control" id="inputAddress" name="rede_social" value="<?php echo isset($_SESSION['dados_form']['rede_social'])?$_SESSION['dados_form']['rede_social']:"";?>" placeholder="Rede Social" required>
+        <?php echo isset($_SESSION['mensagens_form']['rede_social'])?$_SESSION['mensagens_form']['rede_social']:""; ?>
       </div>
  
       <div class="col-md-4">
 
       <input type="email" class="form-control" id="inputEmail4" name="email" value="<?php echo isset($_SESSION['dados_form']['email'])?$_SESSION['dados_form']['email']:"";?>" placeholder="E-mail" required>
-      <?php echo isset($_SESSION['mensagens_form']['email'])?$_SESSION['mensagens_form']['email']:""; ?>  
+      <?php echo isset($_SESSION['mensagens_form']['email'])?$_SESSION['mensagens_form']['email']:""; ?>
+      <?php echo isset($_SESSION['mensagens_form']['email2'])?$_SESSION['mensagens_form']['email2']:""; ?> 
     </div>
       <div class="col-md-4">
 
