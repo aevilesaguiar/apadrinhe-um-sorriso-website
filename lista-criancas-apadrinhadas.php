@@ -91,64 +91,57 @@ $(".toggle").on("click", function() {
 
 
 <main class="main-board dist-mob-form">
-    <div class="dist-menu"></div>
-<div class="p-doar">
+      <div class="dist-menu"></div>
+  <div class="p-doar">
 
-<div class="altura-doar ">
+  <div class="altura-doar ">
 
-            <h2>LISTA DE CRIANÇAS</h2>
-        </div>
-            <div class="sep-item "></div>
-            <div class="dist-menu"></div>
-            
-   <div class="textos-item">   
+              <h2>LISTA DE CRIANÇAS</h2>
+          </div>
+              <div class="sep-item "></div>
+              <div class="dist-menu"></div>
+              
+    <div class="textos-item">   
 
-<table class="table">
-  <thead>
-  <tr>
-      <th scope="col">RG Criança</th>
-      <th scope="col">Nome criança</th>
-      <th scope="col">Nome Mãe</th>
-      <th scope="col">Telefone</th>
-      <th scope="col">Status</th>
-      <th scope="col">Visualizar Dados</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">25.258.369-5</th>
-      <td>Lais Maria da Silva</td>
-      <td>Joana Maria da Silva</td>
-      <td>(11) 2323-2525)</td>
-      <td> Apadrinhada </td>
-      <td>  <a href="aprovar-cadastro-familia.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <th scope="row">25.258.369-5</th>
-      <td>Lais Maria da Silva</td>
-      <td>Joana Maria da Silva</td>
-      <td>(11) 2323-2525)</td>
-      <td>Não Apadrinhada </td>
-      <td>  <a href="aprovar-cadastro-familia.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <th scope="row">25.258.369-5</th>
-      <td>Lais Maria da Silva</td>
-      <td>Joana Maria da Silva</td>
-      <td>(11) 2323-2525)</td>
-      <td>Não Apadrinhada </td>
-      <td>  <a href="aprovar-cadastro-familia.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-  </tbody>
- 
-</table>
-   </div>
-   <div class="dist-bot-button"></div>
-</main>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">RG Criança</th>
+        <th scope="col">Nome criança</th>
+        <th scope="col">Nome Mãe</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">Status</th>
+        <th scope="col">Visualizar Dados</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php while($rows_resp = mysqli_fetch_assoc($result_search2)) {?>
+        <tr>
+          <th scope="row"><?php echo $rows_resp['rg_crianca']; ?></th>
+          <td><?php echo $rows_resp['nome_crianca']; ?></td>
+          <td><?php echo $rows_resp['nome']; ?></td>
+          <td><?php echo $rows_resp['telefone']; ?></td>
+          <td> Apadrinhada </td>
+          <td>  <a href="aprovar-cadastro-familia.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
+        </tr>
+      <?php }?>
+    </tbody>
+    <tbody>
+      <?php while($rows_resp = mysqli_fetch_assoc($result_search)) {?>
+        <tr>
+          <th scope="row"><?php echo $rows_resp['rg_crianca']; ?></th>
+          <td><?php echo $rows_resp['nome_crianca']; ?></td>
+          <td><?php echo $rows_resp['nome']; ?></td>
+          <td><?php echo $rows_resp['telefone']; ?></td>
+          <td> Sem Apadrinhamento </td>
+          <td>  <a href="aprovar-cadastro-familia.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
+        </tr>
+      <?php }?>
+    </tbody>
+  </table>
+    </div>
+    <div class="dist-bot-button"></div>
+  </main>
 
 <footer >
     <div class="sep-item-footer-1"></div>
