@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-function sessao_login($nome,$email,$telefone,$id_cadastro){ //Inicia sessão de login
+function sessao_login($nome,$email,$telefone,$id_cadastro,$tipo_cadastro){ //Inicia sessão de login
 
     unset($_SESSION['mensagem']);
 
@@ -11,6 +11,7 @@ function sessao_login($nome,$email,$telefone,$id_cadastro){ //Inicia sessão de 
     $_SESSION['usuario']['email'] = $email;
     $_SESSION['usuario']['telefone'] = $telefone;
     $_SESSION['usuario']['logado'] = true;
+    $_SESSION['usuario']['tipo_cadastro'] = $tipo_cadastro;
 
 }
 
@@ -21,6 +22,7 @@ function encerra_sessao(){//Encerra sessão de login
     unset($_SESSION['usuario']['nome']);
     unset($_SESSION['usuario']['email']);
     unset($_SESSION['usuario']['telefone']);
+    unset($_SESSION['usuario']['tipo_cadastro']);
     
     $_SESSION['logado']=false;
 

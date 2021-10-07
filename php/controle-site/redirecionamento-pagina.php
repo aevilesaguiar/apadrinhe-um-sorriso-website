@@ -15,6 +15,7 @@ function redireciona($codpagina){// função que redireciona as paginas do siste
                     11 =>'../../confirmacao-dados-doacao.php',
                     12=>'../../editar-cadastro-pessoa-fisica.php',
                     13 =>'../../index.php#contato',
+                    14 =>'../../editar-cadastro-pessoa-juridica.php',
 
     );
         header("Location:$pagina[$codpagina]");
@@ -40,6 +41,12 @@ function redireciona($codpagina){// função que redireciona as paginas do siste
                 return 12;
             }
 
+        }else if($tipo_usuario=="doador_pj"){
+            if($acao=="cadastro"){
+                return 6;
+            }else if($acao=="alteracao"){
+                return 14;
+            }
         }else{
             return 8;
         }

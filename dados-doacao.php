@@ -137,9 +137,17 @@ $(".toggle").on("click", function() {
   </tbody>
 </table>
 
-<div style="text-align: center;"> 
- <input  class="button-menu-form"  type="submit" value="EDITAR CADASTRO">
-
+<div style="text-align: center;">
+<?php if($_SESSION['usuario']['tipo_cadastro']=="doador_pf"){
+?>
+ <a href="editar-cadastro-pessoa-fisica.php"><button  class="button-menu-form"  type="submit">EDITAR CADASTRO</button></a>
+<?php
+}else if($_SESSION['usuario']['tipo_cadastro']=="doador_pj"){
+?>
+<a href="editar-cadastro-pessoa-juridica.php"><button  class="button-menu-form"  type="submit">EDITAR CADASTRO</button></a>
+<?php
+}
+?>
  </div>
  <div class="dist-bot-button"></div>
 

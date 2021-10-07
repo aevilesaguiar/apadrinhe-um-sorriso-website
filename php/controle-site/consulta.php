@@ -92,4 +92,11 @@
 
         return $select;
     }
+    function consulta_cadastro_pj($id_cadastro){
+        $select = 'SELECT * FROM perfil p 
+        inner join dados_pj dpj on dpj.fk_id_cadastro=p.id_cadastro 
+        inner join usuario u on u.user=p.fk_user where p.id_cadastro="'.$id_cadastro.'"';
+
+        return $select;
+    }
 ?>

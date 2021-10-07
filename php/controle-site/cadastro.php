@@ -77,19 +77,21 @@ $informacoes="";
 }
 
     valida_cadastro($_POST);
+    if(!empty($_SESSION['mensagens_form'])){
+        if(isset($_POST['btnCadastraUsuario'])){
+            redireciona(retorna_pagina_cadastro($tipo_cadastro,'cadastro'));
+        }elseif(isset($_POST['btnEditCadastraUsuario'])){
+            redireciona(retorna_pagina_cadastro($tipo_cadastro,'alteracao'));
+            unset($_SESSION['mensagem']);
+        }
+       
+    }
 
 }
 
-if(!empty($_SESSION['mensagens_form'])){
 
-    if(isset($_POST['btnCadastraUsuario'])){
-        redireciona(retorna_pagina_cadastro($tipo_cadastro,'cadastro'));
-    }elseif(isset($_POST['btnEditCadastraUsuario'])){
-        redireciona(retorna_pagina_cadastro($tipo_cadastro,'alteracao'));
-        unset($_SESSION['mensagem']);
-    }
-   
-}else if(isset($_POST['btnCadastraUsuario'])){
+
+if(isset($_POST['btnCadastraUsuario']) && empty($_SESSION['mensagens_form'])){
 
 unset($_SESSION['dados_form']);
 
@@ -199,7 +201,7 @@ if(!empty($id_cadastro)){
     
     }
 
-}else if($_POST['btnEditCadastraUsuario']){
+}else if($_POST['btnEditCadastraUsuario'] && $_POST['tipo_usuario']=="doador_pf" && empty($_SESSION['mensagens_form'])){
 
     echo $nome."</br>";
     unset($_SESSION['dados_form']);
@@ -216,4 +218,11 @@ if(!empty($id_cadastro)){
     $cadastra_fale_conosco=$conecta->query(cadastra_fale_conosco($nome,$email,$telefone,$mensagem));
     redireciona(13);
     sessao_mensagem(mensagem(26));
+}else if($_POST['btnEditCadastraUsuario'] && $_POST['tipo_usuario']=="doador_pj"){
+    echo $nome."</br>";
+    unset($_SESSION['dados_form']);
+    $cadastra=$conecta->query(altera_dados_gerais($nome,$telefone,$redesocial,$numero,$endereco,$cidade,$estado,$cep,$bairro,
+    $complemento,$_SESSION['usuario']['id_cadastro']));
+    redireciona(14);
+    sessao_mensagem(mensagem(25));
 }
