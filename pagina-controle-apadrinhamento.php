@@ -185,7 +185,17 @@ $(".toggle").on("click", function() {
             </thead>
         <tbody>
                 <tr>
+                <?php if($_SESSION['usuario']['tipo_cadastro']=="doador_pf"){
+                ?>
                 <th scope="col"> <a href="editar-cadastro-pessoa-fisica.php" target=_blank class="text4">Editar Cadastro</a></th>
+                <?php
+                }else if($_SESSION['usuario']['tipo_cadastro']=="doador_pj"){
+                ?>
+                <th scope="col"> <a href="editar-cadastro-pessoa-juridica.php" target=_blank class="text4">Editar Cadastro</a></th>
+                <?php
+                }
+                ?>
+                
 
             </tr>
         </tbody>
