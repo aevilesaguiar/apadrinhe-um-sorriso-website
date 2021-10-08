@@ -59,7 +59,7 @@ function inlui_organizacao($id_cadastro,$nome_organizacao,$logradouro,$numero,$c
 }
 
 function inlui_dados_criança($rg_criança,$nome_criança,$idade,$sexo,
-$tipo_kit,$tamanho_calca,$tamanho_camisa,$tamanho_calcado,$acao){
+$tipo_kit,$tamanho_calca,$tamanho_camisa,$tamanho_calcado,$acao,$brinquedo){
 
     $_SESSION['doacao']['rg_crianca'] = $rg_criança;
     $_SESSION['doacao']['nome_crianca'] = $nome_criança;
@@ -71,13 +71,14 @@ $tipo_kit,$tamanho_calca,$tamanho_camisa,$tamanho_calcado,$acao){
     $_SESSION['doacao']['tipo_calcado'] = $tamanho_calcado;
     $_SESSION['doacao']['acaocriancakit']=$acao;
     $_SESSION['doacao']['status']='true';
+    $_SESSION['doacao']['brinquedo']=$brinquedo;
 
     return $_SESSION['doacao']['rg_crianca']."".$_SESSION['doacao']['nome_crianca']."/".
     $_SESSION['doacao']['idade']."/".
     $_SESSION['doacao']['sexo']."/".
     $_SESSION['doacao']['tamanho_calca']."/".
     $_SESSION['doacao']['tamanho_camisa']."/".
-    $_SESSION['doacao']['tipo_calcado'];
+    $_SESSION['doacao']['tipo_calcado']."/".$_SESSION['doacao']['brinquedo'];
     
 }
 

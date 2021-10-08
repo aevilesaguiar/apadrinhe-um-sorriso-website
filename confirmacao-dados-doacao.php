@@ -204,6 +204,7 @@ $(".toggle").on("click", function() {
                 <li>1 tesoura sem ponta</li>
                 <li>1 cola bastão</li> </td> 
                <?php }?>
+               <td><?php echo exibe_doacao('brinquedo');?></td>
     </tr>
   </tbody>
 </table>

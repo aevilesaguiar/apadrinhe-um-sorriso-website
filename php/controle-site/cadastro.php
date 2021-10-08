@@ -165,7 +165,7 @@ if(!empty($id_cadastro)){
 
     $dados_crianca = explode("/",$_POST['dados_crianca']);
 
-    inlui_dados_criança($dados_crianca[0],$dados_crianca[1],$dados_crianca[2],$dados_crianca[3],$_POST['tipo_kit'],$dados_crianca[4],$dados_crianca[5],$dados_crianca[6],$acao);
+    inlui_dados_criança($dados_crianca[0],$dados_crianca[1],$dados_crianca[2],$dados_crianca[3],$_POST['tipo_kit'],$dados_crianca[4],$dados_crianca[5],$dados_crianca[6],$acao,$dados_crianca[7]);
     isset($_POST['btnIncluirCriancaKit'])?sessao_mensagem(mensagem(21)):sessao_mensagem(mensagem(22));
     
     redireciona(9);
@@ -223,6 +223,7 @@ if(!empty($id_cadastro)){
     unset($_SESSION['dados_form']);
     $cadastra=$conecta->query(altera_dados_gerais($nome,$telefone,$redesocial,$numero,$endereco,$cidade,$estado,$cep,$bairro,
     $complemento,$_SESSION['usuario']['id_cadastro']));
+    $alteracaopj= $conecta->query(altera_pj($cnpj,$nome_fantasia,$site,$tipo_pj,$_SESSION['usuario']['id_cadastro']));
     redireciona(14);
     sessao_mensagem(mensagem(25));
 }

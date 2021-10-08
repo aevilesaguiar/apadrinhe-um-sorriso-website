@@ -221,7 +221,7 @@ $(".toggle").on("click", function() {
                     foreach($criancas as $dados_criancas){
                      if($_SESSION['doacao']['rg_crianca']!==$dados_criancas['rg_crianca']){
             ?>
-          <option value='<?php echo $dados_criancas['rg_crianca']."/".$dados_criancas['nome_crianca']."/".$dados_criancas['nasc_crianca']."/".$dados_criancas['sexo']."/".$dados_criancas['tamanho_camiseta']."/".$dados_criancas['tamanho_sapato']."/".$dados_criancas['tamanho_calca'];?>'>
+          <option value='<?php echo $dados_criancas['rg_crianca']."/".$dados_criancas['nome_crianca']."/".$dados_criancas['nasc_crianca']."/".$dados_criancas['sexo']."/".$dados_criancas['tamanho_camiseta']."/".$dados_criancas['tamanho_sapato']."/".$dados_criancas['tamanho_calca']."/".$dados_criancas['brinquedo'];?>'>
           <?php echo $dados_criancas['nome_crianca']."-".$dados_criancas['nasc_crianca']."-".$dados_criancas['sexo'];?>
           </option>
           <?php     
@@ -235,7 +235,7 @@ $(".toggle").on("click", function() {
                     foreach($criancas as $dados_criancas){
                      if($_SESSION['doacao']['rg_crianca']!==$dados_criancas['rg_crianca']){
             ?>
-          <option value='<?php echo $dados_criancas['rg_crianca']."/".$dados_criancas['nome_crianca']."/".$dados_criancas['nasc_crianca']."/".$dados_criancas['sexo']."/".$dados_criancas['tamanho_camiseta']."/".$dados_criancas['tamanho_sapato']."/".$dados_criancas['tamanho_calca'];?>'>
+          <option value='<?php echo $dados_criancas['rg_crianca']."/".$dados_criancas['nome_crianca']."/".$dados_criancas['nasc_crianca']."/".$dados_criancas['sexo']."/".$dados_criancas['tamanho_camiseta']."/".$dados_criancas['tamanho_sapato']."/".$dados_criancas['tamanho_calca']."/".$dados_criancas['brinquedo'];?>'>
           <?php echo $dados_criancas['nome_crianca']."-".$dados_criancas['nasc_crianca']."-".$dados_criancas['sexo'];?>
           </option>
           <?php     
@@ -342,6 +342,7 @@ $(".toggle").on("click", function() {
                 <li>1 tesoura sem ponta</li>
                 <li>1 cola bastão</li> </td> 
                <?php }?>
+               <td><?php echo exibe_doacao('brinquedo');?></td>
     </tr>
   </tbody>
 </table>
