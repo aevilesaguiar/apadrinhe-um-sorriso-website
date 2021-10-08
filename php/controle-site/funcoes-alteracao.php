@@ -17,10 +17,9 @@ $complemento,$id_cadastro){
 
 //Cadastra pj
 function altera_pj($cnpj,$nome_fantasia,$site,$tipo_pj,$fk_id_cadastro){
-    $cadastro = 'INSERT INTO dados_pj(
-        cnpj,nome_fantasia,site,tipo_pj,
-    fk_id_cadastro) 
-    VALUES("'.$cnpj.'","'.$nome_fantasia.'","'.$site.'","'.$tipo_pj.'","'.$fk_id_cadastro.'")';
+    $cadastro = 'UPDATE dados_pj SET
+    nome_fantasia="'.$nome_fantasia.'",site="'.$site.'",tipo_pj="'.$tipo_pj.'"
+    where fk_id_cadastro="'.$fk_id_cadastro.'"';
 
     return $cadastro;
     

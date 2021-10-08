@@ -133,7 +133,7 @@ $(".toggle").on("click", function() {
     </div>
       <div class="col-md-6">
   <select id="inputState" name="tipo_organizacao" class="form-select form-control" type="select" required>
-          <option value="tipo_organizacao"><?php echo isset($_SESSION['dados_form']['tipo_organizacao'])?$_SESSION['dados_form']['tipo_organizacao']:$dados['tipo_pj']; ?></option>
+          <option value="<?php echo isset($_SESSION['dados_form']['tipo_organizacao'])?$_SESSION['dados_form']['tipo_organizacao']:$dados['tipo_pj']; ?>"><?php echo isset($_SESSION['dados_form']['tipo_organizacao'])?$_SESSION['dados_form']['tipo_organizacao']:$dados['tipo_pj']; ?></option>
           <option value="COMERCIO">COMERCIO</option>
           <option value="COMUNICAÇÃO">COMUNICAÇÃO</option>
           <option value="ENERGIA">ENERGIA</option>
