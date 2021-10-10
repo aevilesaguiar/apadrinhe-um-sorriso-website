@@ -119,6 +119,7 @@ $(".toggle").on("click", function() {
       <div class="col-md-4">
 
         <input type="text" class="form-control"  id="inputCnpj" name="cnpj" value="<?php echo isset($_SESSION['dados_form']['cnpj'])?$_SESSION['dados_form']['cnpj']:$dados['cnpj']; ?>" onKeyPress="MascaraGenerica(this, 'CNPJ');" placeholder="CNPJ" required disabled/> 
+        <input type="hidden" class="form-control"  id="inputCnpj" name="cnpj" value="<?php echo isset($_SESSION['dados_form']['cnpj'])?$_SESSION['dados_form']['cnpj']:$dados['cnpj']; ?>" onKeyPress="MascaraGenerica(this, 'CNPJ');" placeholder="CNPJ" required /> 
         <?php echo isset($_SESSION['mensagens_form']['cnpj'])?$_SESSION['mensagens_form']['cnpj']:""; ?>
       </div>
       <div class="col-md-4">
