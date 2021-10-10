@@ -33,4 +33,10 @@ function calcula_idade($data_nascimento){
 
 }
 
+function inverte_data($data){
+    $data1=explode("-",$data);
+    $dia_hora=explode(" ",$data1[2]);
+    return $dia_hora[0]."/".$data1[1]."/".$data1[0]." ".$dia_hora[1];
+}
+
     

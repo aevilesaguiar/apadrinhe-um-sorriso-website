@@ -219,6 +219,7 @@ $(".toggle").on("click", function() {
                 <li>1 tesoura sem ponta</li>
                 <li>1 cola bastão</li> </td> 
                <?php }?>
+                <td><?php echo $dados['brinquedo'];?></td>
     </tr>
         </tbody>
         </table>

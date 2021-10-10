@@ -222,7 +222,7 @@ $(".toggle").on("click", function() {
                      if($_SESSION['doacao']['rg_crianca']!==$dados_criancas['rg_crianca']){
             ?>
           <option value='<?php echo $dados_criancas['rg_crianca']."/".$dados_criancas['nome_crianca']."/".$dados_criancas['nasc_crianca']."/".$dados_criancas['sexo']."/".$dados_criancas['tamanho_camiseta']."/".$dados_criancas['tamanho_sapato']."/".$dados_criancas['tamanho_calca']."/".$dados_criancas['brinquedo'];?>'>
-          <?php echo $dados_criancas['nome_crianca']."-".$dados_criancas['nasc_crianca']."-".$dados_criancas['sexo'];?>
+          <?php echo $dados_criancas['nome_crianca']."-".calcula_idade($dados_criancas['nasc_crianca'])."-".$dados_criancas['sexo'];?>
           </option>
           <?php     
                      }
@@ -236,7 +236,7 @@ $(".toggle").on("click", function() {
                      if($_SESSION['doacao']['rg_crianca']!==$dados_criancas['rg_crianca']){
             ?>
           <option value='<?php echo $dados_criancas['rg_crianca']."/".$dados_criancas['nome_crianca']."/".$dados_criancas['nasc_crianca']."/".$dados_criancas['sexo']."/".$dados_criancas['tamanho_camiseta']."/".$dados_criancas['tamanho_sapato']."/".$dados_criancas['tamanho_calca']."/".$dados_criancas['brinquedo'];?>'>
-          <?php echo $dados_criancas['nome_crianca']."-".$dados_criancas['nasc_crianca']."-".$dados_criancas['sexo'];?>
+          <?php echo $dados_criancas['nome_crianca']."-".calcula_idade($dados_criancas['nasc_crianca'])."-".$dados_criancas['sexo'];?>
           </option>
           <?php     
                      }
@@ -366,7 +366,7 @@ $(".toggle").on("click", function() {
     <tr>
       <th scope="row">1</th>
       <td><?php echo exibe_doacao('nome_crianca');?></td>
-      <td><?php echo calcula_idade(exibe_doacao('idade'));?></td>
+      <td><?php echo exibe_doacao('idade');?></td>
       <td><?php echo exibe_doacao('sexo');?></td>
  
     </tr>

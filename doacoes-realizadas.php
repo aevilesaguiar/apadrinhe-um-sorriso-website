@@ -166,25 +166,25 @@ $(".toggle").on("click", function() {
             <tbody>
                 <tr>
                 <th scope="row">Data de entrega do presente para criança</th>
-                <td><?php echo $doacoes['data_hora_recebimento'];?></td>
+                <td><?php echo $doacoes['data_hora_recebimento']==null?"":inverte_data($doacoes['data_hora_recebimento']);?></td>
             </tr>
         </tbody>
             <tbody>
                 <tr>
                 <th scope="row">Presente Entregue na ONG</th>
-                <td><?php echo $doacoes['data_hora_entrega'];?></td>
+                <td><?php echo $doacoes['data_hora_entrega']==null?"":inverte_data($doacoes['data_hora_entrega']);?></td>
             </tr>
         </tbody>
         <tbody>
                 <tr>
                 <th scope="row">Aguardando envio do Presente</th>
-                <td><?php echo $doacoes['data_hora_selecao'];?></td>
+                <td><?php echo inverte_data($doacoes['data_hora_selecao']);?></td>
             </tr>
         </tbody>
         <tbody>
                 <tr>
                 <th scope="row">Doação Realizada</th>
-                <td><?php echo $doacoes['data_hora_selecao'];?></td>
+                <td><?php echo inverte_data($doacoes['data_hora_selecao']);?></td>
             </tr>
         </tbody>
         </table>

@@ -60,10 +60,10 @@ function inlui_organizacao($id_cadastro,$nome_organizacao,$logradouro,$numero,$c
 
 function inlui_dados_criança($rg_criança,$nome_criança,$idade,$sexo,
 $tipo_kit,$tamanho_calca,$tamanho_camisa,$tamanho_calcado,$acao,$brinquedo){
-
+    include 'funcoes_sistema.php';
     $_SESSION['doacao']['rg_crianca'] = $rg_criança;
     $_SESSION['doacao']['nome_crianca'] = $nome_criança;
-    $_SESSION['doacao']['idade'] = $idade;
+    $_SESSION['doacao']['idade'] = calcula_idade($idade);
     $_SESSION['doacao']['sexo'] = $sexo;
     $_SESSION['doacao']['tipo_kit'] = $tipo_kit;
     $_SESSION['doacao']['tamanho_calca'] = $tamanho_calca;

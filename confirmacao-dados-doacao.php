@@ -151,7 +151,7 @@ $(".toggle").on("click", function() {
     <tr>
 
       <td><?php echo exibe_doacao('nome_crianca');?></td>
-      <td><?php echo calcula_idade(exibe_doacao('idade'));?></td>
+      <td><?php echo exibe_doacao('idade');?></td>
       <td><?php echo exibe_doacao('sexo');?></td>
  
     </tr>
