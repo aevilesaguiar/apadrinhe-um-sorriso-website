@@ -102,7 +102,7 @@ $(".toggle").on("click", function() {
   <?php
           $cadastro = $conecta->query(consulta_cadastro_pf($_SESSION['usuario']['id_cadastro']));
 
-          if($cadastro->num_rows>=1){
+          if($cadastro->num_rows==1){
             foreach($cadastro as $dados){
             }
           
