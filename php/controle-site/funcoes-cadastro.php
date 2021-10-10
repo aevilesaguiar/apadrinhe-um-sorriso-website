@@ -45,7 +45,8 @@ function cadastra_usuario($usuario,$senha){
     return $cadastro;
 }
 
-function valida_cadastro($nome){
+function valida_cadastro($nome,$tipo_form){
+    if($tipo_form=="formulario_cadastro"){
 
     if($nome['tipo_usuario']=="doador_pf"){
         strlen($nome['cpf'])!==14?mensagens_form(mensagem(10),'cpf'):limpa_mensagens_form('cpf');
@@ -74,6 +75,16 @@ function valida_cadastro($nome){
     include '../geral/conexao-banco.php';
     $resultado=$conecta->query('SELECT * FROM perfil where fk_user="'.$nome['email'].'"');
     $resultado->num_rows==1?mensagens_form(mensagem(17),'email2'):limpa_mensagens_form('email2');
+
+    }else if($tipo_form=="formulario_cadastrar_email"){
+        strlen($nome['email'])<=30?limpa_mensagens_form('email'):mensagens_form(mensagem(15),'email');
+    }else if($tipo_form=="formulario_fale_conosco"){
+        strlen($nome['nome'])<=45?limpa_mensagens_form('nome'):mensagens_form(mensagem(15),'nome');
+        strlen($nome['email'])<=30?limpa_mensagens_form('email'):mensagens_form(mensagem(15),'email');
+        strlen($nome['telefone'])>=13?limpa_mensagens_form('telefone'):mensagens_form(mensagem(16),'telefone');
+        strlen($nome['mensagem'])<=100?limpa_mensagens_form('mensagem'):mensagens_form(mensagem(15),'mensagem');
+    }
+
 }
 
 function cadastra_doacao(){//Responsável por cadastrar doação
@@ -101,3 +112,9 @@ function cadastra_fale_conosco($nome,$email,$telefone,$mensagem){
         return $cadastro;
 }
 
+function cadastra_email($email){//Responsável por cadastrar doador
+    $cadastro = 'INSERT INTO newsletter(e_mail_newsletter	
+    )
+                                VALUES("'.$email.'")';
+    return $cadastro;
+}
