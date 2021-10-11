@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 27-Set-2021 às 16:38
+-- Generation Time: 11-Out-2021 às 11:04
 -- Versão do servidor: 5.6.34
 -- PHP Version: 7.1.11
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `doe_um_sorriso`
 --
+CREATE DATABASE IF NOT EXISTS `doe_um_sorriso` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `doe_um_sorriso`;
 
 -- --------------------------------------------------------
 
@@ -29,7 +31,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `email_admin` varchar(45) NOT NULL,
+  `email_admin` varchar(50) NOT NULL,
   `fk_user` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -52,8 +54,7 @@ CREATE TABLE `cadastra` (
 
 CREATE TABLE `colaborador` (
   `id_colaborador` int(11) NOT NULL,
-  `funcao` varchar(30) DEFAULT NULL,
-  `desc_cargo` varchar(50) DEFAULT NULL,
+  `funcao` enum('Gerente','Analista de Cadastro','Recebedor','Entregador') DEFAULT NULL,
   `fk_id_cadastro` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -65,13 +66,15 @@ CREATE TABLE `colaborador` (
 
 CREATE TABLE `dados_crianca` (
   `rg_crianca` varchar(12) NOT NULL,
-  `nome_crianca` varchar(40) DEFAULT NULL,
+  `nome_crianca` varchar(80) DEFAULT NULL,
   `sexo` enum('M','F') DEFAULT NULL,
   `nasc_crianca` date DEFAULT NULL,
   `tamanho_camiseta` enum('RN','1','2','4','6','8','10','12','14','16','P','M','G') DEFAULT NULL,
   `tamanho_sapato` enum('14','15','16','17.5','18.5','19','20','20.5','21','21.5','22','22.5','23','23.5','24','24.5','25','25.5','26','26.5','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45') DEFAULT NULL,
   `tamanho_calca` enum('1','2','4','6','8','10','12','14','16','P','M','G') DEFAULT NULL,
-  `brinquedo` varchar(20) DEFAULT NULL
+  `brinquedo` varchar(140) DEFAULT NULL,
+  `term_arq` varchar(50) DEFAULT NULL,
+  `observacao` varchar(140) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -94,9 +97,9 @@ CREATE TABLE `dados_pf` (
 
 CREATE TABLE `dados_pj` (
   `cnpj` varchar(18) NOT NULL,
-  `nome_fantasia` varchar(30) DEFAULT NULL,
+  `nome_fantasia` varchar(80) DEFAULT NULL,
   `site` varchar(50) DEFAULT NULL,
-  `tipo_pj` varchar(10) DEFAULT NULL,
+  `tipo_pj` varchar(50) DEFAULT NULL,
   `inf_recebimento` time DEFAULT NULL,
   `fk_id_cadastro` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -110,7 +113,7 @@ CREATE TABLE `dados_pj` (
 CREATE TABLE `dados_responsavel` (
   `id_familia` int(11) NOT NULL,
   `cpf_resp` varchar(15) DEFAULT NULL,
-  `nome_resp` varchar(40) DEFAULT NULL,
+  `nome_resp` varchar(80) DEFAULT NULL,
   `fk_id_cadastro` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -122,7 +125,7 @@ CREATE TABLE `dados_responsavel` (
 
 CREATE TABLE `doacao` (
   `id_doacao` int(11) NOT NULL,
-  `status_doacao` enum('S','N') DEFAULT NULL,
+  `status_doacao` varchar(10) DEFAULT NULL,
   `data_hora_entrega` datetime DEFAULT NULL,
   `data_hora_selecao` datetime DEFAULT NULL,
   `data_hora_recebimento` datetime DEFAULT NULL,
@@ -148,7 +151,8 @@ CREATE TABLE `doa_exibe` (
 --
 
 CREATE TABLE `fale_conosco` (
-  `e_mail_fale_conosco` varchar(45) NOT NULL,
+  `id_fale_conosco` int(10) NOT NULL,
+  `e_mail_fale_conosco` varchar(50) NOT NULL,
   `nome` varchar(30) DEFAULT NULL,
   `telefone` varchar(15) DEFAULT NULL,
   `mensagem` varchar(100) DEFAULT NULL
@@ -184,7 +188,7 @@ CREATE TABLE `mensagem_sistema` (
 --
 
 CREATE TABLE `newsletter` (
-  `e_mail_newsletter` varchar(30) NOT NULL
+  `e_mail_newsletter` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -198,10 +202,10 @@ CREATE TABLE `perfil` (
   `tipo_cadastro` varchar(45) DEFAULT NULL,
   `nivel_acesso` int(1) DEFAULT NULL,
   `status_cadastro` varchar(10) DEFAULT NULL,
-  `nome` varchar(45) DEFAULT NULL,
+  `nome` varchar(80) DEFAULT NULL,
   `telefone` varchar(15) DEFAULT NULL,
-  `rede_social` varchar(30) DEFAULT NULL,
-  `e_mail` varchar(40) DEFAULT NULL,
+  `rede_social` varchar(100) DEFAULT NULL,
+  `e_mail` varchar(50) DEFAULT NULL,
   `numendereco` varchar(5) DEFAULT NULL,
   `logradouro` varchar(30) DEFAULT NULL,
   `cidade` varchar(30) DEFAULT NULL,
@@ -209,7 +213,7 @@ CREATE TABLE `perfil` (
   `cep` varchar(10) DEFAULT NULL,
   `bairro` varchar(30) DEFAULT NULL,
   `complemento` varchar(30) DEFAULT NULL,
-  `fk_user` varchar(30) DEFAULT NULL
+  `fk_user` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -264,7 +268,7 @@ CREATE TABLE `realiza` (
 --
 
 CREATE TABLE `usuario` (
-  `user` varchar(30) NOT NULL,
+  `user` varchar(50) NOT NULL,
   `senha` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -338,7 +342,7 @@ ALTER TABLE `doa_exibe`
 -- Indexes for table `fale_conosco`
 --
 ALTER TABLE `fale_conosco`
-  ADD PRIMARY KEY (`e_mail_fale_conosco`);
+  ADD PRIMARY KEY (`id_fale_conosco`);
 
 --
 -- Indexes for table `gerencia`
@@ -364,7 +368,6 @@ ALTER TABLE `newsletter`
 --
 ALTER TABLE `perfil`
   ADD PRIMARY KEY (`id_cadastro`),
-  ADD UNIQUE KEY `logradouro_UNIQUE` (`logradouro`),
   ADD KEY `perfil_ibfk_1` (`fk_user`);
 
 --
