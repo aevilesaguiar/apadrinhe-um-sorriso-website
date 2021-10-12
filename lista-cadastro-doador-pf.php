@@ -1,3 +1,8 @@
+<?php
+    include "php/controle-organizacao/listagem-doadores-pf-org.php";
+    
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
