@@ -128,13 +128,13 @@ $(".toggle").on("click", function() {
                 <thead>
                     <tr>
                         <th scope="col"> Nome</th>
-                        <th scope="col"><?php echo $_SESSION['usuario']['nome'];?></th>
+                        <th scope="col"><?php echo $_SESSION['usuario_org']['nome'];?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                         <th scope="row">E-mail</th>
-                        <td><?php echo $_SESSION['usuario']['email'];?></td>
+                        <td><?php echo $_SESSION['usuario_org']['email'];?></td>
                     </tr>
                 </tbody>
                 </table>
