@@ -1,4 +1,6 @@
 <?php
+    include 'php/geral/conexao-banco.php';
+    include "php/controle-organizacao/sessao-org.php"; 
     include "php/controle-organizacao/listagem-doadores-pj-org.php";
     
 ?>
@@ -119,7 +121,10 @@ $(".toggle").on("click", function() {
     </tr>
   </thead>
   <tbody>
-  <?php while($rows_resp = mysqli_fetch_assoc($result_search)) {?>
+  <?php 
+  $result_search = $conecta->query(consulta_doadores_pj($_SESSION['usuario_org']['id_cadastro']));
+  foreach($result_search as $rows_resp) {
+    ?>
     <tr>
       <th scope="row"><?php echo $rows_resp['cnpj']; ?></th>
       <td><?php echo $rows_resp['nome_fantasia']; ?></td>
