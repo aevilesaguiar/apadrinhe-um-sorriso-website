@@ -1,17 +1,21 @@
 <?php
 
 //Cadastra dados gerais
-function cadastra_dados_gerais($tipo_cadastro,$nome,$telefone,$rede_social,
+function cadastra_dados_gerais($tipo_cadastro,$nome,$telefone,
+$rede_social,
 $email,$numendereco,$logradouro,$cidade,$estado,$cep,$bairro,
 $complemento,$fk_user){
 
     $nivel_acesso=0;
     $cadastro = 'INSERT INTO perfil(
-        tipo_cadastro,nivel_acesso,status_cadastro,nome,telefone,
-        rede_social,e_mail,numendereco,logradouro,cidade,estado,cep,
+        tipo_cadastro,nivel_acesso,status_cadastro,
+        nome,telefone,
+        rede_social,e_mail,numendereco,logradouro,
+        cidade,estado,cep,
         bairro,complemento,fk_user) 
-    VALUES("'.$tipo_cadastro.'","'.$nivel_acesso.'","EA","'.$nome.'","'.$telefone.'",
-    "'.$rede_social.'","'.$email.'","'.$numendereco.'","'.$logradouro.'","'.$cidade.'",
+    VALUES("'.$tipo_cadastro.'","'.$nivel_acesso.'","OK","'.$nome.'","'.$telefone.'",
+    "'.$rede_social.'","'.$email.'","'.$numendereco.'",
+    "'.$logradouro.'","'.$cidade.'",
     "'.$estado.'","'.$cep.'","'.$bairro.'","'.$complemento.'","'.$fk_user.'")';
 
     return $cadastro;
@@ -59,15 +63,15 @@ function cadastra_familia($usuario,$senha){
 }
 
 //Cadastra crianca.
-function cadastra_crianca($rg_crianca,$nome_crianca,$nasc_crianca,$sexo,$tamanho_calca,
-$tamanho_camiseta,$tamanho_sapato,$sug_presente,
-$termo_arq,$nome_arq,$tipo_arq,$tamanho_arq,$observacao){
-    $cadastro = 'INSERT INTO dados_crianca(rg_crianca,nome_crianca,nasc_crianca,
-    sexo,tamanho_calca,tamamanho_camiseta,tamanho_sapato,sug_presente,termo_arq,
-    nome_arq,tipo_arq,tamanho_arq,observacao) VALUES("'.$rg_crianca.'","'.$nome_crianca.'","'.$nasc_crianca.'",
-    "'.$sexo.'","'.$tamanho_calca.'","'.$tamanho_camiseta.'","'.$tamanho_sapato.'","'.$sug_presente.'","'.$termo_arq.'",
-    "'.$nome_arq.'","'.$tipo_arq.'",
-    "'.$tamanho_arq.'","'.$observacao.'")';
+function cadastra_crianca($rg_crianca,$nome_crianca,$sexo,$nasc_crianca,$tamanho_camiseta,$tamanho_sapato,$tamanho_calca
+,$sug_presente,$termo_arq,$observacao){///$nome_arq,$tipo_arq,$tamanho_arq FALAT INCLUIR NO BANCO
+    $cadastro = 'INSERT INTO dados_crianca(rg_crianca,nome_crianca,sexo,nasc_crianca,
+    tamanho_camiseta,tamanho_sapato,tamanho_calca,brinquedo,
+    term_arq,observacao) VALUES("'.$rg_crianca.'","'.$nome_crianca.'","'.$sexo.'","'.$nasc_crianca.'",
+    "'.$tamanho_camiseta.'",
+    "'.$tamanho_sapato.'","'.$tamanho_calca.'","'.$sug_presente.'","'.$termo_arq.'","'.$observacao.'")';
+   //falta incluir no banco e posteriormente aqui atributos nome_arq,tipo_arq,tamanho_arq
+
     return $cadastro;
 }
 
@@ -123,3 +127,17 @@ function valida_cadastro($nome){
 
 }
 
+function cadastra_resp($cpf_resp,$nome_resp,$id_cadastro){
+    $cadastro = 'INSERT INTO dados_responsavel(cpf_resp,nome_resp,fk_id_cadastro) VALUES(
+        "'.$cpf_resp.'","'.$nome_resp.'","'.$id_cadastro.'")';
+
+        return $cadastro;
+}
+
+function cadastra($fk_rg_crianca,$fk_id_cadastro){
+
+    $cadastra = 'INSERT INTO cadastra(fk_rg_crianca,fk_id_cadastro)
+     VALUES("'.$fk_rg_crianca.'","'.$fk_id_cadastro.'")';
+
+    return $cadastra;
+}

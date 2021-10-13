@@ -4,14 +4,16 @@
 //include 'php/controle-site/sessao.php';
 //sinclude 'php/controle-site/consulta.php';
 
-include 'conexao-banco-org.php';
+include '../geral/conexao-banco.php';
 //include "redirecionamento-pagina.php"; //Registro de todas as paginas para redirecionamento
 //include "mensagens.php"; // Registro de todas mensagens do sistema
 include "sessao-org.php"; //Inicia sessao e encerra sessões
 include "consulta-org.php";
 include 'funcoes-cadastro-org.php';
 //include 'php/controle-site/valida-entrada-usuario.php';
-
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
 /*
 if(isset($_POST['btnCadastraFamilia'])){
 
@@ -30,6 +32,10 @@ if($_POST['tipo_usuario']=="doador_pf"){
 if(isset($_POST['btnCadastraFamilia'])){
 
     $termo_arq = $_FILES['termo_arq'];
+
+    echo "<pre>";
+    print_r($termo_arq);
+    echo "</pre>";
 
     if($termo_arq !==null) {
 
@@ -111,13 +117,13 @@ if(isset($_POST['btnCadastraFamilia'])){
 
 }
 
-if ($tipo_cadastro = "familia"){
+if ($tipo_cadastro == "familia"){
     $redesocial = null;
-    $fk_user = null;
+    $fk_user = "familia@familia.com";
     $status_cadastro = "OK";
 }
 
-if ($tipo_cadastro ="colaborador"){
+if ($tipo_cadastro =="colaborador"){
     $redesocial = null;
     $usuario = "colaborador@padrao.com";
     $status_cadastro = "OK";
@@ -146,7 +152,7 @@ if(isset($_POST['btnCadastraFamilia']) || isset($_POST['btnCadastraColaborador']
 
     $cadastra=mysqli_query($conecta, cadastra_dados_gerais($tipo_cadastro,$nome,
     $telefone,$redesocial,$email,$numero,$endereco,$cidade,$estado,$cep,$bairro,
-    $complemento,$usuario));
+    $complemento,$fk_user));
 
     //retorna id cadastro
     $id_cadastro = mysqli_insert_id($conecta);
@@ -156,19 +162,23 @@ if(isset($_POST['btnCadastraFamilia']) || isset($_POST['btnCadastraColaborador']
 }
 
 if(isset($_POST['btnCadastraFamilia'])){
-
     //cadastro no banco de dados de responsavel
-    $cadastra_resp=mysqli_query($conecta, cadastra_resp($cpf_resp,$nome_resp,$cpf,$id_cadastro));
+    $cadastra_resp=mysqli_query($conecta, cadastra_resp($cpf_resp,$nome_resp,$id_cadastro));
 
     //retorna id familia
     $id_cadastro_familia = mysqli_insert_id($conecta);
 
     //cadastra no banco dados da crianca
-    $cadastra_crianca=$conecta->query(cadastra_crianca($rg_crianca,$nome_crianca,
-    $sexo,$nasc_crianca,$tamanho_camiseta,$tamanho_sapato,$tamanho_calca,$nome_arq,$sug_presente,$observacao));
+    $cadastra_crianca=$conecta->query(cadastra_crianca($rg_crianca,$nome_crianca,$sexo,$nasc_crianca,$tamanho_camiseta,$tamanho_sapato,$tamanho_calca
+    ,$sug_presente,$termo_arq['name'],$observacao));
 
     //cadastra na tabela possui cri
     $cadastra_possui_crianca=mysqli_query($conecta, possui_crianca($rg_crianca,$id_cadastro_familia));
+
+    //cadastra id_organizacao e rg_crianca
+    $cadastra_cadastra = $conecta->query(cadastra($rg_crianca,$_SESSION['usuario_org']['id_cadastro']));
+
+    header("Location:../../cadastro-familia.php");
 }
 
 
@@ -190,6 +200,7 @@ if(isset($_POST['btnCadastraColaborador'])){
     //cadastra colaborador na possui_colab
     $cadastra_possui_colab=mysqli_query($conecta, cadastra_possui_colab($cpf,$cnpj_org,$id_colaborador));
 
+    
 }
 
 
@@ -329,7 +340,7 @@ if ($cadastra_possui_crianca) {
 */
 
 
-if ($cadastra_colaborador) {
+/*if ($cadastra_colaborador) {
 
     echo 'colaborador cadastrado com sucesso'."<br>"."<br>";
 } else {
