@@ -36,8 +36,10 @@ if($conecta->connect_error){//Se houver erro na conexao com o banco de dados
                 sessao_login($perfil['nome'],$perfil['e_mail'],$perfil['telefone'],$perfil['id_cadastro'],$perfil['tipo_cadastro']);
 
                 if($perfil['tipo_cadastro']=="organizacao"){
+                    sessao_login_organizacao($perfil['nome'],$perfil['e_mail'],$perfil['telefone'],$perfil['id_cadastro'],$perfil['tipo_cadastro']);
                     redireciona(1);
                 }else if($perfil['tipo_cadastro']=="doador_pj" ||$perfil['tipo_cadastro']=="doador_pf"){
+                    sessao_login($perfil['nome'],$perfil['e_mail'],$perfil['telefone'],$perfil['id_cadastro'],$perfil['tipo_cadastro']);
                    redireciona(0);
                     
                 }

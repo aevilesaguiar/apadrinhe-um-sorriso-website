@@ -15,6 +15,20 @@ function sessao_login($nome,$email,$telefone,$id_cadastro,$tipo_cadastro){ //Ini
 
 }
 
+function sessao_login_organizacao($nome,$email,$telefone,$id_cadastro,$tipo_cadastro){ //Inicia sessão de login
+
+    unset($_SESSION['mensagem']);
+
+    $_SESSION['usuario_org']['id_cadastro']=$id_cadastro;
+    $_SESSION['usuario_org']['usuario'] = $nome;
+    $_SESSION['usuario_org']['nome'] = $nome;
+    $_SESSION['usuario_org']['email'] = $email;
+    $_SESSION['usuario_org']['telefone'] = $telefone;
+    $_SESSION['usuario_org']['logado'] = true;
+    $_SESSION['usuario_org']['tipo_cadastro'] = $tipo_cadastro;
+
+}
+
 function encerra_sessao(){//Encerra sessão de login
 
     unset($_SESSION['usuario']['id_cadastro']);
@@ -23,6 +37,19 @@ function encerra_sessao(){//Encerra sessão de login
     unset($_SESSION['usuario']['email']);
     unset($_SESSION['usuario']['telefone']);
     unset($_SESSION['usuario']['tipo_cadastro']);
+    
+    $_SESSION['logado']=false;
+
+}
+
+function encerra_sessao_organizacao(){//Encerra sessão de login
+
+    unset($_SESSION['usuario_org']['id_cadastro']);
+    unset($_SESSION['usuario_org']['usuario']);
+    unset($_SESSION['usuario_org']['nome']);
+    unset($_SESSION['usuario_org']['email']);
+    unset($_SESSION['usuario_org']['telefone']);
+    unset($_SESSION['usuario_org']['tipo_cadastro']);
     
     $_SESSION['logado']=false;
 
