@@ -30,6 +30,10 @@ function mensagem($codmsg){
                         25=>'Os dados foram atualizados com sucesso',
                         26=>'Mensagem enviada com sucesso, entraremos em contato com você o mais breve possível, obrigado !',
                         27=>'Obrigado por cadastrar seu e-mail!',
+                        28=>'Aprovado com sucesso',
+                        29=>'Cadastro foi reprovado e notificado doador ! </br>
+                        As mensagens enviadas para o doador serão exibidas aqui, abaixo dos dados cadastrais do doador.',
+                        30=>'Notificação finalizada para doador !',
                     );
 
     return $mensagem[$codmsg];

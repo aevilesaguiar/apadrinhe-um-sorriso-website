@@ -54,4 +54,18 @@ function redireciona($codpagina){// função que redireciona as paginas do siste
 
     }
 
+    function redireciona_get($codpagina,$cod){// função que redireciona as paginas do sistema de acordo com o local de destino
+
+        $pagina = array(
+                        16=>'../../aprovar-cadastro-pj.php?codigo='.$cod.'',
+                        17=>'../../aprovar-cadastro-pj.php?codigo='.$cod.'#notificacao',
+    
+        );
+            header("Location:$pagina[$codpagina]");
+        
+        
+       
+    }
+
+
 ?>
