@@ -102,7 +102,7 @@ $(".toggle").on("click", function() {
     <div class="dist-menu"></div>
             
     <div class="sobre-dado-fale">      
-      <form class="row g-3  dist-mob-form" action="php/controle-organizacao/cadastro-org.php" enctype="multipart/form-data">
+      <form class="row g-3  dist-mob-form" action="php/controle-organizacao/cadastro-org-colab.php" enctype="multipart/form-data">
           <div class="col-md-6">
 
             <input type="text" class="form-control"  id="inputCpf" name="cpf_colaborador" onKeyPress="MascaraGenerica(this, 'CPF');" placeholder="CPF" required /> 
