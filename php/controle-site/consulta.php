@@ -70,7 +70,7 @@
     }
 
     function consulta_mensagem($id_cadastro){
-        $select = 'SELECT id.status_cadastro,ms.status_sistema,ms.mensagem FROM perfil id 
+        $select = 'SELECT id.status_cadastro,ms.id_mensagem,ms.status_sistema,ms.mensagem FROM perfil id 
         inner join perfil_exibe pe on pe.fk_id_cadastro=id.id_cadastro
         inner join mensagem_sistema ms on ms.id_mensagem=pe.fk_id_mensagem
          where id.id_cadastro="'.$id_cadastro.'"';
