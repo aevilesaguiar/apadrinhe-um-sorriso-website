@@ -1,5 +1,8 @@
 <?php
-    include "php/controle-organizacao/dados-aprovacao-doador-pj-org.php";
+    include 'php/geral/conexao-banco.php';
+    include "php/controle-organizacao/sessao-org.php"; 
+    include "php/controle-site/consulta.php";
+    
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +74,7 @@ $(".toggle").on("click", function() {
                  </a>
                  </div> 
 
-              
+                 
              <nav class="menu-nav"><!--flexitem é o nav-->
                 <ul>
                     <li class="item"><a href="index.php">INÍCIO</a></li>
@@ -100,15 +103,18 @@ $(".toggle").on("click", function() {
     <div class="dist-menu"></div>
 <div class="p-doar">
 
-<?php while($rows_resp = mysqli_fetch_assoc($result_search)) {?>
+<?php 
+$dados_pjs = $conecta->query(consulta_cadastro_pj($_GET['codigo']));
+foreach($dados_pjs as $rows_resp) {?>
   <div class="altura-doar ">
 
               <h2 class="tit">APROVAR CADASTRO PJ</h2>
           </div>
               <div class="sep-item "></div>
 
-              
-    <div class="textos-item" >   
+    
+    <div class="textos-item" > 
+    <p><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>  
     <div class="container">
     <div class="row">
       <div class="col" style="text-align: right;">CNPJ</div>
@@ -177,18 +183,67 @@ $(".toggle").on("click", function() {
   <div class="container">
     <div class="row">
       <div class="col direc-button">
-      <a href="php/controle-organizacao/aprovar-cadastro-doador-pj-org.php?codigo=<?php echo $rows_resp['id_cadastro']; ?>"> <button class="button-menu-form" type="submit">APROVADO</button> </a>
+      <a href="php/controle-organizacao/aprovar-cadastro-doador-pj-org.php?codigo=<?php echo $rows_resp['id_cadastro']; ?>&&btnAprovar=1"> <button class="button-menu-form" type="submit">APROVAR</button> </a>
       </div>
       <div class="col">
 
-      <a href="dados-pj-reprovado.php"> <button class="button-menu-form" type="submit">REPROVADO</button> </a>
+      <a href="dados-pj-reprovado.php?codigo=<?php echo $rows_resp['id_cadastro']; ?>"> <button class="button-menu-form" type="submit">REPROVAR</button> </a>
       </div>
-  <div class="dist-bot-button"></div>
+  <div class="dist-bot-button" id="notificacao"></div>
 
           </div>
 
     <div class="dist-bot-button"></div>
-    </div>               
+    </div> 
+
+    <table class="table" >
+    
+    <?php
+                $status_cadastro = $conecta->query(consulta_status_cadastro($_GET['codigo']));
+                foreach($status_cadastro as $status){
+                }
+                if($status['status_cadastro']=="EA"){
+            ?>
+                <p class="text-php">Cadastro aguardando aprovação:</p>
+                    <?php
+
+                }else if($status['status_cadastro']=="RP"){
+            ?>
+                <p><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?> </p>
+                
+                <thead>
+        <tr>
+        <th colspan="3" style="text-align: center;">Notificações Doador : </th>
+    </tr>
+            <tr>
+                <th scope="col"> Mensagem</th>
+                <th scope="col">STATUS</th>
+                </tr>
+            </thead><tbody>
+            <?php
+                
+                $mensagens = $conecta->query(consulta_mensagem($_GET['codigo']));
+
+                if($conta=$mensagens->num_rows>=1){
+                foreach($mensagens as $status_mensagem){
+                    if($status_mensagem['status_sistema']!=="FINALIZADO"){
+            ?>
+                <form  method="POST" action='php/controle-organizacao/aprovar-cadastro-doador-pj-org.php?id_mensagem=<?php echo $status_mensagem['id_mensagem'];?>&&codigo=<?php echo $rows_resp['id_cadastro']; ?>'>
+                <tr>
+                <td scope="col"> <?php echo $status_mensagem['mensagem']; ?></td>
+                <td scope="row"><?php echo $status_mensagem['status_sistema']; ?></td>
+                <td><input name="btnResolvido" type="submit" value="RESOLVIDO"></td>
+                    </form>
+            </tr>
+        
+            <?php
+                }
+            }
+            }
+
+          }
+        
+          ?>   </tbody> </table>          
   </div>
   </main>
 <?php }?>

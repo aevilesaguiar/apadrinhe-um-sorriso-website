@@ -117,7 +117,7 @@ $(".toggle").on("click", function() {
       <th scope="col">Razão Social</th>
       <th scope="col">Telefone</th>
       <th scope="col">E-mail</th>
-      <th scope="col">Visualizar Dados</th>
+      <th scope="col">STATUS</th>
     </tr>
   </thead>
   <tbody>
