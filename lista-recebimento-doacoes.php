@@ -1,3 +1,10 @@
+<?php
+    include 'php/geral/conexao-banco.php';
+    include "php/controle-organizacao/sessao-org.php"; 
+    include "php/controle-organizacao/listagem-recebimento-doacoes-org.php";
+    
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -114,39 +121,35 @@ $(".toggle").on("click", function() {
     </tr>
   </thead>
   <tbody>
+  <?php while($rows_resp = mysqli_fetch_assoc($result_search)) {?>
     <tr>
-      <th scope="row">001</th>
-      <td>Amelia dos Santos</td>
-      <td>Lais Maria da Silva</td>
+      <th scope="row"><?php echo $rows_resp['id_doacao']; ?></th>
+      <td><?php echo $rows_resp['nome']; ?></td>
+      <td><?php echo $rows_resp['nome_crianca']; ?></td>
       <td>Pendente</td>
    
      <td> <a href="confirmacao-organizacao-doacao.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a></td>
     
     </td>
     </tr>
+    <?php }?>
   </tbody>
-  <tbody>
-  <tr>
 
-      <th scope="row">002</th>
-      <td>João dosSantos</td>
-      <td>Leandro de Melo</td>
-      <td>Pendente</td>
+  <tbody>
+  <?php while($rows_resp = mysqli_fetch_assoc($result_search2)) {?>
+    <tr>
+      <th scope="row"><?php echo $rows_resp['id_doacao']; ?></th>
+      <td><?php echo $rows_resp['nome']; ?></td>
+      <td><?php echo $rows_resp['nome_crianca']; ?></td>
+      <td>Finalizada</td>
+   
      <td> <a href="confirmacao-organizacao-doacao.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a></td>
+    
+    </td>
     </tr>
-    </tr>
+    <?php }?>
   </tbody>
-  <tbody>
-  <tr>
 
-      <th scope="row">003</th>
-      <td>Amelia dos Santos</td>
-      <td>Fernando Souza Santos</td>
-      <td>Recebido</td>
-      <td> <a href="confirmacao-organizacao-doacao.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a></td>
-    </tr>
-    </tr>
-  </tbody>
 </table>
    </div>
    <div class="dist-bot-button"></div>
