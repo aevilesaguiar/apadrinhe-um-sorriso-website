@@ -8,7 +8,7 @@ include '../geral/conexao-banco.php';
 //include "redirecionamento-pagina.php"; //Registro de todas as paginas para redirecionamento
 //include "mensagens.php"; // Registro de todas mensagens do sistema
 include "sessao-org.php"; //Inicia sessao e encerra sessões
-//include "consulta-org.php";
+include "consulta-org.php";
 include 'funcoes-cadastro-org-colab.php';
 //include 'php/controle-site/valida-entrada-usuario.php';
 echo "<pre>";
@@ -35,11 +35,13 @@ if(isset($_POST['btnCadastraColaborador'])){
     $tipo_cadastro=$_POST['tipo_usuario'];//Tipos de usuário : colaborador
     $email = $_POST['email'];
     $_SESSION['dados_form']['email']=$email;
+    $email = $_POST['nome'];
+    $_SESSION['dados_form']['nome']=$email;
     $telefone=$_POST['telefone'];
     $_SESSION['dados_form']['telefone']=$telefone;
     $cep=$_POST['cep'];
     $_SESSION['dados_form']['cep']=$cep;
-    $endereco=$_POST['rua'];
+    $endereco=$_POST['numero'];
     $_SESSION['dados_form']['endereco']=$endereco;
     $numero=$_POST['numero'];
     $_SESSION['dados_form']['numero']=$numero;
@@ -60,7 +62,7 @@ if(isset($_POST['btnCadastraColaborador'])){
     //$usuario = "colaborador@padrao.com";
     //$status_cadastro = "OK";
 
-if ($tipo_cadastro ="colaborador"){
+if ($tipo_cadastro =="colaborador"){
     $rede_social = null;
     $usuario = "colaborador@padrao.com";
     $status_cadastro = "OK";
@@ -86,10 +88,13 @@ if(isset($_POST['btnCadastraColaborador'])){
 }
 
 if(isset($_POST['btnCadastraColaborador'])){
+    
+    //cadastra usuário
+    $cadastra_usuario = $conecta->query(cadastra_usuario($usuario,$senha));
 
     $cadastra=mysqli_query($conecta, cadastra_dados_gerais($tipo_cadastro,$nome,
     $telefone,$rede_social,$email,$numero,$endereco,$cidade,$estado,$cep,$bairro,
-    $complemento,$fk_user));
+    $complemento,$usuario));
 
     //retorna id cadastro
     $id_cadastro = mysqli_insert_id($conecta);
@@ -108,15 +113,16 @@ if(isset($_POST['btnCadastraColaborador'])){
     //retorna id colaborador
     $id_colaborador = mysqli_insert_id($conecta);
 
-    //cadastra usuário
-    $cadastra_usuario = $conecta->query(cadastra_usuario($usuario,$senha));
+    
 
-    //cadastra usuário
-    $usuario = $_SESSION['usuario']['email'];
-    $cnpj_org = $conecta->query(ret_cnjpj_org($usuario,$senha));
+    /*cadastra usuário*/
+    $id_org = $_SESSION['usuario_org']['id_cadastro'];
+    $cnpj_org = $conecta->query(ret_cnjpj_org($id_org));
+    foreach($cnpj_org as $cnpj){
 
+    }
     //cadastra colaborador na possui_colab
-    $cadastra_possui_colab=mysqli_query($conecta, cadastra_possui_colab($cpf,$cnpj_org,$id_colaborador));
+    $cadastra_possui_colab=mysqli_query($conecta, cadastra_possui_colab($cpf,$cnpj['cnpj'],$id_colaborador));
 
     
 }
