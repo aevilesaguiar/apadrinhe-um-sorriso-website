@@ -35,8 +35,8 @@ if(isset($_POST['btnCadastraColaborador'])){
     $tipo_cadastro=$_POST['tipo_usuario'];//Tipos de usuário : colaborador
     $email = $_POST['email'];
     $_SESSION['dados_form']['email']=$email;
-    $email = $_POST['nome'];
-    $_SESSION['dados_form']['nome']=$email;
+    $nome = $_POST['nome'];
+    $_SESSION['dados_form']['nome']=$nome;
     $telefone=$_POST['telefone'];
     $_SESSION['dados_form']['telefone']=$telefone;
     $cep=$_POST['cep'];

@@ -191,7 +191,7 @@ $(".toggle").on("click", function() {
           <select id="inputState" name="funcao" class="form-select form-control" type="select" required >
               <option value="">Função Colaborador</option>
               <option value="Gerente" >Gerente</option>
-              <option value="Analista_de_cadastro">Analista de Cadastro</option>
+              <option value="Analista de cadastro">Analista de Cadastro</option>
               <option value="Recebedor">Recebedor</option>
               <option value="Entregador">Entregador</option>
                 </select>
