@@ -172,10 +172,7 @@ foreach($dados_pjs as $rows_resp) {?>
       <div class="col" style="text-align: right;">Usuário</div>
       <div class="col"><?php echo $rows_resp['fk_user']; ?></div>
     </div>
-    <div class="row">
-      <div class="col" style="text-align: right;">Senha</div>
-      <div class="col">1234</div>
-    </div>
+
   </div>
               <div class="dist-bot-button"></div>
             

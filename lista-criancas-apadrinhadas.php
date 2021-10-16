@@ -134,7 +134,7 @@ $(".toggle").on("click", function() {
           <td><?php echo $rows_resp['nome']; ?></td>
           <td><?php echo $rows_resp['telefone']; ?></td>
           <td> Sem Apadrinhamento </td>
-          <td>  <a href="aprovar-cadastro-familia.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
+          <td><a href="aprovar-cadastro-familia.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
         </tr>
       <?php }?>
     </tbody>
