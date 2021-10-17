@@ -116,33 +116,75 @@ $(".toggle").on("click", function() {
             <div class="sep-item "></div>
            
    <div class="textos-item " >  
+   <div class="container">
+    <div class="main-body">
+    
+   
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
 
-<div class="row">
-  <div class="col-sm-3">
-  <img src="image/jovemM.jpg" style=" border-radius: 10px 10px 0px 0px;" class="card-img-top"  alt="foto-doador">
-    <div class="card">
-      <div class="card-body" style="line-height: .6;">
-      <table class="table">
-        <thead>
-            <tr>
-                <th scope="col"> Nome</th>
-                <th scope="col"><?php echo $_SESSION['usuario']['nome'];?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <th scope="row">E-mail</th>
-                <td><?php echo $_SESSION['usuario']['email'];?></td>
-            </tr>
-        </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-9">
-    <div class="card">
-      <div class="card-body">
-          <?php
+                <img src= image/logo-empresa.jpg alt="Admin"  max-width="100%" style="border-radius: 2px;" >
+                  
+
+              </div>
+              <div class="card mt-3">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Site</h6>
+                    <span class="text-secondary">https://bootdey.com</span>
+                  </li>
+
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Rede social</h6>
+                  <span class="text-secondary">https://bootdey.com</span> 
+                </li>
+                </ul>
+              </div>
+              
+            </div>
+            
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Nome Completo:</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <?php echo $_SESSION['usuario']['nome'];?>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <?php echo $_SESSION['usuario']['email'];?>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Telefone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <?php echo $_SESSION['usuario']['telefone'];?>
+                    </div>
+                  </div>
+                 
+                
+                </div>
+
+                
+              </div>
+        <div class="row gutters-sm">
+                <div class="col-sm-12 mb-3">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2 ">assignment</i>Status</h6>
+                      <?php
                 $status_cadastro = $conecta->query(consulta_status_cadastro($_SESSION['usuario']['id_cadastro']));
                 foreach($status_cadastro as $status){
                 }
@@ -168,10 +210,17 @@ $(".toggle").on("click", function() {
             }
         }
           ?>
-      </div>
+                     
+                      
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+
     </div>
-  </div>
-</div>
+
+
  
 <div class="dist-menu"></div>
         <table class="table">
