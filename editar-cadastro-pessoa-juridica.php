@@ -113,7 +113,7 @@ $(".toggle").on("click", function() {
         </div>
             <div class="sep-item "></div>
             <div class="dist-menu"></div>
-            <p><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>
+            <p style="text-align: center; margin-bottom: 20px; color: orange;"><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>
    <div class="sobre-dado-fale">      
     <form class="row g-3  dist-mob-form" method="POST" action="php/controle-site/cadastro.php">
       <div class="col-md-4">
