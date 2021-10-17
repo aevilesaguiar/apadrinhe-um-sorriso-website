@@ -114,7 +114,7 @@ foreach($dados_pjs as $rows_resp) {?>
 
     
     <div class="textos-item" > 
-    <p><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>  
+    <p style="text-align: center; margin-bottom:20px; color: orange;" ><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>  
     <div class="container">
     <div class="row">
       <div class="col" style="text-align: right;">CNPJ</div>
@@ -206,7 +206,7 @@ foreach($dados_pjs as $rows_resp) {?>
 
                 }else if($status['status_cadastro']=="RP"){
             ?>
-                <p><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?> </p>
+ 
                 
                 <thead>
         <tr>
