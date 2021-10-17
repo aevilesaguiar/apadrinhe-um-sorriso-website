@@ -111,8 +111,7 @@ $(".toggle").on("click", function() {
       <th scope="col">CPF da Mãe</th>
       <th scope="col">Nome Criança</th>
       <th scope="col">Resp. Organização</th>
-      <th scope="col">Doc Confirmação</th>
-      <th scope="col">Doc Confirmação</th>
+      <th  colspan="2" scope="col">Doc Confirmação</th>
       <th scope="col">Status</th>
     </tr>
   </thead>
@@ -123,7 +122,7 @@ $(".toggle").on("click", function() {
       <td>147.258.369-63</td>
       <td>Lais Maria da Silva</td>
       <td>Fernanda Souza</td>
-      <td> <input class="form-control form-control-lg  " id="formFileLg" type="file" style="height: 60px;"></td>
+      <td> <input class="form-control form-control-lg  " id="formFileLg" type="file" style="height: 60px;"> </td>
       <td> <button class="button-menu-form" type="submit">DOWNLOAD</button> </td>
       <td> <button class="button-menu-form" type="submit">ENTREGUE</button> </td>
     </tr>
