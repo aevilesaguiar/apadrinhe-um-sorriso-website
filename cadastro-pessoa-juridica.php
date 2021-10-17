@@ -49,6 +49,7 @@ $(".toggle").on("click", function() {
 });
     
     </script>
+   
 
 </head>
 
@@ -202,20 +203,18 @@ $(".toggle").on("click", function() {
         <?php echo isset($_SESSION['mensagens_form']['complemento'])?$_SESSION['mensagens_form']['complemento']:""; ?>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-6">
 
         <input type="text" class="form-control" id="inputAddress" name="site" value="<?php echo isset($_SESSION['dados_form']['site'])?$_SESSION['dados_form']['site']:"";?>" placeholder="Site" required>
         <?php echo isset($_SESSION['mensagens_form']['site'])?$_SESSION['mensagens_form']['site']:""; ?>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-6">
 
         <input type="text" class="form-control" id="inputAddress" name="rede_social" value="<?php echo isset($_SESSION['dados_form']['rede_social'])?$_SESSION['dados_form']['rede_social']:"";?>" placeholder="Rede Social" required>
         <?php echo isset($_SESSION['mensagens_form']['rede_social'])?$_SESSION['mensagens_form']['rede_social']:""; ?>
       </div>
-      <div class="col-md-4">
-<input class="form-control form-control-lg  " id="formFileLg" name="foto" type="file" style="height: 60px;">
-</div>
+
  
       <div class="col-md-4">
 
@@ -232,9 +231,24 @@ $(".toggle").on("click", function() {
 
         <input type="password" class="form-control" id="inputPassword4" name="confirm_senha" placeholder="Confirme a  senha" required>
       </div>
-      <input name="tipo_usuario" type="hidden" value="doador_pj"/>
-        <div class="dist-menu-botao"></div>
+      <div class="col-md-2">
+        
+       <label for="" style=" padding-top:30px ">Anexe a sua foto ou logo:</label>
+                
+        </div>
+
+      <div class="col-md-6">
+        
+        <input class="form-control form-control-lg  "id="choose-file" name="foto" type="file" style="height: 58px;">
+        
+        </div>
+        <div class="col-md-4">
+              
+        </div>
+
+
 <div class="sobre-dado-fale dist-menu-botao">
+
   <input class="button-menu-form" type="submit" name="btnCadastraUsuario" value="CADASTRAR">
     </div>
       </div>

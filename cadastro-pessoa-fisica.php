@@ -199,6 +199,20 @@ $(".toggle").on("click", function() {
               <div class="col-md-4">
                 <input type="password" class="form-control" id="inputPassword4" name ="confirm_senha" placeholder="Confirme a  senha" required>
               </div>
+              <div class="col-md-2">
+        
+        <label for="" style=" padding-top:30px ">Anexe a sua foto:</label>
+                 
+         </div>
+ 
+       <div class="col-md-6">
+         
+         <input class="form-control form-control-lg  "id="choose-file" name="foto" type="file" style="height: 58px;">
+         
+         </div>
+         <div class="col-md-4">
+               
+         </div>
 
                 <div class="dist-menu-botao"></div>
         <div class="sobre-dado-fale dist-menu-botao">
