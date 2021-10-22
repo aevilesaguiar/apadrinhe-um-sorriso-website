@@ -123,21 +123,26 @@ $(".toggle").on("click", function() {
           <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
               <div class="card">
-
+                <?php if($_SESSION['usuario']['tipo_cadastro']=="doador_pj"){?>
                 <img src= image/logo-empresa.jpg alt="Admin"  max-width="100%" style="border-radius: 2px;" >
-                  
+                <?php }else if($_SESSION['usuario']['tipo_cadastro']=="doador_pf"){ ?>
+                  <img src= image/jovem.jpg alt="Admin"  max-width="100%" style="border-radius: 2px;" >
+                  <?php }?>
 
               </div>
               <div class="card mt-3">
                 <ul class="list-group list-group-flush">
+                  <?php if($_SESSION['usuario']['site']!==""){?>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Site</h6>
-                    <span class="text-secondary">https://bootdey.com</span>
+                    <span class="text-secondary"><?php echo $_SESSION['usuario']['site']; ?></span>
                   </li>
-
+                    <?php } ?>
+                    <?php if($_SESSION['usuario']['rede_social']!==""){?>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                   <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Rede social</h6>
-                  <span class="text-secondary">https://bootdey.com</span> 
+                  <span class="text-secondary"><?php echo $_SESSION['usuario']['rede_social']; ?></span> 
+                    <?php } ?>
                 </li>
                 </ul>
               </div>
@@ -208,6 +213,9 @@ $(".toggle").on("click", function() {
                 }
             }
             }
+        }else if($status['status_cadastro']=="OK"){?>
+            <p class="text-php-reprovado">Cadastro Aprovado !</p>
+        <?php
         }
           ?>
                      

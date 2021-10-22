@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-function sessao_login($nome,$email,$telefone,$id_cadastro,$tipo_cadastro){ //Inicia sessão de login
+function sessao_login($nome,$email,$telefone,$id_cadastro,$tipo_cadastro,$rede_social,$site){ //Inicia sessão de login
 
     unset($_SESSION['mensagem']);
 
@@ -12,10 +12,12 @@ function sessao_login($nome,$email,$telefone,$id_cadastro,$tipo_cadastro){ //Ini
     $_SESSION['usuario']['telefone'] = $telefone;
     $_SESSION['usuario']['logado'] = true;
     $_SESSION['usuario']['tipo_cadastro'] = $tipo_cadastro;
+    $_SESSION['usuario']['rede_social'] = $rede_social;
+    $_SESSION['usuario']['site'] = $site;
 
 }
 
-function sessao_login_organizacao($nome,$email,$telefone,$id_cadastro,$tipo_cadastro){ //Inicia sessão de login
+function sessao_login_organizacao($nome,$email,$telefone,$id_cadastro,$tipo_cadastro,$rede_social,$site){ //Inicia sessão de login
 
     unset($_SESSION['mensagem']);
 
@@ -26,6 +28,8 @@ function sessao_login_organizacao($nome,$email,$telefone,$id_cadastro,$tipo_cada
     $_SESSION['usuario_org']['telefone'] = $telefone;
     $_SESSION['usuario_org']['logado'] = true;
     $_SESSION['usuario_org']['tipo_cadastro'] = $tipo_cadastro;
+    $_SESSION['usuario_org']['rede_social'] = $rede_social;
+    $_SESSION['usuario_org']['site'] = $site;
 
 }
 
