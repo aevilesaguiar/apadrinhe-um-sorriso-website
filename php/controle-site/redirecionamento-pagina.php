@@ -59,6 +59,7 @@ function redireciona($codpagina){// função que redireciona as paginas do siste
         $pagina = array(
                         16=>'../../aprovar-cadastro-pj.php?codigo='.$cod.'',
                         17=>'../../aprovar-cadastro-pj.php?codigo='.$cod.'#notificacao',
+                        18=>'../../aprovar-cadastro-pf.php?codigo='.$cod.'#notificacao',
     
         );
             header("Location:$pagina[$codpagina]");
