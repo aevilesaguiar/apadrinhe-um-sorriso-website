@@ -4,7 +4,7 @@
 
     $host = "LOCALHOST"; //Servidor
     $usuario = "root"; //Usuário do Servidor
-    $senha = "usbw"; //Senha do servidor
+    $senha = ""; //Senha do servidor
     $banco="doe_um_sorriso"; //Nome do banco
 
     $conecta = new mysqli($host,$usuario,$senha,$banco);
@@ -12,12 +12,10 @@
 
  $id_cadastro= $_GET['codigo']; 
 
- $search = "SELECT a.cpf, b.nome, b.e_mail, b.telefone, b.logradouro, 
-                    b.numendereco, b.bairro, b.complemento, b.cep, b.cidade, 
-                    b.estado, b.rede_social, b.fk_user, b.id_cadastro 
-                    FROM dados_pf a 
-                    INNER JOIN perfil b 
-                    ON b.id_cadastro = a.fk_id_cadastro 
+ $search = "SELECT a.*,b.* 
+                    FROM perfil b  
+                    INNER JOIN dados_pf a
+                    ON a.fk_id_cadastro =b.id_cadastro
 
                     WHERE b.tipo_cadastro='doador_pf' AND b.id_cadastro = '$id_cadastro'";
 $result_search = mysqli_query($conecta, $search);

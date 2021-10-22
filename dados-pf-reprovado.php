@@ -94,14 +94,15 @@ $(".toggle").on("click", function() {
           <div class="sep-item "></div>
           <div class="dist-menu"></div>
           <div class="textos-item">     
-     <form class="row g-3  dist-mob-form">
+     <form class="row g-3  dist-mob-form" method="POST" action="php/controle-organizacao/aprovar-cadastro-doador-pj-org.php">
           
             <div class="col-md-12">
-              <textarea type="mensagem" class="form-control" aria-label="With textarea"  placeholder="Observação" style="height: 120px;"></textarea>
+            <textarea type="text" name="mensagem" class="form-control" aria-label="With textarea"  placeholder="Observação" style="height: 120px;"></textarea>
+            <input type="hidden" name="codigo"value="<?php echo $_GET['codigo']; ?>"/>
             </div>
             <div class="dist-menu-botao"></div>
             <div class="sobre-dado-fale dist-menu-botao">
-              <input class="button-menu-form" type="submit" value="ENVIAR">
+            <input class="button-menu-form" name="btnReprovar" type="submit" value="ENVIAR">
       </div>
  </form>
     <div class="dist-menu"></div>
