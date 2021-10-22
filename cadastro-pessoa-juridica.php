@@ -232,7 +232,7 @@ $(".toggle").on("click", function() {
         <input type="password" class="form-control" id="inputPassword4" name="confirm_senha" placeholder="Confirme a  senha" required>
       </div>
       <div class="col-md-2">
-        
+      <input name="tipo_usuario" type="hidden" value="doador_pj"/>
        <label for="" style=" padding-top:30px ">Anexe a sua foto ou logo:</label>
                 
         </div>
