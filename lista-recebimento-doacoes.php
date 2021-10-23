@@ -128,28 +128,12 @@ $(".toggle").on("click", function() {
       <td><?php echo $rows_resp['nome_crianca']; ?></td>
       <td>Pendente</td>
    
-     <td> <a href="confirmacao-organizacao-doacao.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a></td>
+     <td> <a href="confirmacao-organizacao-doacao.php?id_doacao=<?php echo $rows_resp['id_doacao'];?>"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a></td>
     
     </td>
     </tr>
     <?php }?>
   </tbody>
-
-  <tbody>
-  <?php while($rows_resp = mysqli_fetch_assoc($result_search2)) {?>
-    <tr>
-      <th scope="row"><?php echo $rows_resp['id_doacao']; ?></th>
-      <td><?php echo $rows_resp['nome']; ?></td>
-      <td><?php echo $rows_resp['nome_crianca']; ?></td>
-      <td>Finalizada</td>
-   
-     <td> <a href="confirmacao-organizacao-doacao.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a></td>
-    
-    </td>
-    </tr>
-    <?php }?>
-  </tbody>
-
 </table>
    </div>
    <div class="dist-bot-button"></div>
