@@ -17,6 +17,7 @@ function redireciona($codpagina){// função que redireciona as paginas do siste
                     13 =>'../../index.php#contato',
                     14 =>'../../editar-cadastro-pessoa-juridica.php',
                     15 =>'../../index.php#newsletter',
+                    16 =>'../../lista-recebimento-doacoes.php',
 
     );
         header("Location:$pagina[$codpagina]");
@@ -60,6 +61,7 @@ function redireciona($codpagina){// função que redireciona as paginas do siste
                         16=>'../../aprovar-cadastro-pj.php?codigo='.$cod.'',
                         17=>'../../aprovar-cadastro-pj.php?codigo='.$cod.'#notificacao',
                         18=>'../../aprovar-cadastro-pf.php?codigo='.$cod.'#notificacao',
+                        19=>'../../confirmacao-organizacao-doacao.php?id_doacao='.$cod.'',
     
         );
             header("Location:$pagina[$codpagina]");
