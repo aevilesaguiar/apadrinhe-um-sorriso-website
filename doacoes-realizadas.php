@@ -166,13 +166,13 @@ $(".toggle").on("click", function() {
             <tbody>
                 <tr>
                 <th scope="row">Data de entrega do presente para criança</th>
-                <td><?php echo $doacoes['data_hora_recebimento']==null?"":inverte_data($doacoes['data_hora_recebimento']);?></td>
+                <td><?php echo $doacoes['data_hora_entrega']==null?"":inverte_data($doacoes['data_hora_entrega']);?></td>
             </tr>
         </tbody>
             <tbody>
                 <tr>
                 <th scope="row">Presente Entregue na ONG</th>
-                <td><?php echo $doacoes['data_hora_entrega']==null?"":inverte_data($doacoes['data_hora_entrega']);?></td>
+                <td><?php echo $doacoes['data_hora_recebimento']==null?"":inverte_data($doacoes['data_hora_recebimento']);?></td>
             </tr>
         </tbody>
         <tbody>
@@ -201,7 +201,7 @@ $(".toggle").on("click", function() {
         ?>
         <p class="text-php-aprovado"> Agradecemos a sua Doação!</p>
         <?php
-            }else if($doacoes['status_doacao']=="PENDENTE"){
+            }else if($doacoes['status_doacao']=="REPROVADO"){
                 $notificacao = $conecta->query(consulta_mensagem_doacao($doacoes['id_doacao']));
 
                 if($notificacao->num_rows>=1){
