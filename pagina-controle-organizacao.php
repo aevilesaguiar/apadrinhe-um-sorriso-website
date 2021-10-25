@@ -263,7 +263,7 @@ $(".toggle").on("click", function() {
         </tbody>
         <tbody>
                 <tr>
-                <th scope="col"> <a href="cadastro-familia.php" target=_blank class="text4">Cadastrar</a></th>
+                <th scope="col"> <a href="cadastro-familia.php" target=_blank class="text4">Cadastrar Familia</a></th>
 
             </tr>
         </tbody>
