@@ -103,8 +103,18 @@ $(".toggle").on("click", function() {
     
     $doacao = $conecta->query(consulta_doacao($id_doacao));
 
-    foreach($doacao as $dados){
+    foreach($doacao as $dados){}
 
+    $doador = $conecta->query(consulta_doador($dados['fk_id_doacao']));
+
+    foreach($doador as $nome){}
+
+    if($nome['tipo_cadastro']=="doador_pj"){
+            $numero=cnpj($nome['id_cadastro']);
+            $tipo_doc="CNPJ";
+    }else if($nome['tipo_cadastro']=="doador_pf"){
+            $numero=cpf($nome['id_cadastro']);
+            $tipo_doc="CPF";
     }
 
     if($doacao->num_rows>=1){
@@ -124,19 +134,19 @@ $(".toggle").on("click", function() {
             
    <div class="textos-item myDivToPrint" >   
    <div class="container">
-
+   <p style="text-align: center; margin-bottom:20px; color: orange;" ><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>  
    <div class="col-md-12">
       <div class="col-md-12">
-    <p class="text4 " style="text-align: left; margin-bottom:30px;  font-weight: 600; font-size:1.5em; ">Doação <?php echo $dados['fk_id_doacao'];?></p>
+    <p class="text4 " style="text-align: left; margin-bottom:30px;  font-weight: 600; font-size:1.5em; ">Doação <?php echo $dados['fk_id_doacao'];?></p>    
       </div>
       <div class="col-md-12">
     <p class="text4 " style="text-align: left; margin-bottom:30px;  font-weight: 600; font-size:1.5em; "></p>
       </div>
       <div class="col-md-12">
-    <p style="text-align: left; margin-bottom:30px;  font-weight: 600; font-size:1.5em; ">Doador :</p>
-    <p style="text-align: left; margin-bottom:30px;  font-weight: 600; font-size:1.5em; ">CPF:
-    <br>
-    <br></p>
+    <p style="text-align: left; margin-bottom:30px;  font-weight: 600; font-size:1.5em; ">Doador : <?php echo $nome['nome'];?></p>
+   </p>
+    <p style="text-align: left; margin-bottom:30px;  font-weight: 600; font-size:1.5em; "><?php echo $tipo_doc." : ".$numero;?></p>
+    </p>
       </div>
       <div class="dist-menu"></div>
 
@@ -214,8 +224,8 @@ $(".toggle").on("click", function() {
             <div class="dist-bot-button"></div>
             <div class="btn-info-geral">
            <div class="alt-form"></div>
-          <a href=""><button class="button-menu-form">APROVAR DOAÇÃO</button></a>
-          <a href=""><button class="button-menu-form">REPROVAR DOAÇÃO</button></a>
+          <a href="php/controle-organizacao/aprovar-cadastro-doador-pj-org.php?btnAprovarDoacao=<?php echo $_GET['id_doacao'];?>"><button class="button-menu-form">APROVAR DOAÇÃO</button></a>
+          <a href="reprovar-doacao.php?codigo=<?php echo $_GET['id_doacao'];?>"><button class="button-menu-form">REPROVAR DOAÇÃO</button></a>
          <button class="button-menu-form" type="submit" onclick="window.print()">IMPRIMIR DOAÇÃO</button>
           </div>
         </div>
@@ -229,6 +239,56 @@ $(".toggle").on("click", function() {
     echo "<br/>Sem doação no momento";
 
 } ?>
+<table class="table" >
+    
+    <?php
+                $status_cadastro = $conecta->query(consulta_status_doacao($_GET['id_doacao']));
+                foreach($status_cadastro as $status){
+                }
+            ?>
+                
+                    <?php
+
+                if($status['status_doacao']!=="FINALIZADO"){
+            ?>
+ 
+                
+                <thead>
+        <tr>
+        <th colspan="3" style="text-align: center;">Notificações Doador : </th>
+    </tr>
+            <tr>
+                <th scope="col"> Mensagem</th>
+                <th scope="col">STATUS</th>
+                </tr>
+            </thead><tbody>
+            <?php
+                
+                $mensagens = $conecta->query(consulta_mensagem_doacao($_GET['id_doacao']));
+
+                if($conta=$mensagens->num_rows>=1){
+                foreach($mensagens as $status_mensagem){
+                    if($status_mensagem['status_sistema']!=="FINALIZADO"){
+            ?>
+                <form  method="POST" action='php/controle-organizacao/aprovar-cadastro-doador-pj-org.php'>
+                <tr>
+                <td scope="col"> <?php echo $status_mensagem['mensagem']; ?></td>
+                <td scope="row"><?php echo $status_mensagem['status_sistema']; ?></td>
+                <td><input name="btnResolvidoDoacao" type="submit" value="RESOLVIDO"/></td>
+                <input type="hidden" name="id_mensagem" value=" <?php echo $status_mensagem['id_mensagem'];?>"/>
+                <input type="hidden" name="id_doacao" value="<?php echo $_GET['id_doacao']; ?>"/>
+               
+                    </form>
+            </tr>
+        
+            <?php
+                }
+            }
+            }
+
+          }
+        
+          ?>   </tbody> </table>
 <footer >
     <div class="sep-item-footer-1"></div>
     <div class="sobre-dado-footer">

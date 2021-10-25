@@ -22,6 +22,20 @@
             return $select;
     }
 
+    function cpf($id_cadastro){
+        include "php/geral/conexao-banco.php"; 
+        $select ='SELECT * FROM dados_pf where fk_id_cadastro="'.$id_cadastro.'"';
+        $dados_pf = $conecta->query($select);
+
+        if($conta=$dados_pf->num_rows==1){
+        foreach($dados_pf as $cpf){
+            return $cpf['cpf'];
+        }
+    }else{
+        return "";
+    }
+    }
+
     function cnpj($id_cadastro){
             include "php/geral/conexao-banco.php"; 
             $select ='SELECT * FROM dados_pj where fk_id_cadastro="'.$id_cadastro.'"';
@@ -68,6 +82,11 @@
          where id_cadastro="'.$id_cadastro.'"';
             return $select;
     }
+    function consulta_status_doacao($id_doacao){
+        $select = 'SELECT status_doacao FROM doacao
+         where id_doacao="'.$id_doacao.'"';
+            return $select;
+    }
 
     function consulta_mensagem($id_cadastro){
         $select = 'SELECT id.status_cadastro,ms.id_mensagem,ms.status_sistema,ms.mensagem FROM perfil id 
@@ -78,7 +97,7 @@
     }
 
     function consulta_mensagem_doacao($id_doacao){
-        $select = 'SELECT ms.mensagem,MS.status_sistema FROM doacao d 
+        $select = 'SELECT ms.mensagem,MS.status_sistema,ms.id_mensagem FROM doacao d 
         inner join doa_exibe de on de.fk_id_doacao=d.id_doacao
         inner join mensagem_sistema ms on ms.id_mensagem=de.fk_id_mensagem
         where d.id_doacao="'.$id_doacao.'"';
@@ -98,5 +117,25 @@
         inner join usuario u on u.user=p.fk_user where p.id_cadastro="'.$id_cadastro.'"';
 
         return $select;
+    }
+
+    function consulta_doador($id_doacao){
+         //Seleciona doações referente a organização logada
+  $search = 'SELECT re.nome, b.nome_crianca, c.id_doacao,re.tipo_cadastro,re.id_cadastro
+  FROM perfil a
+  INNER JOIN gerencia d
+  ON d.fk_id_cadastro=a.id_cadastro
+  INNER JOIN realiza r
+  ON r.fk_id_doacao=d.fk_id_doacao
+  INNER JOIN perfil re
+  ON re.id_cadastro=r.fk_id_cadastro
+  INNER JOIN doacao c
+  ON c.id_doacao = d.fk_id_doacao
+  INNER JOIN dados_crianca b
+  ON b.rg_crianca = c.fk_rg_crianca
+  
+  WHERE c.data_hora_recebimento IS NULL AND r.fk_id_doacao="'.$id_doacao.'"';
+
+return $search;
     }
 ?>

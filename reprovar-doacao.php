@@ -1,10 +1,8 @@
 <?php
-    include 'php/geral/conexao-banco.php';
+    include "php/controle-organizacao/dados-aprovacao-doador-pf-org.php";
     include "php/controle-organizacao/sessao-org.php"; 
-    include "php/controle-organizacao/listagem-recebimento-doacoes-org.php";
-    
+    include "php/controle-site/consulta.php";
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -61,7 +59,7 @@ $(".toggle").on("click", function() {
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
- <title> Lista Recebimento Doações- APADRINHE UM SORRISO </title>
+ <title>Dados PJ Reprovado - APADRINHE UM SORRISO </title>
 </head>
 <body>
  <header class="menu-bg">
@@ -72,8 +70,7 @@ $(".toggle").on("click", function() {
                  </a>
                  </div> 
 
-              
-             <nav class="menu-nav"><!--flexitem é o nav-->
+                 <nav class="menu-nav"><!--flexitem é o nav-->
                 <ul>
                     <li class="item"><a href="index.php">INÍCIO</a></li>
                     <li class="item menu-sep"><a href="index.php">SOBRE NÓS</a></li>
@@ -91,54 +88,31 @@ $(".toggle").on("click", function() {
 
 
             </nav>
-         
-           
         </div>
 </header>
-
-
 <main class="main-board dist-mob-form">
     <div class="dist-menu"></div>
-<div class="p-doar">
-
-<div class="altura-doar ">
-
-            <h2>LISTA DE RECEBIMENTO DOAÇÕES</h2>
+    <div class="p-doar">
+    <div class="altura-doar ">
+            <h2>REPROVAR DOAÇÃO</h2>
         </div>
-            <div class="sep-item "></div>
-            <div class="dist-menu"></div>
-            
-   <div class="textos-item">   
-   <p style="text-align: center; margin-bottom:20px; color: orange;" ><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>  
-<table class="table">
-  <thead>
-  <tr>
-      <th scope="col">Cód</th>
-      <th scope="col">Nome Doador</th>
-      <th scope="col">Nome Criança</th>
-      <th scope="col">Status Recebimento</th>
-      <th scope="col">Visualizar Dados</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php while($rows_resp = mysqli_fetch_assoc($result_search)) {?>
-    <tr>
-      <th scope="row"><?php echo $rows_resp['id_doacao']; ?></th>
-      <td><?php echo $rows_resp['nome']; ?></td>
-      <td><?php echo $rows_resp['nome_crianca']; ?></td>
-      <td>Pendente</td>
-   
-     <td> <a href="confirmacao-organizacao-doacao.php?id_doacao=<?php echo $rows_resp['id_doacao'];?>"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a></td>
-    
-    </td>
-    </tr>
-    <?php }?>
-  </tbody>
-</table>
-   </div>
-   <div class="dist-bot-button"></div>
+          <div class="sep-item "></div>
+          <div class="dist-menu"></div>
+          <div class="textos-item">     
+     <form class="row g-3  dist-mob-form" method="POST" action="php/controle-organizacao/aprovar-cadastro-doador-pj-org.php">
+          
+            <div class="col-md-12">
+              <textarea type="text" name="mensagem" class="form-control" aria-label="With textarea"  placeholder="Observação" style="height: 120px;"></textarea>
+              <input type="hidden" name="codigo"value="<?php echo $_GET['codigo']; ?>"/>
+            </div>
+            <div class="dist-menu-botao"></div>
+            <div class="sobre-dado-fale dist-menu-botao">
+              <input class="button-menu-form" name="btnReprovarDoacao" type="submit" value="ENVIAR">
+      </div>
+ </form>
+    <div class="dist-menu"></div>
+</div>
 </main>
-
 <footer >
     <div class="sep-item-footer-1"></div>
     <div class="sobre-dado-footer">
