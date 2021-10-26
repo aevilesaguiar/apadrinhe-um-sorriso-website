@@ -1,3 +1,7 @@
+<?php 
+  include 'php/geral/conexao-banco.php';
+  include "php/controle-organizacao/sessao-org.php"; 
+  include 'php/controle-organizacao/listagem-criancas-apadrinhadas-org.php';?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
