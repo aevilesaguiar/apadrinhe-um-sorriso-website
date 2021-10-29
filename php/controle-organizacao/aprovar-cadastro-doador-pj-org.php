@@ -149,6 +149,40 @@ if(isset($_GET['codigo'])){
           redireciona_get(19,$id_doacao);
           sessao_mensagem(mensagem(33));
     }
+}else if($_POST['btnCadastraEntrega']){
+  
+  $termo_arq = $_FILES['termo_arq'];
+  echo "<pre>";
+    print_r($_FILES);
+    echo "</pre>";
+  
+    if($termo_arq !==null) {
+
+        preg_match("/\.(pdf|jpeg|png|jpg){1}$/i", $termo_arq["name"], $ext);
+        //gera um nome ramdomico para a imagem
+
+            if ($ext == true) {
+
+            $nome_arq = md5(uniqid(time())) . "." . $ext[1];
+
+            $path_arq = "documentos/" . $nome_arq;
+
+            move_uploaded_file($termo_arq["tmp_name"], $path_arq);
+
+
+        }
+    }
+    $nome_arq=explode("/",$path_arq);
+    $data=data_hora();
+    $id_doacao=$_POST['id_doacao'];
+
+    $altera = 'UPDATE doacao SET status_doacao = "FINALIZADO",data_hora_entrega="'.$data.'",doc_confirmacao="'.$nome_arq[1].'" WHERE id_doacao="'.$id_doacao.'"';
+    $resultado=mysqli_query($conecta, $altera);
+
+    redireciona(17);
+    sessao_mensagem(mensagem(34));
+
+
 }
 
 ?>

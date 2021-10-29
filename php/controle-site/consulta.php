@@ -138,4 +138,28 @@
 
 return $search;
     }
+
+    function consulta_entrega_doacao($id_organizacao){//Função seleciona todas as entregas pendentes da organização
+        $search = 'SELECT df.cpf,re.nome, b.nome_crianca, c.id_doacao,c.data_hora_entrega,c.doc_confirmacao
+                FROM perfil a
+                INNER JOIN gerencia d
+                ON d.fk_id_cadastro=a.id_cadastro
+                INNER JOIN realiza r
+                ON r.fk_id_doacao=d.fk_id_doacao
+                INNER JOIN perfil re
+                ON re.id_cadastro=r.fk_id_cadastro
+                INNER JOIN doacao c
+                ON c.id_doacao = d.fk_id_doacao
+                INNER JOIN dados_crianca b
+                ON b.rg_crianca = c.fk_rg_crianca
+                INNER JOIN possui_cri pc
+                ON pc.fk_rg_crianca=b.rg_crianca
+                INNER JOIN dados_responsavel dr
+                ON dr.id_familia=pc.fk_id_familia
+                INNER JOIN dados_pf df
+                ON df.fk_id_cadastro=dr.fk_id_cadastro
+                
+                WHERE c.data_hora_recebimento IS NOT NULL AND d.fk_id_cadastro="'.$id_organizacao.'"';
+        return $search;
+    }
 ?>
