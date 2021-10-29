@@ -18,6 +18,7 @@ function redireciona($codpagina){// função que redireciona as paginas do siste
                     14 =>'../../editar-cadastro-pessoa-juridica.php',
                     15 =>'../../index.php#newsletter',
                     16 =>'../../lista-recebimento-doacoes.php',
+                    17=>'../../lista-confirmacao-de-entrega.php',
 
     );
         header("Location:$pagina[$codpagina]");

@@ -38,6 +38,7 @@ function mensagem($codmsg){
                         32=>'A doação foi reprovada e doador foi notificado! </br>
                         As mensagens enviadas para o doador serão exibidas aqui, abaixo dos dados cadastrais do doador.',
                         33=>'Notificação resolvida !',
+                        34=>'Entrega registrada com sucesso !',
 
                     );
 
