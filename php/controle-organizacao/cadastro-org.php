@@ -168,9 +168,10 @@ if(isset($_POST['btnCadastraFamilia'])){
     //retorna id familia
     $id_cadastro_familia = mysqli_insert_id($conecta);
 
+    $nome_arq=explode("/",$path_arq);
     //cadastra no banco dados da crianca
     $cadastra_crianca=$conecta->query(cadastra_crianca($rg_crianca,$nome_crianca,$sexo,$nasc_crianca,$tamanho_camiseta,$tamanho_sapato,$tamanho_calca
-    ,$sug_presente,$termo_arq['name'],$observacao));
+    ,$sug_presente,$nome_arq[1],$observacao));
 
     //cadastra na tabela possui cri
     $cadastra_possui_crianca=mysqli_query($conecta, possui_crianca($rg_crianca,$id_cadastro_familia));
