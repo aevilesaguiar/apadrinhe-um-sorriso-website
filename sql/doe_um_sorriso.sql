@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 16-Out-2021 às 00:20
+-- Tempo de geração: 30-Out-2021 às 00:54
 -- Versão do servidor: 5.7.31
 -- versão do PHP: 7.1.33
 
@@ -60,7 +60,10 @@ INSERT INTO `cadastra` (`fk_rg_crianca`, `fk_id_cadastro`) VALUES
 ('44.444.444-4', 55),
 ('54.545.545-5', 1),
 ('25.256.236-3', 55),
-('25.665.869-5', 79);
+('25.665.869-5', 79),
+('55.265.554-5', 79),
+('44.444.444-4', 56),
+('69.313.645-8', 79);
 
 -- --------------------------------------------------------
 
@@ -75,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `colaborador` (
   `fk_id_cadastro` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_colaborador`),
   KEY `fk_id_cadastro` (`fk_id_cadastro`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `colaborador`
@@ -85,7 +88,8 @@ INSERT INTO `colaborador` (`id_colaborador`, `funcao`, `fk_id_cadastro`) VALUES
 (13, 'Gerente', 70),
 (14, 'Gerente', 74),
 (15, 'Entregador', 75),
-(16, 'Analista de Cadastro', 76);
+(16, 'Analista de Cadastro', 76),
+(17, 'Gerente', 82);
 
 -- --------------------------------------------------------
 
@@ -119,7 +123,9 @@ INSERT INTO `dados_crianca` (`rg_crianca`, `nome_crianca`, `sexo`, `nasc_crianca
 ('44.444.545-4', 'Jessica', 'F', '2010-05-10', '8', '25.5', '10', 'Tenis', '1-programacao_aplicativos_mobile_li__agenda_1_mergulhando.pdf', 'gfg'),
 ('44.878.787-8', 'Orlando', 'M', '2015-03-10', '16', '26', '14', 'Carrinho de controle remoto', '1-agenda_09_ds_2.pdf', 'uuiu'),
 ('54.545.545-5', 'Cintia', 'F', '2021-02-10', '12', '16', '10', 'tenis', '1-ptcc_ag11.pdf', 'dsdsd'),
-('58.999.989-9', 'Josuel', 'F', '2021-11-05', '14', '26.5', '16', 'Super Man', '5-ptcc_agenda05.pdf', 'lkl');
+('55.265.554-5', 'Layan', 'M', '2015-05-10', '8', '24.5', '12', 'dfdf', 'jose_guilherme_ag5_recup_ti_iii.pdf', 'fggfh'),
+('58.999.989-9', 'Josuel', 'F', '2021-11-05', '14', '26.5', '16', 'Super Man', '5-ptcc_agenda05.pdf', 'lkl'),
+('69.313.645-8', 'Samuel', 'M', '2015-06-02', 'M', '15', 'M', 'Tenis', 'jose_guilherme_ag5_recup_ti_iii.pdf', 'sds');
 
 -- --------------------------------------------------------
 
@@ -141,7 +147,9 @@ CREATE TABLE IF NOT EXISTS `dados_pf` (
 --
 
 INSERT INTO `dados_pf` (`cpf`, `rg`, `fk_id_cadastro`) VALUES
+('278.272.777-77', '0000000000', 82),
 ('525.699.999-99', '0000000000', 75),
+('526.969.556-99', '0000000000', 84),
 ('544.545.454-54', '0000000000', 77),
 ('544.545.455-82', '0000000000', 70),
 ('545.445.454-54', '0000000000', 57),
@@ -151,6 +159,7 @@ INSERT INTO `dados_pf` (`cpf`, `rg`, `fk_id_cadastro`) VALUES
 ('552.225.588-88', '0000000000', 74),
 ('565-656-659-95', '0000000', 2),
 ('565.455.455-55', '0000000000', 78),
+('585.288.855-55', '0000000000', 83),
 ('848.487.887-87', '0000000000', 51),
 ('858.595.445-85', '0000000000', 73),
 ('888.787.878-78', '0000000000', 50);
@@ -181,6 +190,7 @@ INSERT INTO `dados_pj` (`cnpj`, `nome_fantasia`, `site`, `tipo_pj`, `inf_recebim
 ('25.454.545/4545-45', 'Doe&Viva', 'www.doeparavida.com.br', 'OUTROS', '20:43:11', 55),
 ('51.154.454/5454-53', 'CARGIL LTDA', 'www.cargil.com.br', 'INDUSTRIA', '41:02:42', 54),
 ('51.154.454/5454-54', 'DSM', 'www.dsm.com.br', 'PRODUTOR RURAL', '20:43:11', 53),
+('54.545.445/5454-54', 'RUMO', 'www.rumo.com.br', 'TRANSPORTE', '20:43:11', 81),
 ('58.484.488/4848-88', 'MDL', 'www.mdl-brasil.com.br', 'INDUSTRIA', '20:43:11', 1),
 ('85.858.585/6222-22', 'Nova Vida', 'www.novavida.com', 'COMUNICAÃ‡ÃƒO', '20:43:11', 79);
 
@@ -198,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `dados_responsavel` (
   `fk_id_cadastro` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_familia`),
   KEY `fk_id_cadastro` (`fk_id_cadastro`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `dados_responsavel`
@@ -210,7 +220,9 @@ INSERT INTO `dados_responsavel` (`id_familia`, `cpf_resp`, `nome_resp`, `fk_id_c
 (41, '444.545.454-54', 'Manoel', 52),
 (42, '544.545.588-78', 'Joao MAnoel', 56),
 (43, '554.548.885-8', 'Augusto', 77),
-(44, '526.363.636-33', 'Ramuel', 78);
+(44, '526.363.636-33', 'Ramuel', 78),
+(45, '256.585.445-85', 'Raimundo', 83),
+(46, '639.645.896-64', 'Afonso', 84);
 
 -- --------------------------------------------------------
 
@@ -227,26 +239,33 @@ CREATE TABLE IF NOT EXISTS `doacao` (
   `data_hora_recebimento` datetime DEFAULT NULL,
   `tipo_presente` varchar(45) DEFAULT NULL,
   `fk_rg_crianca` varchar(12) DEFAULT NULL,
+  `doc_confirmacao` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_doacao`),
   KEY `fk_rg_crianca` (`fk_rg_crianca`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `doacao`
 --
 
-INSERT INTO `doacao` (`id_doacao`, `status_doacao`, `data_hora_entrega`, `data_hora_selecao`, `data_hora_recebimento`, `tipo_presente`, `fk_rg_crianca`) VALUES
-(5, 'PENDENTE', NULL, '2021-10-12 22:10:00', NULL, 'KIT COMPLETO', '44.444.545-4'),
-(6, 'PENDENTE', NULL, '2021-10-12 22:10:57', NULL, 'KIT SIMPLES', '58.999.989-9'),
-(7, 'PENDENTE', NULL, '2021-10-12 23:10:49', NULL, 'KIT SIMPLES', '44.444.545-4'),
-(8, 'PENDENTE', NULL, '2021-10-12 23:10:22', NULL, 'KIT SIMPLES', '44.444.545-4'),
-(9, 'PENDENTE', NULL, '2021-10-12 23:10:10', NULL, 'KIT COMPLETO', '44.444.444-4'),
-(10, 'PENDENTE', NULL, '2021-10-12 23:10:20', NULL, 'KIT SIMPLES', '44.444.545-4'),
-(11, 'PENDENTE', NULL, '2021-10-12 23:10:27', NULL, 'KIT SIMPLES', '44.444.444-4'),
-(12, 'PENDENTE', NULL, '2021-10-15 20:10:03', NULL, 'KIT SIMPLES', '54.545.545-5'),
-(13, 'PENDENTE', NULL, '2021-10-15 20:10:35', NULL, 'KIT SIMPLES', '25.256.236-3'),
-(14, 'PENDENTE', NULL, '2021-10-15 20:10:58', NULL, 'KIT COMPLETO', '25.665.869-5'),
-(15, 'PENDENTE', NULL, '2021-10-15 20:10:30', NULL, 'KIT COMPLETO', '25.665.869-5');
+INSERT INTO `doacao` (`id_doacao`, `status_doacao`, `data_hora_entrega`, `data_hora_selecao`, `data_hora_recebimento`, `tipo_presente`, `fk_rg_crianca`, `doc_confirmacao`) VALUES
+(22, 'PENDENTE', NULL, '2021-10-22 20:10:30', '2021-10-25 00:10:14', 'KIT COMPLETO', '25.665.869-5', NULL),
+(23, 'PENDENTE', NULL, '2021-10-22 20:10:25', '2021-10-24 22:10:45', 'KIT SIMPLES', '58.999.989-9', NULL),
+(24, 'PENDENTE', NULL, '2021-10-22 20:10:22', '2021-10-25 00:10:21', 'KIT SIMPLES', '25.665.869-5', NULL),
+(25, 'PENDENTE', NULL, '2021-10-22 20:10:56', '2021-10-24 22:10:51', 'KIT SIMPLES', '58.999.989-9', NULL),
+(26, 'PENDENTE', NULL, '2021-10-22 21:10:42', '2021-10-24 22:10:03', 'KIT SIMPLES', '44.444.545-4', NULL),
+(27, 'PENDENTE', NULL, '2021-10-22 21:10:16', '2021-10-25 00:10:24', 'KIT SIMPLES', '25.665.869-5', NULL),
+(28, 'PENDENTE', NULL, '2021-10-24 21:10:03', '2021-10-25 00:10:41', 'KIT COMPLETO', '25.665.869-5', NULL),
+(29, 'PENDENTE', NULL, '2021-10-24 22:10:07', '2021-10-24 22:10:32', 'KIT COMPLETO', '44.444.545-4', NULL),
+(30, 'PENDENTE', NULL, '2021-10-24 22:10:05', '2021-10-25 00:10:46', 'KIT SIMPLES', '25.665.869-5', NULL),
+(31, 'PENDENTE', NULL, '2021-10-24 22:10:32', '2021-10-24 22:10:38', 'KIT SIMPLES', '44.444.545-4', NULL),
+(32, 'PENDENTE', NULL, '2021-10-24 22:10:52', '2021-10-25 23:10:18', 'KIT SIMPLES', '44.444.545-4', NULL),
+(33, 'PENDENTE', NULL, '2021-10-25 00:10:55', '2021-10-25 00:10:59', 'KIT SIMPLES', '25.665.869-5', NULL),
+(34, 'PENDENTE', NULL, '2021-10-25 00:10:19', '2021-10-25 00:10:49', 'KIT COMPLETO', '55.265.554-5', NULL),
+(35, 'PENDENTE', NULL, '2021-10-25 23:10:20', '2021-10-25 23:10:29', 'KIT COMPLETO', '44.878.787-8', NULL),
+(36, 'PENDENTE', NULL, '2021-10-25 23:10:08', '2021-10-25 23:10:58', 'KIT SIMPLES', '69.313.645-8', NULL),
+(37, 'REPROVADO', NULL, '2021-10-25 23:10:58', NULL, 'KIT SIMPLES', '69.313.645-8', NULL),
+(38, 'PENDENTE', NULL, '2021-10-25 23:10:00', NULL, 'KIT SIMPLES', '54.545.545-5', NULL);
 
 -- --------------------------------------------------------
 
@@ -261,6 +280,25 @@ CREATE TABLE IF NOT EXISTS `doa_exibe` (
   KEY `fk_id_doacao` (`fk_id_doacao`),
   KEY `fk_id_mensagem` (`fk_id_mensagem`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `doa_exibe`
+--
+
+INSERT INTO `doa_exibe` (`fk_id_doacao`, `fk_id_mensagem`) VALUES
+(28, 58),
+(28, 59),
+(28, 60),
+(22, 61),
+(30, 62),
+(22, 65),
+(22, 66),
+(22, 67),
+(22, 68),
+(22, 69),
+(27, 70),
+(27, 71),
+(37, 73);
 
 -- --------------------------------------------------------
 
@@ -297,17 +335,23 @@ CREATE TABLE IF NOT EXISTS `gerencia` (
 --
 
 INSERT INTO `gerencia` (`fk_id_doacao`, `fk_id_cadastro`) VALUES
-(5, 1),
-(6, 1),
-(7, 1),
-(8, 1),
-(9, 55),
-(10, 1),
-(11, 55),
-(12, 1),
-(13, 55),
-(14, 79),
-(15, 79);
+(22, 79),
+(23, 1),
+(24, 79),
+(25, 1),
+(26, 1),
+(27, 79),
+(28, 79),
+(29, 1),
+(30, 79),
+(31, 1),
+(32, 1),
+(33, 79),
+(34, 79),
+(35, 1),
+(36, 79),
+(37, 79),
+(38, 1);
 
 -- --------------------------------------------------------
 
@@ -321,7 +365,7 @@ CREATE TABLE IF NOT EXISTS `mensagem_sistema` (
   `status_sistema` varchar(10) DEFAULT NULL,
   `mensagem` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_mensagem`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `mensagem_sistema`
@@ -341,8 +385,51 @@ INSERT INTO `mensagem_sistema` (`id_mensagem`, `status_sistema`, `mensagem`) VAL
 (26, 'FINALIZADO', 'ghhgh'),
 (27, 'FINALIZADO', 'okjji'),
 (28, 'FINALIZADO', 'erer'),
-(29, 'PENDENTE', 'wewe'),
-(30, 'PENDENTE', 'sdsd');
+(29, 'FINALIZADO', 'wewe'),
+(30, 'FINALIZADO', 'sdsd'),
+(31, 'FINALIZADO', 'CNPJ Inexistente'),
+(32, 'FINALIZADO', 'CNPJ INVÃLIDO\r\n'),
+(33, 'FINALIZADO', 'sdsd'),
+(34, 'FINALIZADO', 'SDSD'),
+(35, 'FINALIZADO', 'dfdf'),
+(36, 'FINALIZADO', 'dfdfdfdf'),
+(37, 'FINALIZADO', 'sdsd'),
+(38, 'FINALIZADO', 'sdsd'),
+(39, 'FINALIZADO', 'sdsd'),
+(40, 'FINALIZADO', 'qwewqe'),
+(41, 'FINALIZADO', 'dsdsd'),
+(42, 'FINALIZADO', 'sdsd'),
+(43, 'FINALIZADO', 'adad'),
+(44, 'FINALIZADO', 'dsd'),
+(45, 'FINALIZADO', 'GHGH'),
+(46, 'FINALIZADO', 'GHGH'),
+(47, 'FINALIZADO', 'SDSD'),
+(48, 'FINALIZADO', 'GFGFG'),
+(49, 'FINALIZADO', 'CPF Inexistente\r\n'),
+(50, 'FINALIZADO', 'tyty'),
+(51, 'FINALIZADO', 'tyty'),
+(52, 'FINALIZADO', 'tyty'),
+(53, 'FINALIZADO', 'tyty'),
+(54, 'FINALIZADO', 'ghfh'),
+(55, 'FINALIZADO', 'SDSD'),
+(56, 'FINALIZADO', 'wrewerterere'),
+(57, 'PENDENTE', 'rtrt'),
+(58, 'FINALIZADO', 'Roupa Inadequada\r\n'),
+(59, 'FINALIZADO', 'sddsdsd'),
+(60, 'FINALIZADO', 'sddsdsd'),
+(61, 'FINALIZADO', 'xcxcxc'),
+(62, 'FINALIZADO', 'sdsd'),
+(63, 'FINALIZADO', 'dfdf'),
+(64, 'FINALIZADO', 'xcxc'),
+(65, 'FINALIZADO', 'dcsfsf'),
+(66, 'FINALIZADO', 'DFDF'),
+(67, 'FINALIZADO', 'dfdf'),
+(68, 'FINALIZADO', 'sdsds'),
+(69, 'FINALIZADO', 'sdsd'),
+(70, 'FINALIZADO', 'dgdfg'),
+(71, 'FINALIZADO', 'dfgdf'),
+(72, 'PENDENTE', 'sfsf'),
+(73, 'PENDENTE', 'Faltou o Tenis');
 
 -- --------------------------------------------------------
 
@@ -382,23 +469,23 @@ CREATE TABLE IF NOT EXISTS `perfil` (
   `fk_user` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_cadastro`),
   KEY `perfil_ibfk_1` (`fk_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `perfil`
 --
 
 INSERT INTO `perfil` (`id_cadastro`, `tipo_cadastro`, `nivel_acesso`, `status_cadastro`, `nome`, `telefone`, `rede_social`, `e_mail`, `numendereco`, `logradouro`, `cidade`, `estado`, `cep`, `bairro`, `complemento`, `fk_user`) VALUES
-(1, 'organizacao', 0, 'EA', 'MDL LTDA', '(11) 2515-5455', 'linkdln/mdl', 'mdl@mdlbrasil.com.br', '454', 'Av. Prink', 'SÃ£o Paulo', 'SP', '44487-878', 'Distrito Industrial', 'Ao lado da faber', 'mdl@mdlbrasil.com.br'),
-(2, 'doador_pf', 0, 'OK', 'JosÃ© Guilherme', '(54) 5887-87878', 'facebook.com/jose guilherme', 'jose.guilherme@outlook.com.br', '545', 'Rua Hunger Sabaro', 'Sorocaba', 'SP', '54584-887', 'Jardim da Jufis', 'Ao lado ', 'jose.guilherme@outlook.com.br'),
+(1, 'organizacao', 0, 'OK', 'MDL LTDA', '(11) 2515-5455', 'linkdln/mdl', 'mdl@mdlbrasil.com.br', '454', 'Av. Prink', 'SÃ£o Paulo', 'SP', '44487-878', 'Distrito Industrial', 'Ao lado da faber', 'mdl@mdlbrasil.com.br'),
+(2, 'doador_pf', 0, 'OK', 'JosÃ© Guilherme', '(54) 5887-87878', '', 'jose.guilherme@outlook.com.br', '545', 'Rua Hunger Sabaro', 'Sorocaba', 'SP', '54584-887', 'Jardim da Jufis', 'Ao lado ', 'jose.guilherme@outlook.com.br'),
 (50, 'familia', 0, 'OK', 'Maria', '(45) 4444-54545', '', 'maria@hotmail.com', '55', 'Rua Natal', 'Salvador', 'BA', '18120-000', 'SertÃ£ozinho', 'Voud', 'familia@familia.com'),
 (51, 'familia', 0, 'OK', 'Marina', '(54) 5454-55454', '', 'marina@hotmail.com', '545', 'Orion viaro', 'SÃ£o Paulo', 'SP', '54454-545', 'Jardim da Jufis', 'wsddsd', 'familia@familia.com'),
 (52, 'familia', 0, 'OK', 'Marialva', '(54) 5454-54545', '', 'marialva@hotmail.com', '54545', 'Rua das fiqueiras', 'SÃ£o Paulo', 'SP', '45454-544', 'Sertao zinho 2', 'Aeroporto', 'familia@familia.com'),
-(53, 'doador_pj', 0, 'RP', 'DSM LTDA', '(54) 5454-54545', 'facebook.com/dsm', 'dsm@hotmail.com', '448', 'Estrada Cefri', 'Mairique', 'SP', '54545-454', 'Cefri', 'perto da cefri', 'dsm@hotmail.com'),
-(54, 'doador_pj', 0, 'RP', 'CARGIL LTDA', '(54) 5445-4545', 'facebook.com/cargil', 'cargil@cargil.com.br', '545', 'Rua da Silva', 'Sorocaba', 'SP', '54454-454', 'Sorocaba', 'Ao lado da faber', 'cargil@cargil.com.br'),
-(55, 'organizacao', 0, 'EA', 'Doe para Vida LTDA', '(25) 4545-45454', 'facebook.com/doeparavida', 'doeparavida@hotmail.com', '5445', 'Rua Orion Viario', 'Sorocaba', 'SP', '54545-454', 'SÃ£o paulo', 'Sorocaba', 'doeparavida@hotmail.com'),
+(53, 'doador_pj', 0, 'OK', 'DSM LTDA', '(54) 5454-54545', 'facebook.com/dsm', 'dsm@hotmail.com', '448', 'Estrada Cefri', 'Mairique', 'SP', '54545-454', 'Cefri', 'perto da cefri', 'dsm@hotmail.com'),
+(54, 'doador_pj', 0, 'OK', 'CARGIL LTDA', '(54) 5445-4545', 'facebook.com/cargil', 'cargil@cargil.com.br', '545', 'Rua da Silva', 'Sorocaba', 'SP', '54454-454', 'Sorocaba', 'Ao lado da faber', 'cargil@cargil.com.br'),
+(55, 'doador_pj', 0, 'OK', 'Doe para Vida LTDA', '(25) 4545-45454', 'facebook.com/doeparavida', 'doeparavida@hotmail.com', '5445', 'Rua Orion Viario', 'Sorocaba', 'SP', '54545-454', 'SÃ£o paulo', 'Sorocaba', 'doeparavida@hotmail.com'),
 (56, 'familia', 0, 'OK', 'Jessica', '(45) 4545-45454', '', 'jessica@gmail.com', '4545', 'Rua da flores', 'Sorocaba', 'SP', '54545-454', 'JAbuticabal', 'sss', 'familia@familia.com'),
-(57, 'doador_pf', 0, 'EA', 'joao', '(45) 4545-45454', 'facebook.com/joao', 'joao@hotmail.com', '545', 'Rua das alamedas', 'Sorocaba', 'SP', '54545-454', 'Jardim vitÃ³ria', 'ksk', 'joao@hotmail.com'),
+(57, 'doador_pf', 0, 'OK', 'joao', '(45) 4545-45454', 'facebook.com/joao', 'joao@hotmail.com', '545', 'Rua das alamedas', 'Sorocaba', 'SP', '54545-454', 'Jardim vitÃ³ria', 'ksk', 'joao@hotmail.com'),
 (70, 'colaborador', 0, 'OK', '', '54545454445', '', 'ko@gmail.com', '56', '56', 'sao paulo', 'PR', '54545-454', 'Jardim vitÃ³ria', 'ksk', 'ko@gmail.com'),
 (71, 'colaborador', 0, 'OK', '', '(54) 5454-55545', '', 'asasa', '44', '44', 'sao paulo', 'PR', '54554-545', 'asa', 'sasas', 'asas@gmail.com'),
 (72, 'colaborador', 0, 'OK', 'asasa', '(54) 5454-55545', '', 'asas@gmail.com', '44', '44', 'sao paulo', 'PR', '54554-545', 'asa', 'sasas', 'asas@gmail.com'),
@@ -408,7 +495,11 @@ INSERT INTO `perfil` (`id_cadastro`, `tipo_cadastro`, `nivel_acesso`, `status_ca
 (76, 'colaborador', 0, 'OK', 'jose', '(44) 4444-44444', '', 'kdo@gmail.com', '4', '4', 'sao paulo', 'PR', '54545-454', 'Jardim vitÃ³ria', 'ksk', 'kdo@gmail.com'),
 (77, 'familia', 0, 'OK', 'Joana', '(54) 5455-5555', '', 'joana@hotmail.com', '42', 'Jasmin', 'Sorocaba', 'BA', '12525-525', 'TrÃªs LAgoas', 'sss', 'familia@familia.com'),
 (78, 'familia', 0, 'OK', 'Amanda', '(54) 5454-4141', '', 'fernanda@gmail.com', '42', 'Jasmin', 'SÃ£o Paulo', 'PA', '12525-525', 'SÃ£o luis', '656', 'familia@familia.com'),
-(79, 'organizacao', 0, 'EA', 'Nova Vida LTDA', '(54) 5454-4141', 'facebook.com/nova vida', 'novavida@hotmail.com', '42', 'Jasmin', 'SÃ£o Paulo', 'PA', '12525-525', 'SÃ£o luis', '656', 'novavida@hotmail.com');
+(79, 'organizacao', 0, 'EA', 'Nova Vida LTDA', '(54) 5454-4141', 'facebook.com/nova vida', 'novavida@hotmail.com', '42', 'Jasmin', 'SÃ£o Paulo', 'PA', '12525-525', 'SÃ£o luis', '656', 'novavida@hotmail.com'),
+(81, 'doador_pj', 0, 'OK', 'RUMO LTDA', '(54) 5454-54545', 'facebook.com/rumo', 'rumo@rumo.com.br', '415', 'Rua das alamedas', 'Sorocaba', 'AL', '15454-545', 'SÃ£o Roque', 'Perto do centro', 'rumo@rumo.com.br'),
+(82, 'colaborador', 0, 'OK', 'Welligton', '(15) 5445-45454', '', 'well@gmail.com', '455', '455', 'SOrocaba', 'SP', '54545-454', 'ss', 'ss', 'well@gmail.com'),
+(83, 'familia', 0, 'OK', 'Maria', '(25) 5695-99698', '', 'maria@hotmail.com', '525', 'Silva', 'Sorocaba', 'SP', '85458-965', 'Das', 'dd', 'familia@familia.com'),
+(84, 'familia', 0, 'OK', 'DÃ©bora', '(42) 1522-55666', '', 'debora@hotmail.com', '2536', 'Rua da silva', 'Sorocaba', 'SP', '63632-211', 'SÃ£o Miguel', 'Ao lado da via soa', 'familia@familia.com');
 
 -- --------------------------------------------------------
 
@@ -443,7 +534,36 @@ INSERT INTO `perfil_exibe` (`fk_id_mensagem`, `fk_id_cadastro`) VALUES
 (27, 53),
 (28, 53),
 (29, 53),
-(30, 53);
+(30, 53),
+(31, 53),
+(32, 53),
+(33, 53),
+(34, 53),
+(35, 53),
+(36, 53),
+(37, 53),
+(38, 53),
+(39, 53),
+(40, 53),
+(41, 53),
+(42, 53),
+(43, 2),
+(44, 2),
+(45, 2),
+(46, 2),
+(47, 2),
+(48, 2),
+(49, 57),
+(50, 55),
+(51, 55),
+(52, 55),
+(53, 55),
+(54, 55),
+(55, 54),
+(56, 2),
+(63, 81),
+(64, 2),
+(72, 2);
 
 -- --------------------------------------------------------
 
@@ -460,16 +580,6 @@ CREATE TABLE IF NOT EXISTS `possui_colab` (
   KEY `fk_cnpj` (`fk_cnpj`),
   KEY `fk_id_colaborador` (`fk_id_colaborador`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `possui_colab`
---
-
-INSERT INTO `possui_colab` (`fk_cpf`, `fk_cnpj`, `fk_id_colaborador`) VALUES
-('544.545.455-82', '58.484.488/4848-88', 13),
-('552.225.588-88', '58.484.488/4848-88', 14),
-('525.699.999-99', '58.484.488/4848-88', 15),
-('545.699.999-99', '58.484.488/4848-88', 16);
 
 -- --------------------------------------------------------
 
@@ -495,7 +605,9 @@ INSERT INTO `possui_cri` (`fk_rg_crianca`, `fk_id_familia`) VALUES
 ('58.999.989-9', 41),
 ('44.444.444-4', 42),
 ('54.545.545-5', 43),
-('25.256.236-3', 44);
+('25.256.236-3', 44),
+('55.265.554-5', 45),
+('69.313.645-8', 46);
 
 -- --------------------------------------------------------
 
@@ -516,17 +628,23 @@ CREATE TABLE IF NOT EXISTS `realiza` (
 --
 
 INSERT INTO `realiza` (`fk_id_doacao`, `fk_id_cadastro`) VALUES
-(5, 53),
-(6, 54),
-(7, 54),
-(8, 2),
-(9, 2),
-(10, 2),
-(11, 57),
-(12, 2),
-(13, 55),
-(14, 2),
-(15, 53);
+(22, 57),
+(23, 57),
+(24, 81),
+(25, 81),
+(26, 57),
+(27, 57),
+(28, 2),
+(29, 57),
+(30, 57),
+(31, 57),
+(32, 57),
+(33, 55),
+(34, 81),
+(35, 57),
+(36, 57),
+(37, 54),
+(38, 57);
 
 -- --------------------------------------------------------
 
@@ -559,24 +677,13 @@ INSERT INTO `usuario` (`user`, `senha`) VALUES
 ('kdo@gmail.com', ''),
 ('ko@gmail.com', '44444'),
 ('mdl@mdlbrasil.com.br', '123456'),
-('novavida@hotmail.com', '123456');
+('novavida@hotmail.com', '123456'),
+('rumo@rumo.com.br', '123456'),
+('well@gmail.com', '123456');
 
 --
 -- Restrições para despejos de tabelas
 --
-
---
--- Limitadores para a tabela `admin`
---
-ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`fk_user`) REFERENCES `usuario` (`user`);
-
---
--- Limitadores para a tabela `cadastra`
---
-ALTER TABLE `cadastra`
-  ADD CONSTRAINT `cadastra_ibfk_1` FOREIGN KEY (`fk_rg_crianca`) REFERENCES `dados_crianca` (`rg_crianca`),
-  ADD CONSTRAINT `cadastra_ibfk_2` FOREIGN KEY (`fk_id_cadastro`) REFERENCES `perfil` (`id_cadastro`);
 
 --
 -- Limitadores para a tabela `colaborador`
@@ -609,39 +716,10 @@ ALTER TABLE `doacao`
   ADD CONSTRAINT `doacao_ibfk_1` FOREIGN KEY (`fk_rg_crianca`) REFERENCES `dados_crianca` (`rg_crianca`);
 
 --
--- Limitadores para a tabela `doa_exibe`
---
-ALTER TABLE `doa_exibe`
-  ADD CONSTRAINT `doa_exibe_ibfk_1` FOREIGN KEY (`fk_id_doacao`) REFERENCES `doacao` (`id_doacao`),
-  ADD CONSTRAINT `doa_exibe_ibfk_2` FOREIGN KEY (`fk_id_mensagem`) REFERENCES `mensagem_sistema` (`id_mensagem`);
-
---
--- Limitadores para a tabela `gerencia`
---
-ALTER TABLE `gerencia`
-  ADD CONSTRAINT `gerencia_ibfk_1` FOREIGN KEY (`fk_id_doacao`) REFERENCES `doacao` (`id_doacao`),
-  ADD CONSTRAINT `gerencia_ibfk_2` FOREIGN KEY (`fk_id_cadastro`) REFERENCES `perfil` (`id_cadastro`);
-
---
 -- Limitadores para a tabela `perfil`
 --
 ALTER TABLE `perfil`
   ADD CONSTRAINT `perfil_ibfk_1` FOREIGN KEY (`fk_user`) REFERENCES `usuario` (`user`);
-
---
--- Limitadores para a tabela `perfil_exibe`
---
-ALTER TABLE `perfil_exibe`
-  ADD CONSTRAINT `perfil_exibe_ibfk_1` FOREIGN KEY (`fk_id_mensagem`) REFERENCES `mensagem_sistema` (`id_mensagem`),
-  ADD CONSTRAINT `perfil_exibe_ibfk_2` FOREIGN KEY (`fk_id_cadastro`) REFERENCES `perfil` (`id_cadastro`);
-
---
--- Limitadores para a tabela `possui_colab`
---
-ALTER TABLE `possui_colab`
-  ADD CONSTRAINT `possui_colab_ibfk_1` FOREIGN KEY (`fk_cpf`) REFERENCES `dados_pf` (`cpf`),
-  ADD CONSTRAINT `possui_colab_ibfk_2` FOREIGN KEY (`fk_cnpj`) REFERENCES `dados_pj` (`cnpj`),
-  ADD CONSTRAINT `possui_colab_ibfk_3` FOREIGN KEY (`fk_id_colaborador`) REFERENCES `colaborador` (`id_colaborador`);
 
 --
 -- Limitadores para a tabela `possui_cri`
