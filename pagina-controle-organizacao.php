@@ -230,10 +230,7 @@ $(".toggle").on("click", function() {
         <thead>
         <tr>
 <th colspan="3" style="text-align: center;">Relatórios e Cadastros</th>
-</tr>
-            <tr>
-                <th scope="col" > <a href="doacoes-realizadas.php" target=_blank class="text4">Lista de Doações Realizadas</a></th>
-                </tr>
+</tr>   
             </thead>
         <tbody>
         <tr>

@@ -208,13 +208,10 @@ $(".toggle").on("click", function() {
 <div class="dist-bot-button"></div>
 <div class="container">
   <div class="row">
-    <div class="col direc-button">
-    <a href=""> <button class="button-menu-form" type="submit">APROVADO</button> </a>
-    </div>
-    <div class="col">
-
+    <div class="col direc-button " style="text-align: center;">
     <a href="cadastro-familia.php"> <button class="button-menu-form" type="submit">EDITAR</button> </a>
     </div>
+
  <div class="dist-bot-button"></div>
 
         </div>
