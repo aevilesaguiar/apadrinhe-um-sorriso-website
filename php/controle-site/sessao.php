@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-function sessao_login($nome,$email,$telefone,$id_cadastro){ //Inicia sessão de login
+function sessao_login($nome,$email,$telefone,$id_cadastro,$tipo_cadastro,$rede_social,$site){ //Inicia sessão de login
 
     unset($_SESSION['mensagem']);
 
@@ -11,6 +11,25 @@ function sessao_login($nome,$email,$telefone,$id_cadastro){ //Inicia sessão de 
     $_SESSION['usuario']['email'] = $email;
     $_SESSION['usuario']['telefone'] = $telefone;
     $_SESSION['usuario']['logado'] = true;
+    $_SESSION['usuario']['tipo_cadastro'] = $tipo_cadastro;
+    $_SESSION['usuario']['rede_social'] = $rede_social;
+    $_SESSION['usuario']['site'] = $site;
+
+}
+
+function sessao_login_organizacao($nome,$email,$telefone,$id_cadastro,$tipo_cadastro,$rede_social,$site){ //Inicia sessão de login
+
+    unset($_SESSION['mensagem']);
+
+    $_SESSION['usuario_org']['id_cadastro']=$id_cadastro;
+    $_SESSION['usuario_org']['usuario'] = $nome;
+    $_SESSION['usuario_org']['nome'] = $nome;
+    $_SESSION['usuario_org']['email'] = $email;
+    $_SESSION['usuario_org']['telefone'] = $telefone;
+    $_SESSION['usuario_org']['logado'] = true;
+    $_SESSION['usuario_org']['tipo_cadastro'] = $tipo_cadastro;
+    $_SESSION['usuario_org']['rede_social'] = $rede_social;
+    $_SESSION['usuario_org']['site'] = $site;
 
 }
 
@@ -21,6 +40,20 @@ function encerra_sessao(){//Encerra sessão de login
     unset($_SESSION['usuario']['nome']);
     unset($_SESSION['usuario']['email']);
     unset($_SESSION['usuario']['telefone']);
+    unset($_SESSION['usuario']['tipo_cadastro']);
+    
+    $_SESSION['logado']=false;
+
+}
+
+function encerra_sessao_organizacao(){//Encerra sessão de login
+
+    unset($_SESSION['usuario_org']['id_cadastro']);
+    unset($_SESSION['usuario_org']['usuario']);
+    unset($_SESSION['usuario_org']['nome']);
+    unset($_SESSION['usuario_org']['email']);
+    unset($_SESSION['usuario_org']['telefone']);
+    unset($_SESSION['usuario_org']['tipo_cadastro']);
     
     $_SESSION['logado']=false;
 
@@ -57,11 +90,11 @@ function inlui_organizacao($id_cadastro,$nome_organizacao,$logradouro,$numero,$c
 }
 
 function inlui_dados_criança($rg_criança,$nome_criança,$idade,$sexo,
-$tipo_kit,$tamanho_calca,$tamanho_camisa,$tamanho_calcado,$acao){
-
+$tipo_kit,$tamanho_calca,$tamanho_camisa,$tamanho_calcado,$acao,$brinquedo){
+    include 'funcoes_sistema.php';
     $_SESSION['doacao']['rg_crianca'] = $rg_criança;
     $_SESSION['doacao']['nome_crianca'] = $nome_criança;
-    $_SESSION['doacao']['idade'] = $idade;
+    $_SESSION['doacao']['idade'] = calcula_idade($idade);
     $_SESSION['doacao']['sexo'] = $sexo;
     $_SESSION['doacao']['tipo_kit'] = $tipo_kit;
     $_SESSION['doacao']['tamanho_calca'] = $tamanho_calca;
@@ -69,13 +102,14 @@ $tipo_kit,$tamanho_calca,$tamanho_camisa,$tamanho_calcado,$acao){
     $_SESSION['doacao']['tipo_calcado'] = $tamanho_calcado;
     $_SESSION['doacao']['acaocriancakit']=$acao;
     $_SESSION['doacao']['status']='true';
+    $_SESSION['doacao']['brinquedo']=$brinquedo;
 
     return $_SESSION['doacao']['rg_crianca']."".$_SESSION['doacao']['nome_crianca']."/".
     $_SESSION['doacao']['idade']."/".
     $_SESSION['doacao']['sexo']."/".
     $_SESSION['doacao']['tamanho_calca']."/".
     $_SESSION['doacao']['tamanho_camisa']."/".
-    $_SESSION['doacao']['tipo_calcado'];
+    $_SESSION['doacao']['tipo_calcado']."/".$_SESSION['doacao']['brinquedo'];
     
 }
 

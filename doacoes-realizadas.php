@@ -166,25 +166,25 @@ $(".toggle").on("click", function() {
             <tbody>
                 <tr>
                 <th scope="row">Data de entrega do presente para criança</th>
-                <td><?php echo $doacoes['data_hora_recebimento'];?></td>
+                <td><?php echo $doacoes['data_hora_entrega']==null?"":inverte_data($doacoes['data_hora_entrega']);?></td>
             </tr>
         </tbody>
             <tbody>
                 <tr>
                 <th scope="row">Presente Entregue na ONG</th>
-                <td><?php echo $doacoes['data_hora_entrega'];?></td>
+                <td><?php echo $doacoes['data_hora_recebimento']==null?"":inverte_data($doacoes['data_hora_recebimento']);?></td>
             </tr>
         </tbody>
         <tbody>
                 <tr>
                 <th scope="row">Aguardando envio do Presente</th>
-                <td><?php echo $doacoes['data_hora_selecao'];?></td>
+                <td><?php echo inverte_data($doacoes['data_hora_selecao']);?></td>
             </tr>
         </tbody>
         <tbody>
                 <tr>
                 <th scope="row">Doação Realizada</th>
-                <td><?php echo $doacoes['data_hora_selecao'];?></td>
+                <td><?php echo inverte_data($doacoes['data_hora_selecao']);?></td>
             </tr>
         </tbody>
         </table>
@@ -201,7 +201,7 @@ $(".toggle").on("click", function() {
         ?>
         <p class="text-php-aprovado"> Agradecemos a sua Doação!</p>
         <?php
-            }else if($doacoes['status_doacao']=="PENDENTE"){
+            }else if($doacoes['status_doacao']=="REPROVADO"){
                 $notificacao = $conecta->query(consulta_mensagem_doacao($doacoes['id_doacao']));
 
                 if($notificacao->num_rows>=1){
@@ -223,7 +223,15 @@ $(".toggle").on("click", function() {
         }
     }else{
 
-        echo "</br>Sem doação no momento<a href='dados-doacao.php'><button>Doar</button></a>";
+        echo "<div style='text-align:center; border:2px ;'><br></br><p>Sem doação no momento<a href='dados-doacao.php'><button style='padding: 15px 25px;
+        margin-left:30px ;
+        font-size: 1.2em;
+        text-align: center;
+        color: #fff;
+        background-color: #F57600;
+        border-radius: 3px;
+        box-shadow: 0 2px #999; 
+        '>Doar</button></a></p> <br><br></div>";
 
     }
 ?>
@@ -276,7 +284,7 @@ $(".toggle").on("click", function() {
     <div class="sep-item-footer"></div>
         
     <div class="sobre-dado-footer sobre-dado-footer-rod">
-        <p>©2020 | APADRINHE UM SORRISO</p>
+    <p>©2021 | APADRINHE UM SORRISO</p>
     </div>
     <div>
 

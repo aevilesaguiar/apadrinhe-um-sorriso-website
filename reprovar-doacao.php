@@ -1,10 +1,8 @@
 <?php
-    include 'php/geral/conexao-banco.php';
+    include "php/controle-organizacao/dados-aprovacao-doador-pf-org.php";
     include "php/controle-organizacao/sessao-org.php"; 
-    include "php/controle-organizacao/listagem-doadores-pj-org.php";
-    
+    include "php/controle-site/consulta.php";
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -61,7 +59,7 @@ $(".toggle").on("click", function() {
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
- <title> Lista Cadastro Doador Pessoa Jurídica- APADRINHE UM SORRISO </title>
+ <title>Dados PJ Reprovado - APADRINHE UM SORRISO </title>
 </head>
 <body>
  <header class="menu-bg">
@@ -72,8 +70,7 @@ $(".toggle").on("click", function() {
                  </a>
                  </div> 
 
-              
-             <nav class="menu-nav"><!--flexitem é o nav-->
+                 <nav class="menu-nav"><!--flexitem é o nav-->
                 <ul>
                     <li class="item"><a href="index.php">INÍCIO</a></li>
                     <li class="item menu-sep"><a href="index.php">SOBRE NÓS</a></li>
@@ -91,58 +88,31 @@ $(".toggle").on("click", function() {
 
 
             </nav>
-         
-           
         </div>
 </header>
-
-
 <main class="main-board dist-mob-form">
     <div class="dist-menu"></div>
-<div class="p-doar">
-
-<div class="altura-doar ">
-
-            <h2>LISTA CADASTRO DOADOR PESSOA JURÍDICA</h2>
+    <div class="p-doar">
+    <div class="altura-doar ">
+            <h2>REPROVAR DOAÇÃO</h2>
         </div>
-            <div class="sep-item "></div>
-            <div class="dist-menu"></div>
-            
-   <div class="textos-item">   
-
-<table class="table">
-  <thead>
-  <tr>
-      <th scope="col">CNPJ</th>
-      <th scope="col">Razão Social</th>
-      <th scope="col">Telefone</th>
-      <th scope="col">E-mail</th>
-      <th scope="col">STATUS</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php 
-  $result_search = $conecta->query(consulta_doadores_pj($_SESSION['usuario_org']['id_cadastro']));
-  foreach($result_search as $rows_resp) {
-    ?>
-    <tr>
-      <th scope="row"><?php echo $rows_resp['cnpj']; ?></th>
-      <td><?php echo $rows_resp['nome_fantasia']; ?></td>
-      <td><?php echo $rows_resp['telefone']; ?></td>
-      <td><?php echo $rows_resp['e_mail']; ?></td>
-      <td><?php echo $rows_resp['status_cadastro']; ?> </td>
-      <td>  <a href="aprovar-cadastro-pj.php?codigo=<?php echo $rows_resp['id_cadastro']; ?>"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-     
-    </tr>
-    <?php }?>
-  </tbody>
-
-</table>
-   </div>
-   <div class="dist-bot-button"></div>
+          <div class="sep-item "></div>
+          <div class="dist-menu"></div>
+          <div class="textos-item">     
+     <form class="row g-3  dist-mob-form" method="POST" action="php/controle-organizacao/aprovar-cadastro-doador-pj-org.php">
+          
+            <div class="col-md-12">
+              <textarea type="text" name="mensagem" class="form-control" aria-label="With textarea"  placeholder="Observação" style="height: 120px;"></textarea>
+              <input type="hidden" name="codigo"value="<?php echo $_GET['codigo']; ?>"/>
+            </div>
+            <div class="dist-menu-botao"></div>
+            <div class="sobre-dado-fale dist-menu-botao">
+              <input class="button-menu-form" name="btnReprovarDoacao" type="submit" value="ENVIAR">
+      </div>
+ </form>
+    <div class="dist-menu"></div>
+</div>
 </main>
-
-
 <footer >
     <div class="sep-item-footer-1"></div>
     <div class="sobre-dado-footer">

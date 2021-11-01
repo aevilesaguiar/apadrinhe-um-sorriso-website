@@ -151,7 +151,7 @@ $(".toggle").on("click", function() {
     <tr>
 
       <td><?php echo exibe_doacao('nome_crianca');?></td>
-      <td><?php echo calcula_idade(exibe_doacao('idade'));?></td>
+      <td><?php echo exibe_doacao('idade');?></td>
       <td><?php echo exibe_doacao('sexo');?></td>
  
     </tr>
@@ -204,6 +204,7 @@ $(".toggle").on("click", function() {
                 <li>1 tesoura sem ponta</li>
                 <li>1 cola bastão</li> </td> 
                <?php }?>
+               <td><?php echo exibe_doacao('brinquedo');?></td>
     </tr>
   </tbody>
 </table>
@@ -271,7 +272,7 @@ $(".toggle").on("click", function() {
     <div class="sep-item-footer"></div>
         
     <div class="sobre-dado-footer sobre-dado-footer-rod">
-        <p>©2020 | APADRINHE UM SORRISO</p>
+    <p>©2021 | APADRINHE UM SORRISO</p>
     </div>
     <div>
 

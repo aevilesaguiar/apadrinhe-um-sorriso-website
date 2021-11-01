@@ -76,20 +76,22 @@ $informacoes="";
 }
 }
 
-valida_cadastro($_POST);
+    valida_cadastro($_POST,"formulario_cadastro");
+    if(!empty($_SESSION['mensagens_form'])){
+        if(isset($_POST['btnCadastraUsuario'])){
+            redireciona(retorna_pagina_cadastro($tipo_cadastro,'cadastro'));
+        }elseif(isset($_POST['btnEditCadastraUsuario'])){
+            redireciona(retorna_pagina_cadastro($tipo_cadastro,'alteracao'));
+            unset($_SESSION['mensagem']);
+        }
+       
+    }
 
 }
 
-if(!empty($_SESSION['mensagens_form'])){
 
-    if(isset($_POST['btnCadastraUsuario'])){
-        redireciona(retorna_pagina_cadastro($tipo_cadastro,'cadastro'));
-    }elseif(isset($_POST['btnEditCadastraUsuario'])){
-        redireciona(retorna_pagina_cadastro($tipo_cadastro,'alteracao'));
-        unset($_SESSION['mensagem']);
-    }
-   
-}else if(isset($_POST['btnCadastraUsuario'])){
+
+if(isset($_POST['btnCadastraUsuario']) && empty($_SESSION['mensagens_form'])){
 
 unset($_SESSION['dados_form']);
 
@@ -124,7 +126,7 @@ if(!empty($id_cadastro)){
 
 
 }else{
-    redireciona(retorna_pagina_cadastro($tipo_cadastro));
+    redireciona(retorna_pagina_cadastro($tipo_cadastro,"cadastro"));
 }
 
 }else if(isset($_POST['btnIncluirOrg']) || isset($_POST['btnAlterarOrg']) ){
@@ -163,7 +165,7 @@ if(!empty($id_cadastro)){
 
     $dados_crianca = explode("/",$_POST['dados_crianca']);
 
-    inlui_dados_criança($dados_crianca[0],$dados_crianca[1],$dados_crianca[2],$dados_crianca[3],$_POST['tipo_kit'],$dados_crianca[4],$dados_crianca[5],$dados_crianca[6],$acao);
+    inlui_dados_criança($dados_crianca[0],$dados_crianca[1],$dados_crianca[2],$dados_crianca[3],$_POST['tipo_kit'],$dados_crianca[4],$dados_crianca[5],$dados_crianca[6],$acao,$dados_crianca[7]);
     isset($_POST['btnIncluirCriancaKit'])?sessao_mensagem(mensagem(21)):sessao_mensagem(mensagem(22));
     
     redireciona(9);
@@ -199,7 +201,7 @@ if(!empty($id_cadastro)){
     
     }
 
-}else if($_POST['btnEditCadastraUsuario']){
+}else if($_POST['btnEditCadastraUsuario'] && $_POST['tipo_usuario']=="doador_pf" && empty($_SESSION['mensagens_form'])){
 
     echo $nome."</br>";
     unset($_SESSION['dados_form']);
@@ -210,10 +212,45 @@ if(!empty($id_cadastro)){
     sessao_mensagem(mensagem(25));
 }else if($_POST['btnEnviarmensagem']){
     $nome=$_POST['nome'];
-    $email = $_POST['email'];
+    $email=$_POST['email'];
     $telefone=$_POST['telefone'];
     $mensagem=$_POST['mensagem'];
+    $_SESSION['dados_form']['nome']= $nome;
+    $_SESSION['dados_form']['email']=$email;
+    $_SESSION['dados_form']['telefone']=$telefone;
+    $_SESSION['dados_form']['mensagem']=$mensagem;
+
+    valida_cadastro($_POST,"formulario_fale_conosco");
+
+    if(empty($_SESSION['mensagens_form'])){
+
     $cadastra_fale_conosco=$conecta->query(cadastra_fale_conosco($nome,$email,$telefone,$mensagem));
     redireciona(13);
     sessao_mensagem(mensagem(26));
+    unset($_SESSION['dados_form']);
+
+    }else{
+        unset($_SESSION['mensagem']);
+        redireciona(13);
+    }
+}else if($_POST['btnEditCadastraUsuario'] && $_POST['tipo_usuario']=="doador_pj"){
+    echo $nome."</br>";
+    unset($_SESSION['dados_form']);
+    $cadastra=$conecta->query(altera_dados_gerais($nome,$telefone,$redesocial,$numero,$endereco,$cidade,$estado,$cep,$bairro,
+    $complemento,$_SESSION['usuario']['id_cadastro']));
+    $alteracaopj= $conecta->query(altera_pj($cnpj,$nome_fantasia,$site,$tipo_pj,$_SESSION['usuario']['id_cadastro']));
+    redireciona(14);
+    sessao_mensagem(mensagem(25));
+}else if($_POST['btnCadastrarEmail']){
+    unset($_SESSION['mensagem']);
+    valida_cadastro($_POST,"formulario_cadastrar_email");
+    if(empty($_SESSION['mensagens_form'])){
+        unset($_SESSION['dados_form']);
+        $cadastra_email=$conecta->query(cadastra_email($_POST['email']));
+        redireciona(15);
+        sessao_mensagem(mensagem(27));
+    }else{
+        redireciona(15);
+    }
+
 }

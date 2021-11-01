@@ -1,5 +1,8 @@
 <?php
+    include 'php/geral/conexao-banco.php';
+    include "php/controle-organizacao/sessao-org.php"; 
     include "php/controle-organizacao/listagem-doadores-pf-org.php";
+    
 ?>
 
 <!DOCTYPE html>
@@ -119,16 +122,23 @@ $(".toggle").on("click", function() {
     </tr>
   </thead>
   <tbody>
-  <?php while($rows_resp = mysqli_fetch_assoc($result_search)) {?>
-    <tr>
-      <th scope="row"><?php echo $rows_resp['cpf']; ?></th>
-      <td><?php echo $rows_resp['nome']; ?></td>
-      <td><?php echo $rows_resp['telefone']; ?></td>
-      <td><?php echo $rows_resp['e_mail']; ?></td>
-      <td><?php echo $rows_resp['status_cadastro']; ?></td>
-      <td>  <a href="aprovar-cadastro-pf.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-    </tr>
-    <?php }?>
+    <?php $result_search = $conecta->query(consulta_doadores_pf($_SESSION['usuario_org']['id_cadastro']));
+    foreach($result_search as $rows_resp) {
+      ?>
+            <tr>
+            
+                <th scope="row"><?php echo $rows_resp['cpf']; ?> </th>
+                <td><?php echo $rows_resp['nome']; ?></td>
+                <td><?php echo $rows_resp['telefone']; ?></td>
+                <td><?php echo $rows_resp['e_mail']; ?></td>
+                <td><?php echo $rows_resp['status_cadastro']; ?> </td>
+                <td>  <a href="aprovar-cadastro-pf.php?codigo=<?php echo $rows_resp['id_cadastro']; ?>">
+                    
+                <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
+                
+            </tr>
+        <?php }?>
+    
   </tbody>
 
 </table>
@@ -184,7 +194,7 @@ $(".toggle").on("click", function() {
     <div class="sep-item-footer"></div>
         
     <div class="sobre-dado-footer sobre-dado-footer-rod">
-        <p>©2020 | APADRINHE UM SORRISO</p>
+    <p>©2021 | APADRINHE UM SORRISO</p>
     </div>
     <div>
 

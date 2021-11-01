@@ -1,3 +1,10 @@
+<?php
+    include 'php/geral/conexao-banco.php';
+    include "php/controle-site/sessao.php"; 
+    include "php/controle-site/consulta.php";
+    include 'php/controle-site/funcoes-sistema.php';
+    
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -92,8 +99,7 @@ $(".toggle").on("click", function() {
 
 <main class="main-board dist-mob-form">
     <div class="dist-menu"></div>
-<div class="p-doar">
-
+<div class="p-doar"> 
 <div class="altura-doar ">
 
             <h2>LISTA DE CONFIRMAÇÃO DE ENTREGA</h2>
@@ -102,37 +108,77 @@ $(".toggle").on("click", function() {
             <div class="dist-menu"></div>
             
    <div class="textos-item">   
-
 <table class="table">
   <thead>
   <tr>
+  <p style="text-align: center; margin-bottom:20px; color: orange;" ><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>
       <th scope="col">Cód</th>
       <th scope="col">Nome Doador</th>
       <th scope="col">CPF da Mãe</th>
       <th scope="col">Nome Criança</th>
       <th scope="col">Resp. Organização</th>
+      <th  colspan="2" scope="col">Doc Confirmação</th>
       <th scope="col">Status</th>
     </tr>
   </thead>
-  <tbody>
+    <tbody>
+    <?php 
+        $entrega = $conecta->query(consulta_entrega_doacao($_SESSION['usuario_org']['id_cadastro']));
+        foreach($entrega as $dados){
+    ?>
+
+    <?php
+    //Formulario é ativo, somente se a entrega ainda não foi feita
+    if($dados['data_hora_entrega']==null){
+    ?>
+    <form method="POST" action="php/controle-organizacao/aprovar-cadastro-doador-pj-org.php" enctype="multipart/form-data">
+    <?php 
+    }
+    ?>
     <tr>
-      <th scope="row">001</th>
-      <td>Amelia dos Santos</td>
-      <td>147.258.369-63</td>
-      <td>Lais Maria da Silva</td>
-      <td>Fernanda Souza</td>
-      <td> <button class="button-menu-form" type="submit">ENTREGUE</button> </td>
+      <th scope="row"><?php echo $dados['id_doacao'];?><input type="hidden" name="id_doacao" value="<?php echo $dados['id_doacao']; ?>"/></th>
+      <td><?php echo $dados['nome'];?></td>
+      <td><?php echo $dados['cpf'];?></td>
+      <td><?php echo $dados['nome_crianca'];?></td>
+      <td><?php echo $_SESSION['usuario_org']['nome'];?></td>
+      <td>  </td>
+      <td> 
+          <?php
+          if($dados['data_hora_entrega']==null){
+        ?>
+            <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+            <label for="formFileLg" class="form-label text4">Anexar documento de confirmação de entrega</label>
+            <input class="form-control form-control-lg  " id="formFileLg" name="termo_arq" type="file" style="height: 60px;" required/> 
+        <?php
+          }else{
+        ?>
+            <a href="php/controle-organizacao/documentos/<?php echo $dados['doc_confirmacao']; ?>"><button class="button-menu-form">DOWNLOAD</button></a>
+        <?php
+          }
+        ?>
+       </td>
+      <td>
+        <?php
+          if($dados['data_hora_entrega']==null){
+        ?>
+          <input class="button-menu-form" type="submit" value="ENTREGAR" name="btnCadastraEntrega">
+          </form>
+        <?php
+          }else{
+        ?>
+            Entregue<br/><?php echo inverte_data($dados['data_hora_entrega']);?>
+        <?php
+          }
+        ?>
+       </td>
     </tr>
-  </tbody>
- 
+    
+    </tbody>
+    <?php
+        }
+    ?>
 </table>
 <form>
-        <div class="col-md-4">
-              <label for="formFileLg" class="form-label text4">Documento de Confirmação</label>
-              <input class="form-control form-control-lg  " id="formFileLg" type="file" style="height: 60px;">
-              <input class="button-menu-form" type="submit" value="SALVAR">
-            </div>
-           
             <div class="sobre-dado-fale dist-menu-botao"></div>
     </form>
         <div class="dist-bot-button"></div>
@@ -188,7 +234,7 @@ $(".toggle").on("click", function() {
     <div class="sep-item-footer"></div>
         
     <div class="sobre-dado-footer sobre-dado-footer-rod">
-        <p>©2020 | APADRINHE UM SORRISO</p>
+    <p>©2021 | APADRINHE UM SORRISO</p>
     </div>
     <div>
 

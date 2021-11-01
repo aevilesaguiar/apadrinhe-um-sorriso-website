@@ -1,3 +1,9 @@
+<?php
+    include 'php/geral/conexao-banco.php';
+    include "php/controle-site/sessao.php";
+    include "php/controle-site/consulta.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -77,12 +83,19 @@ $(".toggle").on("click", function() {
                     <li class="item menu-sep"><a href="index.php">SERVIÇO</a></li>              
                     <li class="item menu-sep"><a href="index.php">CONTATO</a></li>
 
+                    
                     <div><a class="button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>APADRINHAR</a>
                     </div>
                     <div>
-                    <a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
-                    SAIR
-                    </a>
+                    <?php if(isset($_SESSION['logado'])!==TRUE){?>
+                        <a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                        SAIR
+                        </a>
+                        <?php }else{ ?>
+                            <a class=" button-menu" href="php/controle-site/seguranca.php?sair=true" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                            SAIR
+                            </a>
+                    <?php }?>
                      <li class="toggle"><span class="bars"></span></li>
                 </ul>
 
@@ -105,48 +118,131 @@ $(".toggle").on("click", function() {
             <div class="sep-item "></div>
            
            <div class="textos-item " >  
-        
-        <div class="row">
-          <div class="col-sm-3">
-          <img src="image/jovem.jpg" style=" border-radius: 10px 10px 0px 0px;" class="card-img-top"  alt="foto-doador">
-            <div class="card">
-              <div class="card-body" style="line-height: .6;">
-              <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col"> Nome</th>
-                        <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <th scope="row">E-mail</th>
-                        <td></td>
-                    </tr>
-                </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-9">
-            <div class="card">
-              <div class="card-body">
-                <p class="text-php-reprovado">Seja Bem Vindo!</p>
+           <div class="container">
+    <div class="main-body">
+    
+   
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+
+                <img src= image/logo-empresa.jpg alt="Admin"  max-width="100%" style="border-radius: 2px;" >
+                  
 
               </div>
+              <div class="card mt-3">
+                <ul class="list-group list-group-flush">
+                <?php if($_SESSION['usuario_org']['site']!==""){?>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Site</h6>
+                    <span class="text-secondary"><?php echo $_SESSION['usuario_org']['site']; ?></span>
+                  </li>
+                    <?php } ?>
+                    <?php if($_SESSION['usuario_org']['rede_social']!==""){?>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Rede social</h6>
+                  <span class="text-secondary"><?php echo $_SESSION['usuario_org']['rede_social']; ?></span> 
+                    <?php } ?>
+                </ul>
+              </div>
+              
             </div>
-          </div>
-        </div>
-           
-   <div class="textos-item " >  
+            
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Nome Completo:</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <?php echo $_SESSION['usuario_org']['nome'];?>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <?php echo $_SESSION['usuario_org']['email'];?>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Telefone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <?php echo $_SESSION['usuario_org']['telefone'];?>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Função :</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <?php echo $_SESSION['usuario_org']['tipo_cadastro']=='colaborador'?'Colaborador':'Administrador';?>
+                    </div>
+                  </div>
+                 
+                
+                </div>
 
-<div class="dist-menu"></div>
+                
+              </div>
+        <div class="row gutters-sm">
+                <div class="col-sm-12 mb-3">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2 ">assignment</i>Status</h6>
+                      <?php
+                $status_cadastro = $conecta->query(consulta_status_cadastro($_SESSION['usuario_org']['id_cadastro']));
+                foreach($status_cadastro as $status){
+                }
+                if($status['status_cadastro']=="EA"){
+            ?>
+                <p class="text-php-reprovado">Cadastro em Análise:</p>
+                    <?php
+
+                }else if($status['status_cadastro']=="RP"){
+            ?>
+                <p class="text-php-reprovado">Cadastro Reprovado:</p>
+            <?php
+                $mensagens = $conecta->query(consulta_mensagem($_SESSION['usuario_org']['id_cadastro']));
+
+                if($conta=$mensagens->num_rows>=1){
+                foreach($mensagens as $status_mensagem){
+                    if($status_mensagem['status_sistema']!=="FINALIZADO"){
+            ?>
+            <p class=""><?php echo $status_mensagem['mensagem']; ?></p>
+            <?php
+                }
+            }
+            }
+        }
+          ?>
+                     
+                      
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+
+    </div>
+
+ 
+    <div class="dist-menu"></div>
         <table class="table">
         <thead>
         <tr>
 <th colspan="3" style="text-align: center;">Relatórios e Cadastros</th>
-</tr>
-            <tr>
+</tr>   
+            </thead>
+        <tbody>
+        <tr>
                 <th scope="col" > <a href="lista-cadastro-doador-pf.php" target=_blank class="text4">Lista de doadores PF</a></th>
                 </tr>
             </thead>
@@ -164,25 +260,28 @@ $(".toggle").on("click", function() {
         </tbody>
         <tbody>
                 <tr>
-                <th scope="col"> <a href="lista-criancas-apadrinhadas.php" target=_blank class="text4">Lista de crianças apadrinhadas</a></th>
+                <th scope="col"> <a href="lista-criancas-apadrinhadas.php" target=_blank class="text4">Lista de crianças</a></th>
 
             </tr>
         </tbody>
         <tbody>
-                <tr>
-                <th scope="col"> <a href="cadastro-familia.php" target=_blank class="text4">Editar cadastro Familia</a></th>
 
-            </tr>
         </tbody>
         <tbody>
                 <tr>
-                <th scope="col"> <a href="cadastro-familia.php" target=_blank class="text4">Cadastrar</a></th>
+                <th scope="col"> <a href="cadastro-familia.php" target=_blank class="text4">Cadastrar Familia</a></th>
 
             </tr>
         </tbody>
         <tbody>
                 <tr>
                 <th scope="col"> <a href="cadastro-colaborador-organizacao.php" target=_blank class="text4">Cadastro de colaboradores Organização</a></th>
+
+            </tr>
+        </tbody>
+        <tbody>
+                <tr>
+                <th scope="col"> <a href="lista-colaboradores-organizacao.php" target=_blank class="text4">Lista de colaboradores</a></th>
 
             </tr>
         </tbody>
@@ -197,6 +296,7 @@ $(".toggle").on("click", function() {
         <div class="dist-menu-botao"></div>
        
    </div>
+        </tbody>
 
 
 
@@ -252,7 +352,7 @@ $(".toggle").on("click", function() {
     <div class="sep-item-footer"></div>
         
     <div class="sobre-dado-footer sobre-dado-footer-rod">
-        <p>©2020 | APADRINHE UM SORRISO</p>
+    <p>©2021 | APADRINHE UM SORRISO</p>
     </div>
     <div>
 

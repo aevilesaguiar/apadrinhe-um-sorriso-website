@@ -1,3 +1,10 @@
+<?php
+    include 'php/geral/conexao-banco.php';
+    include "php/controle-organizacao/sessao-org.php"; 
+    include "php/controle-organizacao/listagem-recebimento-doacoes-org.php";
+    
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -102,7 +109,7 @@ $(".toggle").on("click", function() {
             <div class="dist-menu"></div>
             
    <div class="textos-item">   
-
+   <p style="text-align: center; margin-bottom:20px; color: orange;" ><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>  
 <table class="table">
   <thead>
   <tr>
@@ -114,38 +121,18 @@ $(".toggle").on("click", function() {
     </tr>
   </thead>
   <tbody>
+  <?php while($rows_resp = mysqli_fetch_assoc($result_search)) {?>
     <tr>
-      <th scope="row">001</th>
-      <td>Amelia dos Santos</td>
-      <td>Lais Maria da Silva</td>
+      <th scope="row"><?php echo $rows_resp['id_doacao']; ?></th>
+      <td><?php echo $rows_resp['nome']; ?></td>
+      <td><?php echo $rows_resp['nome_crianca']; ?></td>
       <td>Pendente</td>
    
-     <td> <a href="confirmacao-organizacao-doacao.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a></td>
+     <td> <a href="confirmacao-organizacao-doacao.php?id_doacao=<?php echo $rows_resp['id_doacao'];?>"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a></td>
     
     </td>
     </tr>
-  </tbody>
-  <tbody>
-  <tr>
-
-      <th scope="row">002</th>
-      <td>João dosSantos</td>
-      <td>Leandro de Melo</td>
-      <td>Pendente</td>
-     <td> <a href="confirmacao-organizacao-doacao.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a></td>
-    </tr>
-    </tr>
-  </tbody>
-  <tbody>
-  <tr>
-
-      <th scope="row">003</th>
-      <td>Amelia dos Santos</td>
-      <td>Fernando Souza Santos</td>
-      <td>Recebido</td>
-      <td> <a href="confirmacao-organizacao-doacao.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a></td>
-    </tr>
-    </tr>
+    <?php }?>
   </tbody>
 </table>
    </div>
@@ -200,7 +187,7 @@ $(".toggle").on("click", function() {
     <div class="sep-item-footer"></div>
         
     <div class="sobre-dado-footer sobre-dado-footer-rod">
-        <p>©2020 | APADRINHE UM SORRISO</p>
+    <p>©2021 | APADRINHE UM SORRISO</p>
     </div>
     <div>
 

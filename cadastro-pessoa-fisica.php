@@ -109,6 +109,7 @@ $(".toggle").on("click", function() {
 
               <div class="col-md-6">
                 <input type="text" class="form-control"  id="inputNome" name="nome" value="<?php echo isset($_SESSION['dados_form']['nome'])?$_SESSION['dados_form']['nome']:"";?>" placeholder="Nome" required /> 
+                <?php echo isset($_SESSION['mensagens_form']['nome'])?$_SESSION['mensagens_form']['nome']:""; ?>
               </div>
 
               <div class="col-md-6">
@@ -176,6 +177,7 @@ $(".toggle").on("click", function() {
 
               <div class="col-md-4">
                 <input type="text" class="form-control" id="inputAddress" name="bairro" value="<?php echo isset($_SESSION['dados_form']['bairro'])?$_SESSION['dados_form']['bairro']:"";?>" placeholder="Bairro" required>
+                <?php echo isset($_SESSION['mensagens_form']['bairro'])?$_SESSION['mensagens_form']['bairro']:""; ?>
               </div>
 
               <div class="col-md-8">
@@ -185,6 +187,8 @@ $(".toggle").on("click", function() {
 
               <div class="col-md-4">
               <input type="email" class="form-control" id="inputEmail4" name="email" value="<?php echo isset($_SESSION['dados_form']['email'])?$_SESSION['dados_form']['email']:"";?>" placeholder="E-mail">
+              <?php echo isset($_SESSION['mensagens_form']['email'])?$_SESSION['mensagens_form']['email']:""; ?>
+              <?php echo isset($_SESSION['mensagens_form']['email2'])?$_SESSION['mensagens_form']['email2']:""; ?>
               </div>
 
               <div class="col-md-4">
@@ -195,6 +199,20 @@ $(".toggle").on("click", function() {
               <div class="col-md-4">
                 <input type="password" class="form-control" id="inputPassword4" name ="confirm_senha" placeholder="Confirme a  senha" required>
               </div>
+              <div class="col-md-2">
+        
+        <label for="" style=" padding-top:30px ">Anexe a sua foto:</label>
+                 
+         </div>
+ 
+       <div class="col-md-6">
+         
+         <input class="form-control form-control-lg  "id="choose-file" name="foto" type="file" style="height: 58px;">
+         
+         </div>
+         <div class="col-md-4">
+               
+         </div>
 
                 <div class="dist-menu-botao"></div>
         <div class="sobre-dado-fale dist-menu-botao">
@@ -255,7 +273,7 @@ $(".toggle").on("click", function() {
     <div class="sep-item-footer"></div>
         
     <div class="sobre-dado-footer sobre-dado-footer-rod">
-        <p>©2020 | APADRINHE UM SORRISO</p>
+    <p>©2021 | APADRINHE UM SORRISO</p>
     </div>
     <div>
 

@@ -1,10 +1,10 @@
 <?php
     include 'php/geral/conexao-banco.php';
-    include "php/controle-organizacao/sessao-org.php"; 
-    include "php/controle-organizacao/listagem-doadores-pj-org.php";
+    include "php/controle-site/sessao.php"; 
+    include "php/controle-site/consulta.php";
+    include 'php/controle-site/funcoes-sistema.php';
     
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -37,11 +37,13 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="js/mask.js"></script>
+
 <script
 src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
 crossorigin="anonymous"></script>
-<script src="js/mask.js"></script>
+
 
 <script>
 $(function() {
@@ -61,7 +63,7 @@ $(".toggle").on("click", function() {
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
- <title> Lista Cadastro Doador Pessoa Jurídica- APADRINHE UM SORRISO </title>
+ <title>Dados Família- APADRINHE UM SORRISO </title>
 </head>
 <body>
  <header class="menu-bg">
@@ -95,53 +97,130 @@ $(".toggle").on("click", function() {
            
         </div>
 </header>
+<?php
+  $id_cadastro_familia=$_POST['id_cadastro_familia'];
+  $id_cadastro_org=$_SESSION['usuario_org']['id_cadastro'];
 
+  $dados_familia=$conecta->query(consulta_familia($id_cadastro_org,$id_cadastro_familia));
+  $dados_familia=mysqli_fetch_assoc($dados_familia);
+
+?>
 
 <main class="main-board dist-mob-form">
     <div class="dist-menu"></div>
 <div class="p-doar">
-
 <div class="altura-doar ">
-
-            <h2>LISTA CADASTRO DOADOR PESSOA JURÍDICA</h2>
+            <h2 class="tit">DADOS FAMILIA</h2>
         </div>
             <div class="sep-item "></div>
-            <div class="dist-menu"></div>
-            
-   <div class="textos-item">   
+   <div class="textos-item" >   
+   <div class="container">
+  <div class="row">
+    <div class="col" style="text-align: right;">CPF mãe:</div>
+    <div class="col"><?php echo $dados_familia['cpf']?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Nome da mãe:</div>
+    <div class="col"><?php echo $dados_familia['nome']?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">CPF pai:</div>
+    <div class="col"><?php echo isset($dados_familia['cpf_resp'])?$dados_familia['cpf_resp']:"";?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Nome do pai:</div>
+    <div class="col"><?php echo isset($dados_familia['nome_resp'])?$dados_familia['nome_resp']:"";?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">RG criança::</div>
+    <div class="col"><?php echo $dados_familia['rg_crianca'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Nome da criança:</div>
+    <div class="col"><?php echo $dados_familia['nome_crianca'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Data de Aniversário</div>
+    <div class="col"><?php echo inverte_data_sem_hora($dados_familia['nasc_crianca']);?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Sexo: </div>
+    <div class="col"><?php echo $dados_familia['sexo'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">E-mail: </div>
+    <div class="col"><?php echo $dados_familia['e_mail'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Telefone: </div>
+    <div class="col"><?php echo $dados_familia['telefone'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Tamanho Calça: </div>
+    <div class="col"><?php echo $dados_familia['tamanho_calca'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Tamanho Camisa: </div>
+    <div class="col"><?php echo $dados_familia['tamanho_camiseta'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Tamanho Calçado: </div>
+    <div class="col"><?php echo $dados_familia['tamanho_sapato'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Sugestão de presente: </div>
+    <div class="col"><?php echo $dados_familia['brinquedo'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Observação: </div>
+    <div class="col"><?php echo $dados_familia['observacao'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Endereço</div>
+    <div class="col"><?php echo $dados_familia['logradouro'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Num</div>
+    <div class="col">3<?php echo $dados_familia['numendereco'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Bairro</div>
+    <div class="col"><?php echo $dados_familia['bairro'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Complemento</div>
+    <div class="col"><?php echo $dados_familia['complemento'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">CEP</div>
+    <div class="col"><?php echo $dados_familia['cep'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Cidade</div>
+    <div class="col"><?php echo $dados_familia['cidade'];?></div>
+  </div>
+  <div class="row">
+    <div class="col" style="text-align: right;">Estado</div>
+    <div class="col"><?php echo $dados_familia['estado'];?></div>
+  </div>
+</div>
+            <div class="dist-bot-button"></div>
+           
+<div class="dist-bot-button"></div>
+<div class="container">
+  <div class="row">
+    <div class="col direc-button " style="text-align: center;">
+    <a href="#"> <button class="button-menu-form" type="submit">EDITAR</button> </a>
+    </div>
 
-<table class="table">
-  <thead>
-  <tr>
-      <th scope="col">CNPJ</th>
-      <th scope="col">Razão Social</th>
-      <th scope="col">Telefone</th>
-      <th scope="col">E-mail</th>
-      <th scope="col">STATUS</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php 
-  $result_search = $conecta->query(consulta_doadores_pj($_SESSION['usuario_org']['id_cadastro']));
-  foreach($result_search as $rows_resp) {
-    ?>
-    <tr>
-      <th scope="row"><?php echo $rows_resp['cnpj']; ?></th>
-      <td><?php echo $rows_resp['nome_fantasia']; ?></td>
-      <td><?php echo $rows_resp['telefone']; ?></td>
-      <td><?php echo $rows_resp['e_mail']; ?></td>
-      <td><?php echo $rows_resp['status_cadastro']; ?> </td>
-      <td>  <a href="aprovar-cadastro-pj.php?codigo=<?php echo $rows_resp['id_cadastro']; ?>"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-     
-    </tr>
-    <?php }?>
-  </tbody>
+ <div class="dist-bot-button"></div>
 
-</table>
-   </div>
-   <div class="dist-bot-button"></div>
+        </div>
+
+  <div class="dist-bot-button"></div>
+   </div>               
+</div>
 </main>
-
 
 <footer >
     <div class="sep-item-footer-1"></div>
@@ -191,7 +270,7 @@ $(".toggle").on("click", function() {
     <div class="sep-item-footer"></div>
         
     <div class="sobre-dado-footer sobre-dado-footer-rod">
-    <p>©2021 | APADRINHE UM SORRISO</p>
+        <p>©2021 | APADRINHE UM SORRISO</p>
     </div>
     <div>
 

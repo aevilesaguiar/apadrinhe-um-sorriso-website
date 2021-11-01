@@ -109,6 +109,7 @@ $(".toggle").on("click", function() {
                              <p style="color: red; font-weight: 700;"><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>
                             </span>
                             <input class="button-menu-form" type="submit" value="ENTRAR" style="margin-top:20px">
+
                     </form>
                 
                 <ul class="login-utils">
@@ -144,11 +145,10 @@ $(".toggle").on("click", function() {
                         </a>
                     </li>
                 </ul>
-                <div class="dist-bot-button"></div>
-
       </div>
-    </div>
 
+      <div class="dist-menu"></div>
+    </div>
  </main>
 
 <footer >
@@ -199,7 +199,7 @@ $(".toggle").on("click", function() {
     <div class="sep-item-footer"></div>
         
     <div class="sobre-dado-footer sobre-dado-footer-rod">
-        <p>©2020 | APADRINHE UM SORRISO</p>
+    <p>©2021 | APADRINHE UM SORRISO</p>
     </div>
     <div>
 

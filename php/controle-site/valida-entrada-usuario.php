@@ -33,11 +33,30 @@ if($conecta->connect_error){//Se houver erro na conexao com o banco de dados
             if($conta=$resultado_perfil->num_rows==1)//Se a quantidade de usuário for  no máximo igual a 1 para um usuario da organização autoriza a entrada
             {
                 
-                sessao_login($perfil['nome'],$perfil['e_mail'],$perfil['telefone'],$perfil['id_cadastro']);
+                
 
-                if($perfil['tipo_cadastro']=="organizacao"){
+                if($perfil['tipo_cadastro']=="organizacao" || $perfil['tipo_cadastro']=="colaborador"){
+                    
+                    if($perfil['tipo_cadastro']=="organizacao"){
+                    $cadastro=$perfil['id_cadastro'];
+                    }else if($perfil['tipo_cadastro']=="colaborador"){
+                    $colaborador=$conecta->query(consulta_cadastro_colaborador_organizacao($perfil['id_cadastro']));
+                    $colaborador=mysqli_fetch_assoc($colaborador);
+                    $cadastro=$colaborador['fk_id_cadastro'];
+                    }
+                    $doador_pj = $conecta->query(consulta_cadastro_pj($cadastro));
+                    $doador_pj =mysqli_fetch_assoc($doador_pj);
+                    sessao_login_organizacao($perfil['nome'],$perfil['e_mail'],$perfil['telefone'],$cadastro,$perfil['tipo_cadastro'],$doador_pj['rede_social'],$doador_pj['site']);
+                    
                     redireciona(1);
                 }else if($perfil['tipo_cadastro']=="doador_pj" ||$perfil['tipo_cadastro']=="doador_pf"){
+                    if($perfil['tipo_cadastro']=="doador_pj"){
+                    $doador_pj = $conecta->query(consulta_cadastro_pj($perfil['id_cadastro']));
+                    $doador_pj =mysqli_fetch_assoc($doador_pj);
+                    sessao_login($perfil['nome'],$perfil['e_mail'],$perfil['telefone'],$perfil['id_cadastro'],$perfil['tipo_cadastro'],$perfil['rede_social'],$doador_pj['site']);
+                    }else{
+                        sessao_login($perfil['nome'],$perfil['e_mail'],$perfil['telefone'],$perfil['id_cadastro'],$perfil['tipo_cadastro'],$perfil['rede_social'],"");
+                    }
                    redireciona(0);
                     
                 }

@@ -288,11 +288,15 @@ $(".toggle").on("click", function() {
 
         <div class="sobre-item-fale">
             <form  class="textos-item" method="POST" action="php/controle-site/cadastro.php">
-                <input type="text" class=" form-control"  name="nome" placeholder="Nome" required />  
-                 <input type="text" class="form-control" name="email" placeholder="Email" required />  
-                 <input type="text" class="form-control" name="telefone"onKeyPress="MascaraGenerica(this, 'TELEFONE');" placeholder="Telefone" required /> 
+                <input type="text" class=" form-control"  name="nome" placeholder="Nome" value="<?php echo isset($_SESSION['dados_form']['nome'])?$_SESSION['dados_form']['nome']:"";?>" required />  
+                <p><?php echo isset($_SESSION['mensagens_form']['nome'])?$_SESSION['mensagens_form']['nome']:""; ?></p>
+                 <input type="text" class="form-control" name="email" placeholder="Email" value="<?php echo isset($_SESSION['dados_form']['email'])?$_SESSION['dados_form']['email']:"";?>" required />  
+                 <p><?php echo isset($_SESSION['mensagens_form']['email'])?$_SESSION['mensagens_form']['email']:""; ?></p>
+                 <input type="text" class="form-control" name="telefone"onKeyPress="MascaraGenerica(this, 'TELEFONE');" placeholder="Telefone" value="<?php echo isset($_SESSION['dados_form']['telefone'])?$_SESSION['dados_form']['telefone']:"";?>" required /> 
+                 <p><?php echo isset($_SESSION['mensagens_form']['telefone'])?$_SESSION['mensagens_form']['telefone']:""; ?></p>
               
-                  <textarea id="subject" class="form-control" type="mensagem" name="subject" placeholder="Mensagem" style="height:200px"></textarea>
+                  <textarea id="subject" class="form-control" name="mensagem" type="mensagem" name="subject" placeholder="<?php echo isset($_SESSION['dados_form']['mensagem'])?$_SESSION['dados_form']['mensagem']:"Mensagem";?>"  style="height:200px"></textarea>
+                  <p><?php echo isset($_SESSION['mensagens_form']['mensagem'])?$_SESSION['mensagens_form']['mensagem']:""; ?></p>
                 <input class="button-menu-form" type="submit" name="btnEnviarmensagem" value="ENVIAR MENSAGEM">
                 <p><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>
                 </form>
@@ -334,9 +338,11 @@ $(".toggle").on("click", function() {
             </div>
                
             <div class="sobre-item-fale ">
-                <form  class="textos-item dado-newsletter" action="/action_page.php">
-                    <input type="text" class="form-control" name="email" placeholder="Email" required />  
-                      <input class="button-menu-form" type="submit" value="ENVIAR E-MAIL">
+                <form  class="textos-item dado-newsletter" method="POST" action="php/controle-site/cadastro.php">
+                    <input type="text" class="form-control" name="email" placeholder="Email" required />
+                    <p><?php echo isset($_SESSION['mensagens_form']['email'])?$_SESSION['mensagens_form']['email']:""; ?></p>
+                      <input class="button-menu-form" type="submit" name="btnCadastrarEmail" value="ENVIAR E-MAIL">
+                      <p><?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>
                     </form>
               
             </div>
@@ -393,7 +399,7 @@ $(".toggle").on("click", function() {
     <div class="sep-item-footer"></div>
         
     <div class="sobre-dado-footer sobre-dado-footer-rod">
-        <p>©2020 | APADRINHE UM SORRISO</p>
+    <p>©2021 | APADRINHE UM SORRISO</p>
     </div>
     <div>
 

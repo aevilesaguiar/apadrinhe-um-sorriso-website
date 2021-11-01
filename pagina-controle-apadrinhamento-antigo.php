@@ -1,10 +1,8 @@
 <?php
     include 'php/geral/conexao-banco.php';
-    include "php/controle-organizacao/sessao-org.php"; 
-    include "php/controle-organizacao/listagem-doadores-pj-org.php";
-    
+    include "php/controle-site/sessao.php";
+    include "php/controle-site/consulta.php";
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -37,11 +35,13 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="js/mask.js"></script>
+
 <script
 src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
 crossorigin="anonymous"></script>
-<script src="js/mask.js"></script>
+
 
 <script>
 $(function() {
@@ -61,7 +61,7 @@ $(".toggle").on("click", function() {
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
- <title> Lista Cadastro Doador Pessoa Jurídica- APADRINHE UM SORRISO </title>
+ <title>Controle Apadrinhamento- APADRINHE UM SORRISO </title>
 </head>
 <body>
  <header class="menu-bg">
@@ -73,7 +73,8 @@ $(".toggle").on("click", function() {
                  </div> 
 
               
-             <nav class="menu-nav"><!--flexitem é o nav-->
+               
+                 <nav class="menu-nav"><!--flexitem é o nav-->
                 <ul>
                     <li class="item"><a href="index.php">INÍCIO</a></li>
                     <li class="item menu-sep"><a href="index.php">SOBRE NÓS</a></li>
@@ -84,14 +85,21 @@ $(".toggle").on("click", function() {
 
                     <div><a class="button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>APADRINHAR</a>
                     </div>
-                    <div><a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>LOGAR</a>
-                    </div>
+                    <div>
+                    <?php if(isset($_SESSION['logado'])!==TRUE){?>
+                    <a class=" button-menu" href="login.php" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                    SAIR
+                    </a>
+                    <?php }else{ ?>
+                    <a class=" button-menu" href="php/controle-site/seguranca.php?sair=true" ><i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                    SAIR
+                    </a>
+                    <?php }?>
                      <li class="toggle"><span class="bars"></span></li>
                 </ul>
 
 
             </nav>
-         
            
         </div>
 </header>
@@ -103,45 +111,113 @@ $(".toggle").on("click", function() {
 
 <div class="altura-doar ">
 
-            <h2>LISTA CADASTRO DOADOR PESSOA JURÍDICA</h2>
+            <h2 class="tit">CONTROLE APADRINHAMENTO</h2>
         </div>
             <div class="sep-item "></div>
-            <div class="dist-menu"></div>
-            
-   <div class="textos-item">   
+           
+   <div class="textos-item " >  
 
-<table class="table">
-  <thead>
-  <tr>
-      <th scope="col">CNPJ</th>
-      <th scope="col">Razão Social</th>
-      <th scope="col">Telefone</th>
-      <th scope="col">E-mail</th>
-      <th scope="col">STATUS</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php 
-  $result_search = $conecta->query(consulta_doadores_pj($_SESSION['usuario_org']['id_cadastro']));
-  foreach($result_search as $rows_resp) {
-    ?>
-    <tr>
-      <th scope="row"><?php echo $rows_resp['cnpj']; ?></th>
-      <td><?php echo $rows_resp['nome_fantasia']; ?></td>
-      <td><?php echo $rows_resp['telefone']; ?></td>
-      <td><?php echo $rows_resp['e_mail']; ?></td>
-      <td><?php echo $rows_resp['status_cadastro']; ?> </td>
-      <td>  <a href="aprovar-cadastro-pj.php?codigo=<?php echo $rows_resp['id_cadastro']; ?>"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-     
-    </tr>
-    <?php }?>
-  </tbody>
+<div class="row">
+  <div class="col-sm-3">
+  <img src="image/jovemM.jpg" style=" border-radius: 10px 10px 0px 0px;" class="card-img-top"  alt="foto-doador">
+    <div class="card">
+      <div class="card-body" style="line-height: .6;">
+      <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"> Nome</th>
+                <th scope="col"><?php echo $_SESSION['usuario']['nome'];?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">E-mail</th>
+                <td><?php echo $_SESSION['usuario']['email'];?></td>
+            </tr>
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <div class="card">
+      <div class="card-body">
+          <?php
+                $status_cadastro = $conecta->query(consulta_status_cadastro($_SESSION['usuario']['id_cadastro']));
+                foreach($status_cadastro as $status){
+                }
+                if($status['status_cadastro']=="EA"){
+            ?>
+                <p class="text-php-reprovado">Cadastro em Análise:</p>
+                    <?php
 
-</table>
+                }else if($status['status_cadastro']=="RP"){
+            ?>
+                <p class="text-php-reprovado">Cadastro Reprovado:</p>
+            <?php
+                $mensagens = $conecta->query(consulta_mensagem($_SESSION['usuario']['id_cadastro']));
+
+                if($conta=$mensagens->num_rows>=1){
+                foreach($mensagens as $status_mensagem){
+                    if($status_mensagem['status_sistema']!=="FINALIZADO"){
+            ?>
+            <p class=""><?php echo $status_mensagem['mensagem']; ?></p>
+            <?php
+                }
+            }
+            }
+        }
+          ?>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div class="dist-menu"></div>
+        <table class="table">
+        <thead>
+        <tr>
+<th colspan="3" style="text-align: center;">Relatórios e Cadastros</th>
+</tr>
+            <tr>
+                <th scope="col" > <a href="doacoes-realizadas.php" target=_blank class="text4">Lista de Doações Realizadas</a></th>
+                </tr>
+            </thead>
+        <tbody>
+                <tr>
+                <?php if($_SESSION['usuario']['tipo_cadastro']=="doador_pf"){
+                ?>
+                <th scope="col"> <a href="editar-cadastro-pessoa-fisica.php" target=_blank class="text4">Editar Cadastro</a></th>
+                <?php
+                }else if($_SESSION['usuario']['tipo_cadastro']=="doador_pj"){
+                ?>
+                <th scope="col"> <a href="editar-cadastro-pessoa-juridica.php" target=_blank class="text4">Editar Cadastro</a></th>
+                <?php
+                }
+                ?>
+                
+
+            </tr>
+        </tbody>
+
+
+        <tbody>
+                <tr>
+                <th scope="col"> <a href="dados-doacao.php" target=_blank class="text4">Doar</a></th>
+
+            </tr>
+        </tbody>
+        </table>
+
+        <div class="dist-menu-botao"></div>
+       
    </div>
-   <div class="dist-bot-button"></div>
-</main>
 
+
+
+   </div>               
+</div>
+</main>
 
 <footer >
     <div class="sep-item-footer-1"></div>

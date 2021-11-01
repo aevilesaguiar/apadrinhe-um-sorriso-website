@@ -21,9 +21,9 @@ $complemento,$fk_user){
 //Cadastra pj
 function cadastra_pj($cnpj,$nome_fantasia,$site,$tipo_pj,$fk_id_cadastro){
     $cadastro = 'INSERT INTO dados_pj(
-        cnpj,nome_fantasia,site,tipo_pj,
+        cnpj,nome_fantasia,site,tipo_pj,inf_recebimento,
     fk_id_cadastro) 
-    VALUES("'.$cnpj.'","'.$nome_fantasia.'","'.$site.'","'.$tipo_pj.'","'.$fk_id_cadastro.'")';
+    VALUES("'.$cnpj.'","'.$nome_fantasia.'","'.$site.'","'.$tipo_pj.'","20:43:11","'.$fk_id_cadastro.'")';
 
     return $cadastro;
     
@@ -45,13 +45,18 @@ function cadastra_usuario($usuario,$senha){
     return $cadastro;
 }
 
-function valida_cadastro($nome){
+function valida_cadastro($nome,$tipo_form){
+    if($tipo_form=="formulario_cadastro"){
 
     if($nome['tipo_usuario']=="doador_pf"){
         strlen($nome['cpf'])!==14?mensagens_form(mensagem(10),'cpf'):limpa_mensagens_form('cpf');
+        strlen($nome['nome'])<=45?limpa_mensagens_form('nome'):mensagens_form(mensagem(15),'nome');
     }
     if($nome['tipo_usuario']=="doador_pj" || $nome['tipo_usuario']=="organizacao"){
         strlen($nome['cnpj'])!==18?mensagens_form(mensagem(18),'cnpj'):limpa_mensagens_form('cnpj');
+        strlen($nome['razao_social'])<=45?limpa_mensagens_form('razao_social'):mensagens_form(mensagem(15),'razao_social');
+        strlen($nome['nome_fantasia'])<=30?limpa_mensagens_form('nome_fantasia'):mensagens_form(mensagem(15),'nome_fantasia');
+        strlen($nome['site'])<=50?limpa_mensagens_form('site'):mensagens_form(mensagem(15),'site');
     }
 
     //Dados comuns
@@ -62,9 +67,23 @@ function valida_cadastro($nome){
     strlen($nome['cep'])==9?limpa_mensagens_form('cep'):mensagens_form(mensagem(14),'cep');
     strlen($nome['complemento'])<=30?limpa_mensagens_form('complemento'):mensagens_form(mensagem(15),'complemento');
     strlen($nome['bairro'])<=30?limpa_mensagens_form('bairro'):mensagens_form(mensagem(15),'bairro');
-    strlen($nome['endereco'])<=30?limpa_mensagens_form('logradouro'):mensagens_form(mensagem(15),'endereco');
+    strlen($nome['endereco'])<=30?limpa_mensagens_form('endereco'):mensagens_form(mensagem(15),'endereco');
     strlen($nome['cidade'])<=30?limpa_mensagens_form('cidade'):mensagens_form(mensagem(15),'cidade');
     strlen($nome['rede_social'])<=30?limpa_mensagens_form('rede_social'):mensagens_form(mensagem(15),'rede_social');
+    strlen($nome['email'])<=30?limpa_mensagens_form('email'):mensagens_form(mensagem(15),'email');
+
+    include '../geral/conexao-banco.php';
+    $resultado=$conecta->query('SELECT * FROM perfil where fk_user="'.$nome['email'].'"');
+    $resultado->num_rows==1?mensagens_form(mensagem(17),'email2'):limpa_mensagens_form('email2');
+
+    }else if($tipo_form=="formulario_cadastrar_email"){
+        strlen($nome['email'])<=30?limpa_mensagens_form('email'):mensagens_form(mensagem(15),'email');
+    }else if($tipo_form=="formulario_fale_conosco"){
+        strlen($nome['nome'])<=45?limpa_mensagens_form('nome'):mensagens_form(mensagem(15),'nome');
+        strlen($nome['email'])<=30?limpa_mensagens_form('email'):mensagens_form(mensagem(15),'email');
+        strlen($nome['telefone'])>=13?limpa_mensagens_form('telefone'):mensagens_form(mensagem(16),'telefone');
+        strlen($nome['mensagem'])<=100?limpa_mensagens_form('mensagem'):mensagens_form(mensagem(15),'mensagem');
+    }
 
 }
 
@@ -93,3 +112,9 @@ function cadastra_fale_conosco($nome,$email,$telefone,$mensagem){
         return $cadastro;
 }
 
+function cadastra_email($email){//Responsável por cadastrar doador
+    $cadastro = 'INSERT INTO newsletter(e_mail_newsletter	
+    )
+                                VALUES("'.$email.'")';
+    return $cadastro;
+}

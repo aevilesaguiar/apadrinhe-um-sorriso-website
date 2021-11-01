@@ -102,7 +102,7 @@ $(".toggle").on("click", function() {
   <?php
           $cadastro = $conecta->query(consulta_cadastro_pf($_SESSION['usuario']['id_cadastro']));
 
-          if($cadastro->num_rows>=1){
+          if($cadastro->num_rows==1){
             foreach($cadastro as $dados){
             }
           
@@ -113,7 +113,7 @@ $(".toggle").on("click", function() {
     </div>
             <div class="sep-item "></div>
             <div class="dist-menu"></div>
-            <?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?>
+        <p style="text-align: center; padding-bottom:30px; color:orange">    <?php if(isset($_SESSION['mensagem'])){echo$_SESSION['mensagem'];};?></p>
    <div class="sobre-dado-fale">      
          <form class="row g-3  dist-mob-form" method="post" action="php/controle-site/cadastro.php">
               <div class="col-md-6">
@@ -274,7 +274,7 @@ $(".toggle").on("click", function() {
     <div class="sep-item-footer"></div>
         
     <div class="sobre-dado-footer sobre-dado-footer-rod">
-        <p>©2020 | APADRINHE UM SORRISO</p>
+    <p>©2021 | APADRINHE UM SORRISO</p>
     </div>
     <div>
 
