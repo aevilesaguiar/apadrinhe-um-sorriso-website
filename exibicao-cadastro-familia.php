@@ -1,3 +1,10 @@
+<?php
+    include 'php/geral/conexao-banco.php';
+    include "php/controle-site/sessao.php"; 
+    include "php/controle-site/consulta.php";
+    include 'php/controle-site/funcoes-sistema.php';
+    
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -56,7 +63,7 @@ $(".toggle").on("click", function() {
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
- <title>Aprovar Cadastro-Família- APADRINHE UM SORRISO </title>
+ <title>Dados Família- APADRINHE UM SORRISO </title>
 </head>
 <body>
  <header class="menu-bg">
@@ -90,117 +97,111 @@ $(".toggle").on("click", function() {
            
         </div>
 </header>
+<?php
+  $id_cadastro_familia=$_POST['id_cadastro_familia'];
+  $id_cadastro_org=$_SESSION['usuario_org']['id_cadastro'];
 
+  $dados_familia=$conecta->query(consulta_familia($id_cadastro_org,$id_cadastro_familia));
+  $dados_familia=mysqli_fetch_assoc($dados_familia);
+
+?>
 
 <main class="main-board dist-mob-form">
     <div class="dist-menu"></div>
 <div class="p-doar">
-
 <div class="altura-doar ">
-
-            <h2 class="tit">APROVAR CADASTRO FAMILIA</h2>
+            <h2 class="tit">DADOS FAMILIA</h2>
         </div>
             <div class="sep-item "></div>
-
-            
    <div class="textos-item" >   
    <div class="container">
   <div class="row">
     <div class="col" style="text-align: right;">CPF mãe:</div>
-    <div class="col">00.000.000/0000-00</div>
+    <div class="col"><?php echo $dados_familia['cpf']?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Nome da mãe:</div>
-    <div class="col">Lucia Maria</div>
+    <div class="col"><?php echo $dados_familia['nome']?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">CPF pai:</div>
-    <div class="col">00.000.000/0000-00</div>
+    <div class="col"><?php echo isset($dados_familia['cpf_resp'])?$dados_familia['cpf_resp']:"";?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Nome do pai:</div>
-    <div class="col">João da Silva</div>
+    <div class="col"><?php echo isset($dados_familia['nome_resp'])?$dados_familia['nome_resp']:"";?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">RG criança::</div>
-    <div class="col">11.258.987-1</div>
+    <div class="col"><?php echo $dados_familia['rg_crianca'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Nome da criança:</div>
-    <div class="col">João da Silva</div>
+    <div class="col"><?php echo $dados_familia['nome_crianca'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Data de Aniversário</div>
-    <div class="col">15/05/2015</div>
+    <div class="col"><?php echo inverte_data_sem_hora($dados_familia['nasc_crianca']);?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Sexo: </div>
-    <div class="col">M</div>
+    <div class="col"><?php echo $dados_familia['sexo'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">E-mail: </div>
-    <div class="col">N/A</div>
+    <div class="col"><?php echo $dados_familia['e_mail'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Telefone: </div>
-    <div class="col">(15)1212-4585</div>
+    <div class="col"><?php echo $dados_familia['telefone'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Tamanho Calça: </div>
-    <div class="col">P</div>
+    <div class="col"><?php echo $dados_familia['tamanho_calca'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Tamanho Camisa: </div>
-    <div class="col">P</div>
+    <div class="col"><?php echo $dados_familia['tamanho_camiseta'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Tamanho Calçado: </div>
-    <div class="col">25</div>
+    <div class="col"><?php echo $dados_familia['tamanho_sapato'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Sugestão de presente: </div>
-    <div class="col">Carrinho</div>
+    <div class="col"><?php echo $dados_familia['brinquedo'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Observação: </div>
-    <div class="col">Carrinho de controle remoto</div>
+    <div class="col"><?php echo $dados_familia['observacao'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Endereço</div>
-    <div class="col">Rua maria da silva</div>
+    <div class="col"><?php echo $dados_familia['logradouro'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Num</div>
-    <div class="col">33</div>
+    <div class="col">3<?php echo $dados_familia['numendereco'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Bairro</div>
-    <div class="col">Sampaio</div>
+    <div class="col"><?php echo $dados_familia['bairro'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Complemento</div>
-    <div class="col">casa</div>
+    <div class="col"><?php echo $dados_familia['complemento'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">CEP</div>
-    <div class="col">00.000-000</div>
+    <div class="col"><?php echo $dados_familia['cep'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Cidade</div>
-    <div class="col">Abreu e Lima</div>
+    <div class="col"><?php echo $dados_familia['cidade'];?></div>
   </div>
   <div class="row">
     <div class="col" style="text-align: right;">Estado</div>
-    <div class="col">PE</div>
-  </div>
-
-  <div class="row">
-    <div class="col" style="text-align: right;">Usuário</div>
-    <div class="col">Amadeu</div>
-  </div>
-  <div class="row">
-    <div class="col" style="text-align: right;">Senha</div>
-    <div class="col">1234</div>
+    <div class="col"><?php echo $dados_familia['estado'];?></div>
   </div>
 </div>
             <div class="dist-bot-button"></div>
@@ -209,7 +210,7 @@ $(".toggle").on("click", function() {
 <div class="container">
   <div class="row">
     <div class="col direc-button " style="text-align: center;">
-    <a href="cadastro-familia.php"> <button class="button-menu-form" type="submit">EDITAR</button> </a>
+    <a href="#"> <button class="button-menu-form" type="submit">EDITAR</button> </a>
     </div>
 
  <div class="dist-bot-button"></div>
