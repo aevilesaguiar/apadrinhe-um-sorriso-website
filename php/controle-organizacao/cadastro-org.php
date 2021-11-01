@@ -1,32 +1,9 @@
 <?php
 
-//include 'php/geral/conexao-banco.php';
-//include 'php/controle-site/sessao.php';
-//sinclude 'php/controle-site/consulta.php';
-
 include '../geral/conexao-banco.php';
-//include "redirecionamento-pagina.php"; //Registro de todas as paginas para redirecionamento
-//include "mensagens.php"; // Registro de todas mensagens do sistema
 include "sessao-org.php"; //Inicia sessao e encerra sessões
 include "consulta-org.php";
 include 'funcoes-cadastro-org.php';
-//include 'php/controle-site/valida-entrada-usuario.php';
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
-/*
-if(isset($_POST['btnCadastraFamilia'])){
-
-//Dados cadastro-pessoa-fisica diferenciado
-if($_POST['tipo_usuario']=="doador_pf"){
-    $cpf = $_POST['cpf'];
-    $_SESSION['dados_form']['cpf']=$cpf;
-    $nome = $_POST['nome'];
-    $_SESSION['dados_form']['nome']=$nome;
-    
-    //Validação cpf     
-}
-*/
 
 //Upload arquivo
 if(isset($_POST['btnCadastraFamilia'])){
@@ -188,9 +165,6 @@ if(isset($_POST['btnCadastraColaborador'])){
     //cadastra na tabela colaborador
     $cadastra_colaborador=$conecta->query(cadastra_colaborador($funcao,$id_cadastro));
 
-    //retorna id colaborador
-    $id_colaborador = mysqli_insert_id($conecta);
-
     //cadastra usuário
     $cadastra_usuario = $conecta->query(cadastra_usuario($usuario,$senha));
 
@@ -199,205 +173,7 @@ if(isset($_POST['btnCadastraColaborador'])){
     $cnpj_org = $conecta->query(ret_cnjpj_org($usuario,$senha));
 
     //cadastra colaborador na possui_colab
-    $cadastra_possui_colab=mysqli_query($conecta, cadastra_possui_colab($cpf,$cnpj_org,$id_colaborador));
+    $cadastra_possui_colab=mysqli_query($conecta, cadastra_possui_colab($cpf,$cnpj_org,$id_cadastro));
 
     
 }
-
-
-
-
-
-  
-
-/*
-//Dados cadastro-organização/pj diferenciado
-if($_POST['tipo_usuario']=="organizacao" || $_POST['tipo_usuario']=="doador_pj"){
-$cnpj = $_POST["cnpj"];
-$_SESSION['dados_form']['cnpj']=$cnpj;
-$nome =$_POST['razao_social'];
-$_SESSION['dados_form']['razao_social']=$nome;
-$site=$_POST['site'];
-$_SESSION['dados_form']['site']=$site;
-$tipo_pj=$_POST['tipo_organizacao'];;
-$_SESSION['dados_form']['tipo_organizacao']=$tipo_pj;
-$nome_fantasia=$_POST['nome_fantasia'];
-$_SESSION['dados_form']['nome_fantasia']=$nome_fantasia;
-if($_POST['tipo_usuario']=="organizacao")
-{
-$informacoes=$_POST['informacoes'];
-$_SESSION['dados_form']['informacoes']=$informacoes;
-}else{
-$informacoes="";
-}
-}
-*/
-
-
-/*
-valida_cadastro($_POST);
-
-if(!empty($_SESSION['mensagens_form'])){
-   
-    redireciona(retorna_pagina_cadastro($tipo_cadastro));
-
-}else{
-
-unset($_SESSION['dados_form']);
-*/
-
-//$cadastra_usuario = $conecta->query(cadastra_usuario($usuario,$senha));//cadastra usuário
-
-
-
-//cadastra no banco dados da crianca
-//$cadastra_crianca_doacao=$conecta->query(doacao_inicial($rg_crianca));
-
-
-
-
-
-/*
-if ($cadastra && $cadastra_pf && $cadastra_resp && $cadastra_crianca) {
-
-    echo 'cadastro realizado com sucesso';
-} else {
-    echo 'cadastro não realizado';
-    echo "<br>".$nasc_crianca."<br>";
-    echo $rg_crianca."<br>";
-    echo $sexo."<br>";
-    echo $nome_crianca."<br>";
-    echo $tamanho_camiseta."<br>";
-    echo $tamanho_sapato."<br>";
-    echo $tamanho_calca."<br>";
-    echo $sug_presente."<br>";
-    echo $observacao."<br>";
-}
-*/
-/*
-if ($cadastra_crianca) {
-
-    echo 'crianca cadastrada com sucesso'."<br>";
-} else {
-    echo 'crianca deu ruim de novo'."<br>";
-    echo "<br>".$nasc_crianca."<br>";
-    echo $rg_crianca."<br>";
-    echo $sexo."<br>";
-    echo $nome_crianca."<br>";
-    echo $tamanho_camiseta."<br>";
-    echo $tamanho_sapato."<br>";
-    echo $tamanho_calca."<br>";
-    echo $sug_presente."<br>";
-    echo $observacao."<br>";
-}
-*/
-
-if ($cadastra) {
-
-    echo 'cadastro perfil com sucesso'."<br>"."<br>";
-} else {
-    echo 'cadastro perfil deu ruim de novo'."<br>";
-    echo $nome."<br>";
-    echo $telefone."<br>";
-    echo $rede_social."<br>";
-    echo $email."<br>";
-    echo $numero."<br>";
-    echo $endereco."<br>";
-    echo $usuario."<br>";
-    echo $tipo_cadastro."<br>";
-}
-
-if ($cadastra_pf) {
-
-    echo 'pf cadastrada com sucesso'."<br>"."<br>";
-} else {
-    echo 'pf deu ruim de novo'."<br>";
-}
-/*
-if ($cadastra_resp) {
-
-    echo 'resp cadastrada com sucesso'."<br>"."<br>";
-} else {
-    echo 'resp deu ruim de novo'."<br>";
-}
-
-/*
-if ($cadastra_crianca_doacao) {
-
-    echo 'doacao cadastrada com sucesso'."<br>"."<br>";
-} else {
-    echo 'doacao deu ruim de novo'."<br>";
-}
-*/
-/*
-if ($cadastra_possui_crianca) {
-
-    echo 'possui cadastrada com sucesso'."<br>"."<br>";
-} else {
-    echo 'possui deu ruim de novo'."<br>";
-    echo $rg_crianca."<br>";
-    echo $id_cadastro."<br>";
-}
-*/
-
-
-/*if ($cadastra_colaborador) {
-
-    echo 'colaborador cadastrado com sucesso'."<br>"."<br>";
-} else {
-    echo 'colab deu ruim de novo'."<br>";
-    echo $id_cadastro."<br>";
-}
-
-//echo $id_cadastro;
-
-
-/*
-if($_POST['tipo_usuario']=="doador_pf")// Cadastra doador pf
-{
-    $cadastra_pf=$conecta->query(cadastra_pf($cpf,$id_cadastro));
-
-}else if($_POST['tipo_usuario']=="organizacao" || $_POST['tipo_usuario']=="doador_pj"){
-
-$cadastra_pj=$conecta->query(cadastra_pj($cnpj,$nome_fantasia,$site,$tipo_pj,$id_cadastro));//cadastra organização
-
-
-
-}
-
-$documento=mysqli_insert_id($conecta);// retorna documento cadastrado
-
-
-if(!empty($id_cadastro)){
-
-    sessao_mensagem(mensagem(9));
-    redireciona(3);
-
-
-}else{
-    redireciona(retorna_pagina_cadastro($tipo_cadastro));
-}
-
-}
-
-}else if(isset($_POST['btnIncluirOrg']) || isset($_POST['btnAlterarOrg']) ){
-
-    isset($_POST['btnIncluirOrg'])?$acao=1:$acao=0;
-
-    $dados_organizacao = explode("-",$_POST['organizacao']);
-
-    inlui_organizacao($dados_organizacao[0],$dados_organizacao[1],$dados_organizacao[2],$dados_organizacao[3],$acao);
-
-    isset($_POST['btnIncluirOrg'])?sessao_mensagem(mensagem(19)):sessao_mensagem(mensagem(20));
-
-    redireciona(9);
-}else if(isset($_POST['btnIncluirCriancaKit'])){
-
-    redireciona(9);
-
-}else{
-    
-    redireciona(8);
-
-}
-*/

@@ -1,7 +1,7 @@
 <?php
   
  
-  $search2 = 'SELECT dc.rg_crianca, dc.nome_crianca, p.nome, p.telefone 
+  $search2 = 'SELECT dc.rg_crianca, dc.nome_crianca, p.nome, p.telefone,p.id_cadastro 
                 FROM cadastra c
                 INNER JOIN dados_crianca dc
                 ON dc.rg_crianca=c.fk_rg_crianca
@@ -14,7 +14,7 @@
                 AND dc.rg_crianca IN (SELECT fk_rg_crianca FROM doacao)';
   $result_search2 = mysqli_query($conecta, $search2);
 
-  $search = 'SELECT dc.rg_crianca, dc.nome_crianca, p.nome, p.telefone 
+  $search = 'SELECT dc.rg_crianca, dc.nome_crianca, p.nome, p.telefone,p.id_cadastro 
   FROM cadastra c
   INNER JOIN dados_crianca dc
   ON dc.rg_crianca=c.fk_rg_crianca
