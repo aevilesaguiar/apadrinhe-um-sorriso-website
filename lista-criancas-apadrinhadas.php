@@ -126,7 +126,12 @@ $(".toggle").on("click", function() {
           <td><?php echo $rows_resp['nome']; ?></td>
           <td><?php echo $rows_resp['telefone']; ?></td>
           <td> Apadrinhada </td>
-          <td>  <a href="aprovar-cadastro-familia.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
+          <td>
+          <form method="POST" action="exibicao-cadastro-familia.php">  
+          <input type="hidden" value="<?php echo $rows_resp['id_cadastro']; ?>" name="id_cadastro_familia"/>
+          <input class="button-menu-form" value="VISUALIZAR" type="submit">
+          </form>
+          </td>
         </tr>
       <?php }?>
     </tbody>
@@ -138,7 +143,12 @@ $(".toggle").on("click", function() {
           <td><?php echo $rows_resp['nome']; ?></td>
           <td><?php echo $rows_resp['telefone']; ?></td>
           <td> Sem Apadrinhamento </td>
-          <td><a href="aprovar-cadastro-familia.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
+          <td>
+          <form method="POST" action="exibicao-cadastro-familia.php">  
+          <input type="hidden" value="<?php echo $rows_resp['id_cadastro']; ?>" name="id_cadastro_familia"/>
+          <input class="button-menu-form" value="VISUALIZAR" type="submit">
+          </form>
+           </td>
         </tr>
       <?php }?>
     </tbody>
