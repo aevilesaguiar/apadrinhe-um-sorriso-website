@@ -177,6 +177,15 @@ $(".toggle").on("click", function() {
                     <?php echo $_SESSION['usuario_org']['telefone'];?>
                     </div>
                   </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Função :</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <?php echo $_SESSION['usuario_org']['tipo_cadastro']=='colaborador'?'Colaborador':'Administrador';?>
+                    </div>
+                  </div>
                  
                 
                 </div>
@@ -251,7 +260,7 @@ $(".toggle").on("click", function() {
         </tbody>
         <tbody>
                 <tr>
-                <th scope="col"> <a href="lista-criancas-apadrinhadas.php" target=_blank class="text4">Lista de crianças apadrinhadas</a></th>
+                <th scope="col"> <a href="lista-criancas-apadrinhadas.php" target=_blank class="text4">Lista de crianças</a></th>
 
             </tr>
         </tbody>
@@ -267,6 +276,12 @@ $(".toggle").on("click", function() {
         <tbody>
                 <tr>
                 <th scope="col"> <a href="cadastro-colaborador-organizacao.php" target=_blank class="text4">Cadastro de colaboradores Organização</a></th>
+
+            </tr>
+        </tbody>
+        <tbody>
+                <tr>
+                <th scope="col"> <a href="lista-colaboradores-organizacao.php" target=_blank class="text4">Lista de colaboradores</a></th>
 
             </tr>
         </tbody>
