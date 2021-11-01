@@ -122,7 +122,7 @@ if(isset($_POST['btnCadastraColaborador'])){
 
     }
     //cadastra colaborador na possui_colab
-    $cadastra_possui_colab=mysqli_query($conecta, cadastra_possui_colab($cpf,$cnpj['cnpj'],$id_colaborador));
+    $cadastra_possui_colab=mysqli_query($conecta, cadastra_possui_colab($cpf,$cnpj['cnpj'],$id_cadastro));
     header("Location:../../cadastro-colaborador-organizacao.php");
     
 }

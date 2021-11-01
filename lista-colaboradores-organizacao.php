@@ -1,3 +1,8 @@
+<?php
+    include 'php/geral/conexao-banco.php';
+    include "php/controle-site/sessao.php";
+    include "php/controle-site/consulta.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -88,7 +93,10 @@ $(".toggle").on("click", function() {
            
         </div>
 </header>
+<?php
+      $colaboradores = $conecta->query(consulta_colaboradores_organizacao($_SESSION['usuario_org']['id_cadastro']));
 
+?>
 
 <main class="main-board dist-mob-form">
       <div class="dist-menu"></div>
@@ -107,34 +115,20 @@ $(".toggle").on("click", function() {
     <thead>
       <tr>
        <th scope="col">ID</th>
-        <th scope="col">CPF</th>
         <th scope="col">Nome</th>
+        <th scope="col">Função</th>
         <th scope="col">Telefone</th>
         <th scope="col">E-mail</th>
-        <th scope="col">Visualizar Dados</th>
       </tr>
     </thead>
     <tbody>
-      <?php while($rows_resp = mysqli_fetch_assoc($result_search2)) {?>
+      <?php foreach($colaboradores as $dados){?>
         <tr>
-          <th scope="row"><?php echo $rows_resp['rg_crianca']; ?></th>
-          <td><?php echo $rows_resp['nome_crianca']; ?></td>
-          <td><?php echo $rows_resp['nome']; ?></td>
-          <td><?php echo $rows_resp['telefone']; ?></td>
-          <td> Apadrinhada </td>
-          <td>  <a href="aprovar-cadastro-familia.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
-        </tr>
-      <?php }?>
-    </tbody>
-    <tbody>
-      <?php while($rows_resp = mysqli_fetch_assoc($result_search)) {?>
-        <tr>
-          <th scope="row"><?php echo $rows_resp['rg_crianca']; ?></th>
-          <td><?php echo $rows_resp['nome_crianca']; ?></td>
-          <td><?php echo $rows_resp['nome']; ?></td>
-          <td><?php echo $rows_resp['telefone']; ?></td>
-          <td> Sem Apadrinhamento </td>
-          <td><a href="aprovar-cadastro-familia.php"> <button class="button-menu-form" type="submit">VISUALIZAR</button> </a> </td>
+          <td><?php echo $dados['id_cadastro'];?></td>
+          <td><?php echo $dados['nome'];?></td>
+          <td><?php echo $dados['funcao'];?></td>
+          <td><?php echo $dados['telefone'];?></td>
+          <td><?php echo $dados['e_mail'];?></td>
         </tr>
       <?php }?>
     </tbody>

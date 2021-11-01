@@ -118,6 +118,16 @@
 
         return $select;
     }
+    function consulta_cadastro_colaborador_organizacao($id_cadastro_colaborador){
+        $colaborador = 'SELECT * FROM perfil p
+                            INNER JOIN possui_colab pc
+                            ON pc.fk_id_colaborador=p.id_cadastro
+                            INNER JOIN dados_pj dp
+                            ON dp.cnpj=pc.fk_cnpj
+                            WHERE pc.fk_id_colaborador="'.$id_cadastro_colaborador.'"';
+        
+        return $colaborador;
+    }
 
     function consulta_doador($id_doacao){
          //Seleciona doações referente a organização logada
@@ -161,5 +171,37 @@ return $search;
                 
                 WHERE c.data_hora_recebimento IS NOT NULL AND d.fk_id_cadastro="'.$id_organizacao.'"';
         return $search;
+    }
+
+    function consulta_familia($id_cadastro_org,$id_cadastro_familia){//Seleciona dados familia
+        $familia = 'SELECT dc.*, p.*,df.*,dr.*
+                FROM cadastra c
+                INNER JOIN dados_crianca dc
+                ON dc.rg_crianca=c.fk_rg_crianca
+                INNER JOIN possui_cri pc
+                ON pc.fk_rg_crianca=dc.rg_crianca
+                INNER JOIN dados_responsavel dr
+                ON dr.id_familia=pc.fk_id_familia
+                INNER JOIN perfil p
+                ON p.id_cadastro=dr.fk_id_cadastro
+                INNER JOIN dados_pf df
+                ON df.fk_id_cadastro=p.id_cadastro WHERE c.fk_id_cadastro="'.$id_cadastro_org.'" 
+                AND p.id_cadastro="'.$id_cadastro_familia.'"';
+        
+        return $familia;
+    }
+
+    function consulta_colaboradores_organizacao($id_cadastro_org){
+
+        $colaboradores = 'SELECT p.*,c.* FROM dados_pj dp
+                            INNER JOIN possui_colab pc
+                            ON pc.fk_cnpj=dp.cnpj
+                            INNER JOIN perfil p
+                            ON p.id_cadastro=pc.fk_id_colaborador
+                            INNER JOIN colaborador c
+                            ON c.fk_id_cadastro=p.id_cadastro WHERE dp.fk_id_cadastro="'.$id_cadastro_org.'"';
+        
+        return $colaboradores;
+
     }
 ?>
